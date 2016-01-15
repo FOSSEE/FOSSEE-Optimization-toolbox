@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from lp_linprog.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="lp_linprog" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>lp_linprog</refname>
+    <refpurpose>Solves a linear programming problem given in LP file format.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   xopt = lp_linprog(file)
+   xopt = lp_linprog(file,param)
+   [xopt, fopt, exitflag, output, lambda] = lp_linprog(file)
+   [xopt, fopt, exitflag, output, lambda] = lp_linprog(file,param)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>file :</term>
+      <listitem><para> a string describing the path to the lp file.</para></listitem></varlistentry>
+   <varlistentry><term>param:</term>
+      <listitem><para> used to set maximum number of iterations. The default value for maximum iterations is given as 9999.</para></listitem></varlistentry>
+   <varlistentry><term>xopt :</term>
+      <listitem><para> a vector of double, the computed solution of the optimization problem.</para></listitem></varlistentry>
+   <varlistentry><term>fopt :</term>
+      <listitem><para> a double, the function value at xopt.</para></listitem></varlistentry>
+   <varlistentry><term>exitflag :</term>
+      <listitem><para> integer identifying the status of the solved problem.                                                                    0 - optimal solution                                                                                                                      1 - primal infeasible                                                                                                                     2 - dual infeasible                                                                                                                       3 - iteration limit reached                                                                                                               4 - abandoned                                                                                                                             5 - primal objective limit reached                                                                                                        6 - dual objective limit reached</para></listitem></varlistentry>
+   <varlistentry><term>output :</term>
+      <listitem><para> structure containing information about the optimization.</para></listitem></varlistentry>
+   <varlistentry><term>lambda :</term>
+      <listitem><para> structure containing the Lagrange multipliers at the solution x (separated by constraint type).</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+OSI-CLP is used for solving the linear programming problem, OSI-CLP is a library written in C++. It reads the data for linear programming problem from the LP file and solves the problem.
+Search the minimum of a constrained linear programming problem specified by :
+   </para>
+   <para>
+<latex>
+\begin{eqnarray}
+&amp;\mbox{min}_{x}
+&amp; f^T*x  \\
+&amp; \text{subject to} &amp; A.x \leq b \\
+&amp; &amp; Aeq.x = beq \\
+&amp; &amp; lb \leq x \leq ub \\
+\end{eqnarray}
+</latex>
+   </para>
+   <para>
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+file1_link="https://github.com/bhanusayal/symphony/blob/master/demos/exmip1.lp";
+[xopt,fopt,exitflag,output,lambda] =lp_linprog(file1);
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Bhanu Priya Sayal, Guru Pradeep Reddy</member>
+   </simplelist>
+</refsection>
+</refentry>

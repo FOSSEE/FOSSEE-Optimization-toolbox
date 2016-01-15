@@ -1,0 +1,100 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>mps_linprog</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("xml_code.css");
+      @import url("c_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="lp_linprog.html">&lt;&lt; lp_linprog</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_67ed98d9e37aae07fff609f5a47673d6.html">Symphony Toolbox</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="qpipopt.html">qpipopt &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path"><a href="index.html">Symphony Toolbox</a> &gt;&gt; <a href="section_67ed98d9e37aae07fff609f5a47673d6.html">Symphony Toolbox</a> &gt; mps_linprog</span>
+
+    <br /><br />
+    <div class="refnamediv"><h1 class="refname">mps_linprog</h1>
+    <p class="refpurpose">Solves a linear programming problem given in mps format.</p></div>
+
+
+<div class="refsynopsisdiv"><h3 class="title">Calling Sequence</h3>
+   <div class="synopsis"><pre><span class="default">xopt</span><span class="default"> = </span><span class="functionid">mps_linprog</span><span class="default">(</span><span class="default">file</span><span class="default">)</span>
+<span class="default">xopt</span><span class="default"> = </span><span class="functionid">mps_linprog</span><span class="default">(</span><span class="default">file</span><span class="default">,</span><span class="default">param</span><span class="default">)</span>
+<span class="default">[</span><span class="default">xopt</span><span class="default">, </span><span class="default">fopt</span><span class="default">, </span><span class="default">exitflag</span><span class="default">, </span><span class="default">output</span><span class="default">, </span><span class="default">lambda</span><span class="default">] = </span><span class="functionid">mps_linprog</span><span class="default">(</span><span class="default">file</span><span class="default">)</span>
+<span class="default">[</span><span class="default">xopt</span><span class="default">, </span><span class="default">fopt</span><span class="default">, </span><span class="default">exitflag</span><span class="default">, </span><span class="default">output</span><span class="default">, </span><span class="default">lambda</span><span class="default">] = </span><span class="functionid">mps_linprog</span><span class="default">(</span><span class="default">file</span><span class="default">,</span><span class="default">param</span><span class="default">)</span></pre></div></div>
+
+<div class="refsection"><h3 class="title">Parameters</h3>
+   <dl><dt><span class="term">file :</span>
+      <dd><p class="para">a string describing the path to the mps file.</p></dd></dt>
+   <dt><span class="term">param:</span>
+      <dd><p class="para">used to set maximum number of iterations. The default value for maximum iterations is given as 9999.</p></dd></dt>
+   <dt><span class="term">xopt :</span>
+      <dd><p class="para">a vector of double, the computed solution of the optimization problem.</p></dd></dt>
+   <dt><span class="term">fopt :</span>
+      <dd><p class="para">a double, the function value at xopt.</p></dd></dt>
+   <dt><span class="term">exitflag :</span>
+      <dd><p class="para">integer identifying the status of the solved problem.                                                                    0 - optimal solution                                                                                                                      1 - primal infeasible                                                                                                                     2 - dual infeasible                                                                                                                       3 - iteration limit reached                                                                                                               4 - abandoned                                                                                                                             5 - primal objective limit reached                                                                                                        6 - dual objective limit reached</p></dd></dt>
+   <dt><span class="term">output :</span>
+      <dd><p class="para">structure containing information about the optimization.</p></dd></dt>
+   <dt><span class="term">lambda :</span>
+      <dd><p class="para">structure containing the Lagrange multipliers at the solution x (separated by constraint type).</p></dd></dt></dl></div>
+
+<div class="refsection"><h3 class="title">Description</h3>
+   <p class="para">OSI-CLP is used for solving the linear programming problem, OSI-CLP is a library written in C++. It reads the data for linear programming problem from the MPS file and solves the problem.
+Search the minimum of a constrained linear programming problem specified by :</p>
+   <p class="para"><span><img src='./_LaTeX_mps_linprog.xml_1.png' style='position:relative;top:41px;width:206px;height:90px'/></span></p>
+   <p class="para"></p>
+   <p class="para"></p></div>
+
+<div class="refsection"><h3 class="title">Examples</h3>
+   <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">file1_link</span><span class="scilaboperator">=</span><span class="scilabstring">&#0034;</span><span class="scilabstring">https://github.com/bhanusayal/symphony/blob/master/demos/p0033.mps</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">;</span>
+<span class="scilabopenclose">[</span><span class="scilabid">xopt</span><span class="scilabdefault">,</span><span class="scilabid">fopt</span><span class="scilabdefault">,</span><span class="scilabid">exitflag</span><span class="scilabdefault">,</span><span class="scilabid">output</span><span class="scilabdefault">,</span><span class="scilabid">lambda</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span><span class="scilabid">lp_linprog</span><span class="scilabopenclose">(</span><span class="scilabid">file1</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+
+<div class="refsection"><h3 class="title">Examples</h3>
+   <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">file2_link</span><span class="scilaboperator">=</span><span class="scilabstring">&#0034;</span><span class="scilabstring">https://github.com/bhanusayal/symphony/blob/master/demos/exmip1.mps</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">;</span>
+<span class="scilabopenclose">[</span><span class="scilabid">xopt</span><span class="scilabdefault">,</span><span class="scilabid">fopt</span><span class="scilabdefault">,</span><span class="scilabid">exitflag</span><span class="scilabdefault">,</span><span class="scilabid">output</span><span class="scilabdefault">,</span><span class="scilabid">lambda</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span><span class="scilabid">lp_linprog</span><span class="scilabopenclose">(</span><span class="scilabid">file2</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+
+<div class="refsection"><h3 class="title">Authors</h3>
+   <ul class="itemizedlist"><li class="member">Bhanu Priya Sayal, Guru Pradeep Reddy</li></ul></div>
+    <br />
+
+    <div class="manualnavbar">
+    <table width="100%">
+    <tr><td colspan="3" class="next"><a href="http://bugzilla.scilab.org/enter_bug.cgi?product=Scilab%20software&component=Documentation%20pages" class="ulink">Report an issue</a></td></tr>
+<tr>
+      <td width="30%">
+    	<span class="previous"><a href="lp_linprog.html">&lt;&lt; lp_linprog</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_67ed98d9e37aae07fff609f5a47673d6.html">Symphony Toolbox</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="qpipopt.html">qpipopt &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

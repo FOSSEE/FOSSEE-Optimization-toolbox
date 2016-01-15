@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from linprog.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="linprog" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>linprog</refname>
+    <refpurpose>Solves a linear programming problem.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   xopt = linprog(f,A,b)
+   xopt = linprog(f,A,b,Aeq,beq)
+   xopt = linprog(f,A,b,Aeq,beq,lb,ub)
+   xopt = linprog(f,A,b,Aeq,beq,lb,ub,param)
+   [xopt,fopt,exitflag,output,lambda] = linprog( ... )
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>f :</term>
+      <listitem><para> a vector of double, represents coefficients of objective function.</para></listitem></varlistentry>
+   <varlistentry><term>A :</term>
+      <listitem><para> a matrix of double, represents the linear coefficients in the inequality constraints.</para></listitem></varlistentry>
+   <varlistentry><term>b :</term>
+      <listitem><para> a vector of double, represents the inequality constraints.</para></listitem></varlistentry>
+   <varlistentry><term>Aeq :</term>
+      <listitem><para> a matrix of double, represents the linear coefficients in the equality constraints.</para></listitem></varlistentry>
+   <varlistentry><term>beq :</term>
+      <listitem><para> a vector of double, represents the the equality constraints.</para></listitem></varlistentry>
+   <varlistentry><term>lb :</term>
+      <listitem><para> a vector of double, contains lower bounds of the variables.</para></listitem></varlistentry>
+   <varlistentry><term>ub :</term>
+      <listitem><para> a vector of double, contains upper bounds of the variables.</para></listitem></varlistentry>
+   <varlistentry><term>param:</term>
+      <listitem><para> used to set maximum number of iterations and gives an option to write the problem in MPS format/LP format. The default value for maximum iterations is given as 9999.</para></listitem></varlistentry>
+   <varlistentry><term>xopt :</term>
+      <listitem><para> a vector of double, the computed solution of the optimization problem.</para></listitem></varlistentry>
+   <varlistentry><term>fopt :</term>
+      <listitem><para> a double value, the function value at xopt.</para></listitem></varlistentry>
+   <varlistentry><term>exitflag :</term>
+      <listitem><para> integer identifying the status of the solved problem.                                                                    0 - optimal solution                                                                                                                      1 - primal infeasible                                                                                                                     2 - dual infeasible                                                                                                                       3 - iteration limit reached                                                                                                               4 - abandoned                                                                                                                             5 - primal objective limit reached                                                                                                        6 - dual objective limit reached</para></listitem></varlistentry>
+   <varlistentry><term>output :</term>
+      <listitem><para> structure containing information about the optimization.</para></listitem></varlistentry>
+   <varlistentry><term>lambda :</term>
+      <listitem><para> structure containing the Lagrange multipliers at the solution x (separated by constraint type).</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+OSI-CLP is used for solving the linear programming problems, OSI-CLP is a library written in C++.
+Search the minimum of a constrained linear programming problem specified by :
+   </para>
+   <para>
+<latex>
+\begin{eqnarray}
+&amp;\mbox{min}_{x}
+&amp; f^T*x  \\
+&amp; \text{subject to} &amp; A.x \leq b \\
+&amp; &amp; Aeq.x = beq \\
+&amp; &amp; lb \leq x \leq ub \\
+\end{eqnarray}
+</latex>
+   </para>
+   <para>
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+Optimal problems
+//Linear program, linear inequality constraints
+f=[-1,-1/3];
+A=[1,1;1,1/4;1,-1;-1/4,-1;-1,-1;-1,1];
+b=[2,1,2,1,-1,2]
+[xopt,fopt,exitflag,output,lambda]=linprog(f, A, b);
+//Linear program with Linear Inequalities and Equalities
+f=[-1,-1/3];
+A=[1,1;1,1/4;1,-1;-1/4,-1;-1,-1;-1,1];
+b=[2,1,2,1,-1,2]
+Aeq=[1,1/4]
+beq=[1/2]
+[xopt,fopt,exitflag,output,lambda]=linprog(f, A, b, Aeq, beq);
+//Linear program with all constraint types
+f=[-1,-1/3];
+A=[1,1;1,1/4;1,-1;-1/4,-1;-1,-1;-1,1];
+b=[2,1,2,1,-1,2]
+Aeq=[1,1/4]
+beq=[1/2]
+lb=[-1,-0.5]
+ub=[1.5,1.25]
+[xopt,fopt,exitflag,output,lambda]=linprog(f, A, b, Aeq, beq, lb, ub);
+//Linear program with all constraint types, and writing the given problem in MPS/LP file format
+f=[-1,-1/3];
+A=[1,1;1,1/4;1,-1;-1/4,-1;-1,-1;-1,1];
+b=[2,1,2,1,-1,2]
+Aeq=[1,1/4]
+beq=[1/2]
+lb=[-1,-0.5]
+ub=[1.5,1.25]
+options=list("MaxIter",[200],"WriteMps","ON","WriteLp","ON");
+mps="../path to the mps file../.."
+lp="../path to the lp file../.."
+[xopt,fopt,exitflag,output,lambda]=linprog(f, A, b, Aeq, beq, lb, ub,options,mps,lp);
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+Primal Infeasible Problem
+f=[-1,-1,-1];
+A=[1,2,-1];
+b=[-4];
+Aeq=[1,5,3;1,1,0];
+beq=[10,100];
+lb=[0,0,0];
+ub=[%inf,%inf,%inf];
+[xopt,fopt,exitflag,output,lambda]= linprog(f,A,b,Aeq,beq,lb,ub);
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+Dual Infeasible Problem
+f=[3,5,-7];
+A=[-1,-1,4;1,1,4];
+b=[-8,5];
+Aeq=[];
+beq=[];
+lb=[-%inf,-%inf,-%inf];
+ub=[%inf,%inf,%inf];
+[xopt,fopt,exitflag,output,lambda]= linprog(f,A,b,Aeq,beq,lb,ub);
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Bhanu Priya Sayal, Guru Pradeep Reddy</member>
+   </simplelist>
+</refsection>
+</refentry>
