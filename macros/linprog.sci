@@ -319,17 +319,10 @@ function [xopt,fopt,exitflag,output,lambda] = linprog(varargin)
         end	
 	end
    
-   //Converting it into CLP format 
-   f = f;
-   LB = LB;
-   UB = UB;
-   conMatrix = A;
-   EqConMatrix=Aeq;
    nbCon = size(conMatrix,1);
    nbEqCon= size(EqConMatrix,1);
-   b=b;
-   Beq=beq;
-   [xopt,fopt,status,violation,iter,Zl,ineq,eq] = linearprog(f,conMatrix,b,EqConMatrix,Beq,LB,UB,options,flag_mps,flag_lp,file_mps,file_lp);
+   
+   [xopt,fopt,status,violation,iter,Zl,ineq,eq] = linearprog(f,A,b,Aeq,Beq,LB,UB,options,flag_mps,flag_lp,file_mps,file_lp);
    
    xopt = xopt';
    exitflag = status;
