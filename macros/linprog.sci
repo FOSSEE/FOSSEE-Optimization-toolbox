@@ -319,8 +319,8 @@ function [xopt,fopt,exitflag,output,lambda] = linprog(varargin)
         end	
 	end
    
-   nbCon = size(conMatrix,1);
-   nbEqCon= size(EqConMatrix,1);
+   nbCon = size(A,1);
+   nbEqCon= size(Aeq,1);
    
    [xopt,fopt,status,violation,iter,Zl,ineq,eq] = linearprog(f,A,b,Aeq,beq,LB,UB,options,flag_mps,flag_lp,file_mps,file_lp);
    
