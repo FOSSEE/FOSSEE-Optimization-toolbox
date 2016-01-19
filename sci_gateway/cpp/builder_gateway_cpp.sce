@@ -112,8 +112,8 @@ Function_Names = [
 		
 		//Linprog function
 		"linearprog","sci_linearprog"
-        "rmps","sci_rmps"
-        "rlp","sci_rlp"
+                "rmps","sci_rmps"
+                "rlp","sci_rlp"
 	];
 
 //Name of all the files to be compiled
