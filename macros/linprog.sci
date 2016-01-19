@@ -330,17 +330,10 @@ function [xopt,fopt,exitflag,output,lambda] = linprog (varargin)
             error(errmsg); 
         end	
 	end
-<<<<<<< HEAD
 
    nbCon = size(A,1);
    nbEqCon= size(Aeq,1);
 
-=======
-   
-   nbCon = size(A,1);
-   nbEqCon= size(Aeq,1);
-   
->>>>>>> c1bf3d1a9e981ad2e34fe3046529e57a744fca42
    [xopt,fopt,status,violation,iter,Zl,ineq,eq] = linearprog(f,A,b,Aeq,beq,LB,UB,options,flag_mps,flag_lp,file_mps,file_lp);
    
    xopt = xopt';
