@@ -10,7 +10,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-function [xopt,fopt,exitflag,output,lambda] = linprog(varargin)
+function [xopt,fopt,exitflag,output,lambda] = linprog (varargin)
   // Solves a linear programming problem.
   //
   //   Calling Sequence
@@ -49,62 +49,74 @@ function [xopt,fopt,exitflag,output,lambda] = linprog(varargin)
   //    \end{eqnarray}
   //   </latex>
   //
+  // Examples
+  // //Optimal problems
+  // //Linear program, linear inequality constraints
+  // f=[-1,-1/3]
+  // A=[1,1;1,1/4;1,-1;-1/4,-1;-1,-1;-1,1]
+  // b=[2,1,2,1,-1,2]
+  // [xopt,fopt,exitflag,output,lambda]=linprog(f, A, b)
+  // // Press ENTER to continue
   //
   // Examples
-  // Optimal problems
-  // //Linear program, linear inequality constraints
-  // f=[-1,-1/3];
-  // A=[1,1;1,1/4;1,-1;-1/4,-1;-1,-1;-1,1];
-  // b=[2,1,2,1,-1,2]   
-  // [xopt,fopt,exitflag,output,lambda]=linprog(f, A, b);
-  // //Linear program with Linear Inequalities and Equalities
-  // f=[-1,-1/3];
-  // A=[1,1;1,1/4;1,-1;-1/4,-1;-1,-1;-1,1];
-  // b=[2,1,2,1,-1,2]   
+  // //Linear program with Linear Inequalities and Equalities`
+  // f=[-1,-1/3]
+  // A=[1,1;1,1/4;1,-1;-1/4,-1;-1,-1;-1,1]
+  // b=[2,1,2,1,-1,2]  
   // Aeq=[1,1/4]
   // beq=[1/2]
-  // [xopt,fopt,exitflag,output,lambda]=linprog(f, A, b, Aeq, beq);
-  // //Linear program with all constraint types 
-  // f=[-1,-1/3];
-  // A=[1,1;1,1/4;1,-1;-1/4,-1;-1,-1;-1,1];
-  // b=[2,1,2,1,-1,2]   
-  // Aeq=[1,1/4]
-  // beq=[1/2]
-  // lb=[-1,-0.5]
-  // ub=[1.5,1.25]
-  // [xopt,fopt,exitflag,output,lambda]=linprog(f, A, b, Aeq, beq, lb, ub);
-  // //Linear program with all constraint types, and writing the given problem in MPS/LP file format
-  // f=[-1,-1/3];
-  // A=[1,1;1,1/4;1,-1;-1/4,-1;-1,-1;-1,1];
-  // b=[2,1,2,1,-1,2]   
-  // Aeq=[1,1/4]
-  // beq=[1/2]
-  // lb=[-1,-0.5]
-  // ub=[1.5,1.25]
-  // options=list("MaxIter",[200],"WriteMps","ON","WriteLp","ON");
-  // mps="../path to the mps file../.."
-  // lp="../path to the lp file../.."
-  // [xopt,fopt,exitflag,output,lambda]=linprog(f, A, b, Aeq, beq, lb, ub,options,mps,lp);
-  // Examples 
-  // Primal Infeasible Problem
-  // f=[-1,-1,-1];
-  // A=[1,2,-1];
-  // b=[-4];
-  // Aeq=[1,5,3;1,1,0];
-  // beq=[10,100];
-  // lb=[0,0,0];
-  // ub=[%inf,%inf,%inf];
-  // [xopt,fopt,exitflag,output,lambda]= linprog(f,A,b,Aeq,beq,lb,ub);
+  // [xopt,fopt,exitflag,output,lambda]=linprog(f, A, b, Aeq, beq)
+  // // Press ENTER to continue
+  //
   // Examples
-  // Dual Infeasible Problem
-  // f=[3,5,-7];
-  // A=[-1,-1,4;1,1,4];
-  // b=[-8,5];
-  // Aeq=[];
-  // beq=[];
-  // lb=[-%inf,-%inf,-%inf];
-  // ub=[%inf,%inf,%inf];
-  // [xopt,fopt,exitflag,output,lambda]= linprog(f,A,b,Aeq,beq,lb,ub);
+  // //Linear program with all constraint types 
+  // f=[-1,-1/3]
+  // A=[1,1;1,1/4;1,-1;-1/4,-1;-1,-1;-1,1]
+  // b=[2,1,2,1,-1,2]   
+  // Aeq=[1,1/4]
+  // beq=[1/2]
+  // lb=[-1,-0.5]
+  // ub=[1.5,1.25]
+  // [xopt,fopt,exitflag,output,lambda]=linprog(f, A, b, Aeq, beq, lb, ub)
+  // // Press ENTER to continue
+  //
+  // Examples
+  // //Linear program with all constraint types, and writing the given problem in MPS/LP file format
+  // f=[-1,-1/3]
+  // A=[1,1;1,1/4;1,-1;-1/4,-1;-1,-1;-1,1]
+  // b=[2,1,2,1,-1,2]   
+  // Aeq=[1,1/4]
+  // beq=[1/2]
+  // lb=[-1,-0.5]
+  // ub=[1.5,1.25]
+  // options=list("MaxIter",[200],"WriteMps","ON","WriteLp","ON")
+  // mps="../path to the mps file/.."
+  // lp="../path to the lp file/.."
+  // [xopt,fopt,exitflag,output,lambda]=linprog(f, A, b, Aeq, beq, lb, ub,options,mps,lp)
+  // // Press ENTER to continue
+  //
+  // Examples 
+  // //Primal Infeasible Problem
+  // f=[-1,-1,-1]
+  // A=[1,2,-1]
+  // b=[-4]
+  // Aeq=[1,5,3;1,1,0]
+  // beq=[10,100]
+  // lb=[0,0,0]
+  // ub=[%inf,%inf,%inf]
+  // [xopt,fopt,exitflag,output,lambda]= linprog(f,A,b,Aeq,beq,lb,ub)
+  // // Press ENTER to continue
+  //
+  // Examples
+  // //Dual Infeasible Problem
+  // f=[3,5,-7]
+  // A=[-1,-1,4;1,1,4]
+  // b=[-8,5]
+  // Aeq=[]
+  // beq=[]
+  // lb=[-%inf,-%inf,-%inf]
+  // ub=[%inf,%inf,%inf]
+  // [xopt,fopt,exitflag,output,lambda]= linprog(f,A,b,Aeq,beq,lb,ub)
   // Authors
   // Bhanu Priya Sayal, Guru Pradeep Reddy
     
@@ -318,18 +330,11 @@ function [xopt,fopt,exitflag,output,lambda] = linprog(varargin)
             error(errmsg); 
         end	
 	end
-   
-   //Converting it into CLP format 
-   f = f;
-   LB = LB;
-   UB = UB;
-   conMatrix = A;
-   EqConMatrix=Aeq;
-   nbCon = size(conMatrix,1);
-   nbEqCon= size(EqConMatrix,1);
-   b=b;
-   Beq=beq;
-   [xopt,fopt,status,violation,iter,Zl,ineq,eq] = linearprog(f,conMatrix,b,EqConMatrix,Beq,LB,UB,options,flag_mps,flag_lp,file_mps,file_lp);
+
+   nbCon = size(A,1);
+   nbEqCon= size(Aeq,1);
+
+   [xopt,fopt,status,violation,iter,Zl,ineq,eq] = linearprog(f,A,b,Aeq,beq,LB,UB,options,flag_mps,flag_lp,file_mps,file_lp);
    
    xopt = xopt';
    exitflag = status;

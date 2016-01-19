@@ -1,13 +1,13 @@
 // Copyright (C) 2015 - IIT Bombay - FOSSEE
 //
+// Author: Keyur Joshi, Sai Kiran, Iswarya and Harpreet Singh
+// Organization: FOSSEE, IIT Bombay
+// Email: harpreet.mertia@gmail.com
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-// Author: Harpreet Singh
-// Organization: FOSSEE, IIT Bombay
-// Email: toolbox@scilab.in
 
 mode(-1)
 lines(0)
@@ -23,8 +23,7 @@ tools_path  = path_builder + "../../thirdparty/linux/";
 
 C_Flags=["-w -fpermissive -I"+tools_path+"include/coin -Wl,-rpath="+tools_path+"lib/"+Version+filesep()+" "]
 
-Linker_Flag = ["-L"+tools_path+"lib/"+Version+filesep()+"libSym"+" "+"-L"+tools_path+"lib/"+Version+filesep()+"libipopt" ]
-
+Linker_Flag = ["-L"+tools_path+"lib/"+Version+filesep()+"libSym"+" "+"-L"+tools_path+"lib/"+Version+filesep()+"libipopt"+" "+"-L"+tools_path+"lib/"+Version+filesep()+"libClp"+" "+"-L"+tools_path+"lib/"+Version+filesep()+"libOsiClp"+" "+"-L"+tools_path+"lib/"+Version+filesep()+"libCoinUtils" ]
 
 //Name of All the Functions
 Function_Names = [
@@ -109,7 +108,12 @@ Function_Names = [
 		"sym_getConstrActivity","sci_sym_getRowActivity";
 
 		//QP function
-		"solveqp","sci_solveqp"
+		"solveqp","sci_solveqp";
+		
+		//Linprog function
+		"linearprog","sci_linearprog"
+        "rmps","sci_rmps"
+        "rlp","sci_rlp"
 	];
 
 //Name of all the files to be compiled
@@ -140,10 +144,14 @@ Files = [
 		"sci_sym_remove.cpp",
 		"sci_QuadNLP.cpp",
 		"QuadNLP.hpp",
-		"sci_ipopt.cpp"
-				
-	]
+		"sci_ipopt.cpp",
+		"sci_LinProg.cpp",
+        "sci_LinCLP.cpp",
+        "LinCLP.hpp",
+        "read_mps.cpp",
+        "read_lp.cpp"	
+ 	]
 
 tbx_build_gateway(toolbox_title,Function_Names,Files,get_absolute_file_path("builder_gateway_cpp.sce"), [], Linker_Flag, C_Flags, [], "g++");
 
-clear WITHOUT_AUTO_PUTLHSVAR toolbox_title Function_Names Files Linker_Flag C_Flags;
+clear toolbox_title Function_Names Files Linker_Flag C_Flags;
