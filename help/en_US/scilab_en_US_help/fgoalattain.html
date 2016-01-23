@@ -1,0 +1,183 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>fgoalattain</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("xml_code.css");
+      @import url("c_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="section_081d1d33ab991f38ee18416e43e21b9a.html">&lt;&lt; fgoalattain</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_081d1d33ab991f38ee18416e43e21b9a.html">fgoalattain</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="fgoalattain2.html">fgoalattain2 &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path"><a href="index.html">fgoalattain</a> &gt;&gt; <a href="section_081d1d33ab991f38ee18416e43e21b9a.html">fgoalattain</a> &gt; fgoalattain</span>
+
+    <br /><br />
+    <div class="refnamediv"><h1 class="refname">fgoalattain</h1>
+    <p class="refpurpose">Solves a multiobjective goal attainment problem</p></div>
+
+
+<div class="refsynopsisdiv"><h3 class="title">Calling Sequence</h3>
+   <div class="synopsis"><pre><span class="default">x</span><span class="default"> = </span><span class="functionid">fgoalattain</span><span class="default">(</span><span class="default">fun</span><span class="default">,</span><span class="default">startpoint</span><span class="default">,</span><span class="default">goal</span><span class="default">,</span><span class="default">weight</span><span class="default">)</span>
+<span class="default">x</span><span class="default"> = </span><span class="functionid">fgoalattain</span><span class="default">(</span><span class="default">fun</span><span class="default">,</span><span class="default">startpoint</span><span class="default">,</span><span class="default">goal</span><span class="default">,</span><span class="default">weight</span><span class="default">,</span><span class="default">A</span><span class="default">,</span><span class="default">b</span><span class="default">)</span>
+<span class="default">x</span><span class="default"> = </span><span class="functionid">fgoalattain</span><span class="default">(</span><span class="default">fun</span><span class="default">,</span><span class="default">startpoint</span><span class="default">,</span><span class="default">goal</span><span class="default">,</span><span class="default">weight</span><span class="default">,</span><span class="default">A</span><span class="default">,</span><span class="default">b</span><span class="default">,</span><span class="default">Aeq</span><span class="default">,</span><span class="default">beq</span><span class="default">)</span>
+<span class="default">x</span><span class="default"> = </span><span class="functionid">fgoalattain</span><span class="default">(</span><span class="default">fun</span><span class="default">,</span><span class="default">startpoint</span><span class="default">,</span><span class="default">goal</span><span class="default">,</span><span class="default">weight</span><span class="default">,</span><span class="default">A</span><span class="default">,</span><span class="default">b</span><span class="default">,</span><span class="default">Aeq</span><span class="default">,</span><span class="default">beq</span><span class="default">,</span><span class="default">lb</span><span class="default">,</span><span class="default">ub</span><span class="default">)</span>
+<span class="default">x</span><span class="default"> = </span><span class="functionid">fgoalattain</span><span class="default">(</span><span class="default">fun</span><span class="default">,</span><span class="default">startpoint</span><span class="default">,</span><span class="default">goal</span><span class="default">,</span><span class="default">weight</span><span class="default">,</span><span class="default">A</span><span class="default">,</span><span class="default">b</span><span class="default">,</span><span class="default">Aeq</span><span class="default">,</span><span class="default">beq</span><span class="default">,</span><span class="default">lb</span><span class="default">,</span><span class="default">ub</span><span class="default">,</span><span class="default">nonlcon</span><span class="default">)</span>
+<span class="default">x</span><span class="default"> = </span><span class="functionid">fgoalattain</span><span class="default">(</span><span class="default">fun</span><span class="default">,</span><span class="default">startpoint</span><span class="default">,</span><span class="default">goal</span><span class="default">,</span><span class="default">weight</span><span class="default">,</span><span class="default">A</span><span class="default">,</span><span class="default">b</span><span class="default">,</span><span class="default">Aeq</span><span class="default">,</span><span class="default">beq</span><span class="default">,</span><span class="default">lb</span><span class="default">,</span><span class="default">ub</span><span class="default">,</span><span class="default">nonlcon</span><span class="default">,</span><span class="default">options</span><span class="default">)</span>
+<span class="default">[</span><span class="default">x</span><span class="default">,</span><span class="default">fval</span><span class="default">] = </span><span class="functionid">fgoalattain</span><span class="default">(...)</span>
+<span class="default">[</span><span class="default">x</span><span class="default">,</span><span class="default">fval</span><span class="default">,</span><span class="default">attainfactor</span><span class="default">] = </span><span class="functionid">fgoalattain</span><span class="default">(...)</span>
+<span class="default">[</span><span class="default">x</span><span class="default">,</span><span class="default">fval</span><span class="default">,</span><span class="default">attainfactor</span><span class="default">,</span><span class="default">exitflag</span><span class="default">] = </span><span class="functionid">fgoalattain</span><span class="default">(...)</span>
+<span class="default">[</span><span class="default">x</span><span class="default">,</span><span class="default">fval</span><span class="default">,</span><span class="default">attainfactor</span><span class="default">,</span><span class="default">exitflag</span><span class="default">,</span><span class="default">output</span><span class="default">] = </span><span class="functionid">fgoalattain</span><span class="default">(...)</span>
+<span class="default">[</span><span class="default">x</span><span class="default">,</span><span class="default">fval</span><span class="default">,</span><span class="default">attainfactor</span><span class="default">,</span><span class="default">exitflag</span><span class="default">,</span><span class="default">output</span><span class="default">,</span><span class="default">lambda</span><span class="default">] = </span><span class="functionid">fgoalattain</span><span class="default">(...)</span></pre></div></div>
+
+<div class="refsection"><h3 class="title">Parameters</h3>
+   <dl><dt><span class="term">lambda :</span>
+      <dd><p class="para">a struct, the Lagrange multipliers at optimum</p></dd></dt></dl></div>
+
+<div class="refsection"><h3 class="title">Description</h3>
+   <p class="para">fgoalattain solves the goal attainment problem, which is one formulation for minimizing a multiobjective optimization problem.
+Finds the minimum of a problem specified by:</p>
+   <p class="para">Minimise Y such that</p>
+   <p class="para"><span><img src='./_LaTeX_fgoalattain.xml_1.png' style='position:relative;top:64px;width:276px;height:136px'/></span></p>
+   <p class="para"></p>
+   <p class="para"></p>
+   <p class="para"></p>
+   <p class="para">The solver makes use of fmincon to find the minimum.
+The objective function must have header :
+<div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">f</span> <span class="scilaboperator">=</span> <span class="scilabid">objfun</span> <span class="scilabopenclose">(</span> <span class="scilabid">x</span> <span class="scilabopenclose">)</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div>
+where x is a n x 1 matrix of doubles and f is a m x 1 matrix of doubles, where m is the number of objectives
+On input, the variable x contains the current point and, on output,
+the variable f must contain the objective function values.
+By default, the fgoalattain uses the method of finite differences to comput the gradient of the objectives</p>
+   <p class="para">In order to use exact gradients, we must update the header of the
+objective function to :
+<div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabopenclose">[</span><span class="scilabid">f</span><span class="scilabdefault">,</span><span class="scilabid">G</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">objfungrad</span> <span class="scilabopenclose">(</span> <span class="scilabid">x</span> <span class="scilabopenclose">)</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div>
+where x is a n x 1 matrix of doubles, f is a 1 x 1 matrix of doubles
+and G is a n x 1 matrix of doubles.</p>
+   <p class="para">On input, the variable x contains the current point and, on output,
+the variable f must contain the objective function value and the variable
+G must contain the gradient of the objective function.
+Furthermore, we must enable the &#0034;GradObj&#0034; option with the statement similar to :
+options=list(&#0034;GradObj&#0034;, &#0034;ON&#0034;);
+This will let fmincon know that the exact gradient of the objective
+function is known, so that it can change the calling sequence to the
+objective function.</p>
+   <p class="para">The constraint function must have header :
+<div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabopenclose">[</span><span class="scilabid">c</span><span class="scilabdefault">,</span> <span class="scilabid">ceq</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">confun</span><span class="scilabopenclose">(</span><span class="scilabid">x</span><span class="scilabopenclose">)</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div>
+where x is a n x 1 matrix of doubles, c is a nni x 1 matrix of doubles and
+ceq is a nne x 1 matrix of doubles (nni : number of nonlinear inequality
+constraints, nne : number of nonlinear equality constraints).
+On input, the variable x contains the current point and, on output,
+the variable c must contain the nonlinear inequality constraints and ceq must contain the
+nonlinear equality constraints.</p>
+   <p class="para">By default, the gradient of the constraints is computed using the method of finite differences
+If exact gradients can be computed, we need to update the header to
+<div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabopenclose">[</span><span class="scilabid">c</span><span class="scilabdefault">,</span><span class="scilabid">ceq</span><span class="scilabdefault">,</span><span class="scilabid">DC</span><span class="scilabdefault">,</span><span class="scilabid">DCeq</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">confungrad</span><span class="scilabopenclose">(</span><span class="scilabid">x</span><span class="scilabopenclose">)</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div>
+where x is a n x 1 matrix of doubles, c is a nni x 1 matrix of doubles,
+ceq is a nne x 1 matrix of doubles, DC is a n x nni matrix of doubles and
+DCeq is a n x nne matrix of doubles.
+On input, the variable x contains the current point and, on output,
+the variable c must contain the nonlinear inequality constraint function value,
+the variable ceq must contain the nonlinear equality constraint function value,
+the variable DC must contain the Jacobian matrix of the nonlinear inequality constraints
+and the variable DCeq must contain the Jacobian matrix of the nonlinear equality constraints.
+The i-th nonlinear inequality constraint is associated to the i-th column of
+the matrix DC, i.e, it is stored in DC(:,i) (same for DCeq).
+Furthermore, we must enable the &#0034;GradObj&#0034; option with the statement similar to:
+<div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">options</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://list">list</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">GradObj</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">,</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">ON</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">,</span><span class="scilabstring">&#0034;</span><span class="scilabstring">GradCon</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">,</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">ON</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></p>
+   <p class="para">The fgoalattain finds out the maximum value of Y for the objectives evaluated at the starting point and
+adds that as another variable to the vector x
+This is passed to the fmincon function to get the optimised value of Y
+Hence, the algorithm used mainly is &#0034;ipopt&#0034; to obtain the optimum solution
+The relations between f(x), Y, weights and goals are added as additional non-linear inequality constraints</p>
+   <p class="para">The output exitflag is explained below:
+0: &#0034;Optimal Solution Found.&#0034;
+1: &#0034;Maximum Number of Iterations Exceeded. Output may not be optimal.&#0034;
+2: &#0034;Maximum CPU Time exceeded. Output may not be optimal.&#0034;
+3: &#0034;Stop at Tiny Step&#0034;
+4: &#0034;Solved To Acceptable Level&#0034;
+5: &#0034;Converged to a point of local infeasibility.&#0034;
+6: &#0034;Stopping optimization at current point as requested by user.&#0034;
+7: &#0034;Feasible point for square problem found.&#0034;
+8: &#0034;Iterates diverging; problem might be unbounded.&#0034;
+9: &#0034;Restoration Failed!&#0034;
+10:&#0034;Error in step computation (regularization becomes too large?)!&#0034;
+11: &#0034;Problem has too few degrees of freedom.&#0034;
+12: &#0034;Invalid option thrown back by IPOpt&#0034;
+13: &#0034;Not enough memory.&#0034;
+15: &#0034;INTERNAL ERROR: Unknown SolverReturn value - Notify IPOPT Authors.&#0034;
+TODO : implement Display option
+TODO : implement Algorithm option
+TODO : implement GoalsExactAchieve option
+TODO : test all exitflag values</p></div>
+
+<div class="refsection"><h3 class="title">Examples</h3>
+   <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabfkeyword">function</span> <span class="scilabinputoutputargs">f1</span><span class="scilaboperator">=</span><span class="scilabfunctionid">objfun</span><span class="scilabopenclose">(</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">)</span>
+<span class="scilabinputoutputargs">f1</span><span class="scilabopenclose">(</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilabnumber">2</span><span class="scilaboperator">*</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">*</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">+</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span><span class="scilaboperator">*</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span><span class="scilaboperator">-</span><span class="scilabnumber">48</span><span class="scilaboperator">*</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">-</span><span class="scilabnumber">40</span><span class="scilaboperator">*</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span><span class="scilaboperator">+</span><span class="scilabnumber">304</span>
+<span class="scilabinputoutputargs">f1</span><span class="scilabopenclose">(</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilaboperator">-</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">*</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">-</span><span class="scilabnumber">3</span><span class="scilaboperator">*</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span><span class="scilaboperator">*</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span>
+<span class="scilabinputoutputargs">f1</span><span class="scilabopenclose">(</span><span class="scilabnumber">3</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">+</span><span class="scilabnumber">3</span><span class="scilaboperator">*</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span><span class="scilaboperator">-</span><span class="scilabnumber">18</span>
+<span class="scilabinputoutputargs">f1</span><span class="scilabopenclose">(</span><span class="scilabnumber">4</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilaboperator">-</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">-</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span>
+<span class="scilabinputoutputargs">f1</span><span class="scilabopenclose">(</span><span class="scilabnumber">5</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">+</span><span class="scilabinputoutputargs">x</span><span class="scilabopenclose">(</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span><span class="scilaboperator">-</span><span class="scilabnumber">8</span>
+<span class="scilabfkeyword">endfunction</span>
+<span class="scilabid">x0</span><span class="scilaboperator">=</span><span class="scilabopenclose">[</span><span class="scilaboperator">-</span><span class="scilabnumber">1</span><span class="scilabdefault">,</span><span class="scilabnumber">1</span><span class="scilabopenclose">]</span><span class="scilabdefault">;</span>
+
+<span class="scilabid">goal</span><span class="scilaboperator">=</span><span class="scilabopenclose">[</span><span class="scilaboperator">-</span><span class="scilabnumber">5</span><span class="scilabdefault">,</span><span class="scilaboperator">-</span><span class="scilabnumber">3</span><span class="scilabdefault">,</span><span class="scilaboperator">-</span><span class="scilabnumber">2</span><span class="scilabdefault">,</span><span class="scilaboperator">-</span><span class="scilabnumber">1</span><span class="scilabdefault">,</span><span class="scilaboperator">-</span><span class="scilabnumber">4</span><span class="scilabopenclose">]</span><span class="scilabdefault">;</span>
+<span class="scilabid">weight</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://abs">abs</a><span class="scilabopenclose">(</span><span class="scilabid">goal</span><span class="scilabopenclose">)</span>
+<span class="scilabid">gval</span>  <span class="scilaboperator">=</span>
+<span class="scilabopenclose">[</span><span class="scilaboperator">-</span> <span class="scilabnumber">0.0000011</span>
+<span class="scilaboperator">-</span> <span class="scilabnumber">63.999998</span>
+<span class="scilaboperator">-</span> <span class="scilabnumber">2.0000002</span>
+<span class="scilaboperator">-</span> <span class="scilabnumber">8.</span>
+<span class="scilabnumber">3.485D-08</span><span class="scilabopenclose">]</span>
+<span class="scilabid">z</span>  <span class="scilaboperator">=</span>
+
+<span class="scilabopenclose">[</span><span class="scilabnumber">4.</span>    <span class="scilabnumber">3.99</span><span class="scilabopenclose">]</span>
+
+<span class="scilabid">Run</span> <span class="scilabid">fgoalattain</span>
+<span class="scilabopenclose">[</span><span class="scilabid">x</span><span class="scilabdefault">,</span><span class="scilabid">fval</span><span class="scilabdefault">,</span><span class="scilabid">attainfactor</span><span class="scilabdefault">,</span><span class="scilabid">exitflag</span><span class="scilabdefault">,</span><span class="scilabid">output</span><span class="scilabdefault">,</span><span class="scilabid">lambda</span><span class="scilabopenclose">]</span><span class="scilaboperator">=</span><span class="scilabid">fgoalattain</span><span class="scilabopenclose">(</span><span class="scilabfunctionid">objfun</span><span class="scilabdefault">,</span><span class="scilabid">x0</span><span class="scilabdefault">,</span><span class="scilabid">goal</span><span class="scilabdefault">,</span><span class="scilabid">weight</span><span class="scilabopenclose">)</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+
+<div class="refsection"><h3 class="title">Authors</h3>
+   <ul class="itemizedlist"><li class="member">Prajwala TM</li>
+   <li class="member">Sheetal Shalini</li></ul></div>
+    <br />
+
+    <div class="manualnavbar">
+    <table width="100%">
+    <tr><td colspan="3" class="next"><a href="http://bugzilla.scilab.org/enter_bug.cgi?product=Scilab%20software&component=Documentation%20pages" class="ulink">Report an issue</a></td></tr>
+<tr>
+      <td width="30%">
+    	<span class="previous"><a href="section_081d1d33ab991f38ee18416e43e21b9a.html">&lt;&lt; fgoalattain</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_081d1d33ab991f38ee18416e43e21b9a.html">fgoalattain</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="fgoalattain2.html">fgoalattain2 &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

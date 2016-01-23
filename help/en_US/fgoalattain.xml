@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from fgoalattain.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="fgoalattain" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>fgoalattain</refname>
+    <refpurpose>Solves a multiobjective goal attainment problem</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   x = fgoalattain(fun,startpoint,goal,weight)
+   x = fgoalattain(fun,startpoint,goal,weight,A,b)
+   x = fgoalattain(fun,startpoint,goal,weight,A,b,Aeq,beq)
+   x = fgoalattain(fun,startpoint,goal,weight,A,b,Aeq,beq,lb,ub)
+   x = fgoalattain(fun,startpoint,goal,weight,A,b,Aeq,beq,lb,ub,nonlcon)
+   x = fgoalattain(fun,startpoint,goal,weight,A,b,Aeq,beq,lb,ub,nonlcon,options)
+   [x,fval] = fgoalattain(...)
+   [x,fval,attainfactor] = fgoalattain(...)
+   [x,fval,attainfactor,exitflag] = fgoalattain(...)
+   [x,fval,attainfactor,exitflag,output] = fgoalattain(...)
+   [x,fval,attainfactor,exitflag,output,lambda] = fgoalattain(...)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>lambda :</term>
+      <listitem><para> a struct, the Lagrange multipliers at optimum</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+fgoalattain solves the goal attainment problem, which is one formulation for minimizing a multiobjective optimization problem.
+Finds the minimum of a problem specified by:
+   </para>
+   <para>
+Minimise Y such that
+   </para>
+   <para>
+<latex>
+\begin{eqnarray}
+\mbox{min}_{x,\gamma}  &amp; f(x)-weight \ast \gamma \leq goal \\
+\mbox{subject to} &amp; c(x) \leq 0 \\
+&amp; c_{eq}(x) = 0 \\
+&amp; Ax \leq b \\
+&amp; A_{eq} x = b_{eq} \\
+&amp; lb \leq x \leq ub
+\end{eqnarray}
+</latex>
+   </para>
+   <para>
+   </para>
+   <para>
+   </para>
+   <para>
+   </para>
+   <para>
+The solver makes use of fmincon to find the minimum.
+The objective function must have header :
+<programlisting>
+f = objfun ( x )
+</programlisting>
+where x is a n x 1 matrix of doubles and f is a m x 1 matrix of doubles, where m is the number of objectives
+On input, the variable x contains the current point and, on output,
+the variable f must contain the objective function values.
+By default, the fgoalattain uses the method of finite differences to comput the gradient of the objectives
+   </para>
+   <para>
+In order to use exact gradients, we must update the header of the
+objective function to :
+<programlisting>
+[f,G] = objfungrad ( x )
+</programlisting>
+where x is a n x 1 matrix of doubles, f is a 1 x 1 matrix of doubles
+and G is a n x 1 matrix of doubles.
+   </para>
+   <para>
+On input, the variable x contains the current point and, on output,
+the variable f must contain the objective function value and the variable
+G must contain the gradient of the objective function.
+Furthermore, we must enable the "GradObj" option with the statement similar to :
+options=list("GradObj", "ON");
+This will let fmincon know that the exact gradient of the objective
+function is known, so that it can change the calling sequence to the
+objective function.
+   </para>
+   <para>
+The constraint function must have header :
+<programlisting>
+[c, ceq] = confun(x)
+</programlisting>
+where x is a n x 1 matrix of doubles, c is a nni x 1 matrix of doubles and
+ceq is a nne x 1 matrix of doubles (nni : number of nonlinear inequality
+constraints, nne : number of nonlinear equality constraints).
+On input, the variable x contains the current point and, on output,
+the variable c must contain the nonlinear inequality constraints and ceq must contain the
+nonlinear equality constraints.
+   </para>
+   <para>
+By default, the gradient of the constraints is computed using the method of finite differences
+If exact gradients can be computed, we need to update the header to
+<programlisting>
+[c,ceq,DC,DCeq] = confungrad(x)
+</programlisting>
+where x is a n x 1 matrix of doubles, c is a nni x 1 matrix of doubles,
+ceq is a nne x 1 matrix of doubles, DC is a n x nni matrix of doubles and
+DCeq is a n x nne matrix of doubles.
+On input, the variable x contains the current point and, on output,
+the variable c must contain the nonlinear inequality constraint function value,
+the variable ceq must contain the nonlinear equality constraint function value,
+the variable DC must contain the Jacobian matrix of the nonlinear inequality constraints
+and the variable DCeq must contain the Jacobian matrix of the nonlinear equality constraints.
+The i-th nonlinear inequality constraint is associated to the i-th column of
+the matrix DC, i.e, it is stored in DC(:,i) (same for DCeq).
+Furthermore, we must enable the "GradObj" option with the statement similar to:
+<programlisting>
+options=list("GradObj", "ON","GradCon", "ON");
+</programlisting>
+   </para>
+   <para>
+The fgoalattain finds out the maximum value of Y for the objectives evaluated at the starting point and
+adds that as another variable to the vector x
+This is passed to the fmincon function to get the optimised value of Y
+Hence, the algorithm used mainly is "ipopt" to obtain the optimum solution
+The relations between f(x), Y, weights and goals are added as additional non-linear inequality constraints
+   </para>
+   <para>
+The output exitflag is explained below:
+0: "Optimal Solution Found."
+1: "Maximum Number of Iterations Exceeded. Output may not be optimal."
+2: "Maximum CPU Time exceeded. Output may not be optimal."
+3: "Stop at Tiny Step"
+4: "Solved To Acceptable Level"
+5: "Converged to a point of local infeasibility."
+6: "Stopping optimization at current point as requested by user."
+7: "Feasible point for square problem found."
+8: "Iterates diverging; problem might be unbounded."
+9: "Restoration Failed!"
+10:"Error in step computation (regularization becomes too large?)!"
+11: "Problem has too few degrees of freedom."
+12: "Invalid option thrown back by IPOpt"
+13: "Not enough memory."
+15: "INTERNAL ERROR: Unknown SolverReturn value - Notify IPOPT Authors."
+TODO : implement Display option
+TODO : implement Algorithm option
+TODO : implement GoalsExactAchieve option
+TODO : test all exitflag values
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+function f1 = objfun(x)
+f1(1)=2*x(1)*x(1)+x(2)*x(2)-48*x(1)-40*x(2)+304
+f1(2)=-x(1)*x(1)-3*x(2)*x(2)
+f1(3)=x(1)+3*x(2)-18
+f1(4)=-x(1)-x(2)
+f1(5)=x(1)+x(2)-8
+endfunction
+x0=[-1,1];
+
+goal=[-5,-3,-2,-1,-4];
+weight=abs(goal)
+gval  =
+[- 0.0000011
+- 63.999998
+- 2.0000002
+- 8.
+3.485D-08]
+z  =
+
+[4.    3.99]
+
+Run fgoalattain
+[x,fval,attainfactor,exitflag,output,lambda]=fgoalattain(objfun,x0,goal,weight)
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Prajwala TM</member>
+   <member>Sheetal Shalini</member>
+   </simplelist>
+</refsection>
+</refentry>
