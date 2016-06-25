@@ -121,6 +121,9 @@ Function_Names = [
 		"solveminuncp","sci_solveminuncp"
 		"solveminbndp","sci_solveminbndp"
 		"solveminconp","sci_solveminconp"
+		
+		//intqpipopt functions
+		"sci_intqpipopt", "cpp_intqpipopt"
 	];
 
 //Name of all the files to be compiled
@@ -165,7 +168,10 @@ Files = [
 		"sci_LinProg.cpp",
         "sci_LinCLP.cpp",
         "LinCLP.hpp",
-        "read_mps.cpp"
+        "read_mps.cpp",
+        "QuadTMINLP.hpp",
+        "sci_QuadTMINLP.cpp",
+        "cpp_intqpipopt.cpp"
 	]
 
 tbx_build_gateway(toolbox_title,Function_Names,Files,get_absolute_file_path("builder_gateway_cpp.sce"), [], Linker_Flag, C_Flags, [], "g++");

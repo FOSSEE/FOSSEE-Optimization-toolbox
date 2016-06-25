@@ -1,0 +1,3 @@
+//bonmin.iteration_limit                       0
+bonmin.time_limit                       0.5
+//bonmin.node_limit			5
