@@ -52,8 +52,9 @@ else
     link(lib_path + "/libcoinmumps.so");
     link(lib_path + "/libipopt.so");
 	link(lib_path + "/libCbc.so");
-    link(lib_path + '/libbonmin.so');
+    link(lib_path + "/libbonmin.so");
     link(lib_path + "/libecos.so");
+    link(lib_path + "/libecos_bb.so");
 
 end
 exec(pathconvert(root_tlbx + filesep() + "sci_gateway" + filesep() + "loader_gateway.sce",%f));
