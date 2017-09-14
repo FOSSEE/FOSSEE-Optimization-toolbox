@@ -350,7 +350,7 @@ int returnDoubleToScilab(double retVal)
 	return 0;
 }
 
-int returnDoubleMatrixToScilab(int itemPos, int rows, int cols, double *dest)
+int returnDoubleMatrixToScilab(int itemPos, int rows, int cols, const double *dest)
 {
 	SciErr sciErr;
 	//same steps as above
@@ -366,7 +366,7 @@ int returnDoubleMatrixToScilab(int itemPos, int rows, int cols, double *dest)
 	return 0;
 }
 
-int returnIntegerMatrixToScilab(int itemPos, int rows, int cols, int *dest)
+int returnIntegerMatrixToScilab(int itemPos, int rows, int cols, const int *dest)
 {
 	SciErr sciErr;
 	//same steps as above
@@ -381,5 +381,4 @@ int returnIntegerMatrixToScilab(int itemPos, int rows, int cols, int *dest)
 
 	return 0;
 }
-
 

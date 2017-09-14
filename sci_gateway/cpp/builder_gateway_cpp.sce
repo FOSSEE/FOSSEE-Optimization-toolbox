@@ -111,7 +111,9 @@ Function_Names = [
 		"solveminuncp","sci_solveminuncp"
 		"solveminbndp","sci_solveminbndp"
 		"solveminconp","sci_solveminconp"
-		
+
+		//ecos function
+		"solveecos","sci_ecos"		
 	];
 
 //Name of all the files to be compiled
@@ -154,6 +156,8 @@ Files = [
 		"sci_ipoptfmincon.cpp",
 		"sci_LinProg.cpp",
         "read_mps.cpp"
+		
+		'ecos.cpp'
 	]
 else
 //Name of All the Functions
@@ -327,19 +331,29 @@ Version = opt(2);
 if getos()=="Windows" then
 	third_dir = path_builder+filesep()+'..'+filesep()+'..'+filesep()+'thirdparty';
 	lib_base_dir = third_dir + filesep() + 'windows' + filesep() + 'lib' + filesep() + Version + filesep();
-	inc_base_dir = third_dir + filesep() + 'windows' + filesep() + 'include' + filesep() + 'coin';
+	inc_base_dir = third_dir + filesep() + 'windows' + filesep() + 'include';
+	inc_coin_dir = inc_base_dir + filesep() + 'coin';
+	inc_ecos_dir = inc_base_dir + filesep() + 'ecos';
     C_Flags=['-D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -I '+path_builder+' '+ '-I '+inc_base_dir+' ']
+	C_Flags = C_Flags + ['-I ' + inc_coin_dir + ' '];
+	C_Flags = C_Flags + ['-I ' + inc_ecos_dir + ' '];
     Linker_Flag  = [lib_base_dir+"libClp.lib "+lib_base_dir+"libCgl.lib "+lib_base_dir+"libOsi.lib "+lib_base_dir+"libOsiClp.lib "+lib_base_dir+"libCoinUtils.lib "+lib_base_dir+"libSymphony.lib "+lib_base_dir+"IpOptFSS.lib "+lib_base_dir+"IpOpt-vc10.lib "]
-
+	Linker_Flag = Linker_Flag + [lib_base_dir + "AMD.lib "];
+	Linker_Flag = Linker_Flag + [lib_base_dir + "LDL.lib "];
+	Linker_Flag = Linker_Flag + [lib_base_dir + "ECOS.lib "];
+	Linker_Flag = Linker_Flag + [lib_base_dir + "ECOS_BB.lib "];
 else
 	third_dir = path_builder+filesep()+'..'+filesep()+'..'+filesep()+'thirdparty';
 	lib_base_dir = third_dir + filesep() + 'linux' + filesep() + 'lib' + filesep() + Version + filesep();
-	inc_base_dir = third_dir + filesep() + 'linux' + filesep() + 'include' + filesep() + 'coin';
-    
+	inc_base_dir = third_dir + filesep() + 'linux' + filesep() + 'include';
+	inc_coin_dir = inc_base_dir + filesep() + 'coin';
+	inc_ecos_dir = inc_base_dir + filesep() + 'ecos';
     C_Flags=["-D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -fpermissive -I"+path_builder+" -I"+inc_base_dir+" -Wl,-rpath="+lib_base_dir+" "]
-    
+	C_Flags = C_Flags + ["-I" + inc_coin_dir + " "];
+	C_Flags = C_Flags + ["-I" + inc_ecos_dir + " "];
     Linker_Flag = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils" ]
-    
+	Linker_Flag = Linker_Flag + ["-L" + lib_base_dir + "libecos "];
+	Linker_Flag = Linker_Flag + ["-L" + lib_base_dir + "libecos_bb "];
 end
 
 tbx_build_gateway(toolbox_title,Function_Names,Files,get_absolute_file_path("builder_gateway_cpp.sce"), [], Linker_Flag, C_Flags);

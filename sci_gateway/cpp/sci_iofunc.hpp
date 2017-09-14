@@ -21,7 +21,7 @@ int getIntMatrixFromScilab(int argNum, int *rows, int *cols, int **dest);
 //output
 int return0toScilab();
 int returnDoubleToScilab(double retVal);
-int returnDoubleMatrixToScilab(int itemPos, int rows, int cols, double *dest);
-int returnIntegerMatrixToScilab(int itemPos, int rows, int cols, int *dest);
+int returnDoubleMatrixToScilab(int itemPos, int rows, int cols, const double *dest);
+int returnIntegerMatrixToScilab(int itemPos, int rows, int cols, const int *dest);
 
 #endif //SCI_IOFUNCHEADER

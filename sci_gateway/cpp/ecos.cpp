@@ -10,6 +10,10 @@
 // Email: toolbox@scilab.in
 
 #include "sci_iofunc.hpp"
+
+#include "ecos.h"
+#include "ecos_bb.h"
+
 extern "C"
 {
 	#include <api_scilab.h>
@@ -17,8 +21,6 @@ extern "C"
 	#include <BOOL.h>
 	#include <localization.h>
 	#include <sciprint.h>
-	#include <ecos.h>
-	#include <ecos_bb.h>
 
 	// function to convert int to idxint
 	idxint * int2idxint(int * sci_int, int n) {
