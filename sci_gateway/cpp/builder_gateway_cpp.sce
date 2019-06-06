@@ -119,7 +119,7 @@ Function_Names = [
 		'solveintqp','sci_solveintqp', 'csci6';
 		'inter_fminunc','cpp_intfminunc', 'csci6';
 		'inter_fminbnd','cpp_intfminbnd', 'csci6';
-		'inter_fmincon','cpp_intfmincon', 'csci6';
+		//'inter_fmincon','cpp_intfmincon', 'csci6';
 
 		//fotversion
         "fotversion","sci_fotversion", 'csci6';
@@ -152,8 +152,8 @@ Files = [
 		'cpp_intfminunc.cpp',
 		'sci_minbndTMINLP.cpp',
 		'cpp_intfminbnd.cpp',		
-		'sci_minconTMINLP.cpp',
-		'cpp_intfmincon.cpp',
+		//'sci_minconTMINLP.cpp',
+		//'cpp_intfmincon.cpp',
 		'sci_intlinprog_matrixcpp.cpp',
 		'sci_QuadTMINLP.cpp',
 		'sci_intquadprog.cpp',
@@ -180,12 +180,19 @@ if getos()=="Windows" then
     C_Flags=['-D__USE_DEPRECATED_STACK_FUNCTIONS__  -I -w '+path_builder+' '+ '-I '+inc_base_dir+' '+'-I '+threads_dir+' ']   
     Linker_Flag  = [lib_base_dir+"libcoinblas.lib "+lib_base_dir+"libcoinlapack.lib "+lib_base_dir+"libcoinmumps.lib "+lib_base_dir+"libClp.lib "+lib_base_dir+"libipopt.lib "+lib_base_dir+"libOsi.lib "+lib_base_dir+"libOsiClp.lib "+lib_base_dir+"libCoinUtils.lib "+lib_base_dir+"libCgl.lib "+lib_base_dir+"libOsiSym.lib "+lib_base_dir+"libSym.lib "+lib_base_dir+"libCbcSolver.lib "+lib_base_dir+"libCbc.lib "+lib_base_dir+"libbonmin.lib "+lib_base_dir+"pthreadVC2.lib " ]
 
+elseif getos()=="Darwin" then
+	third_dir = path_builder+filesep()+'..'+filesep()+'..'+filesep()+'thirdparty';
+    	lib_base_dir = third_dir + filesep() + 'Mac' + filesep() + 'lib' + filesep() + Version + filesep();
+    	inc_base_dir = third_dir + filesep() + 'Mac' + filesep() + 'include' + filesep() + 'coin';
+    	C_Flags=["-D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -fpermissive -I"+path_builder+" -I"+inc_base_dir+" -Wl,-rpath "+lib_base_dir+" "]
+    	Linker_Flag = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils" ]
+
 else
     third_dir = path_builder+filesep()+'..'+filesep()+'..'+filesep()+'thirdparty';
     lib_base_dir = third_dir + filesep() + 'linux' + filesep() + 'lib' + filesep() + Version + filesep();
     inc_base_dir = third_dir + filesep() + 'linux' + filesep() + 'include' + filesep() + 'coin';
     
-    C_Flags=["-D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -fpermissive -I"+path_builder+" -I"+inc_base_dir+" -Wl,-rpath="+lib_base_dir+" "]
+    C_Flags=["-D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -fpermissive -I"+path_builder+" -I"+inc_base_dir+" -Wl,-rpath "+lib_base_dir+" "]
     
     Linker_Flag = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils" ]
     
