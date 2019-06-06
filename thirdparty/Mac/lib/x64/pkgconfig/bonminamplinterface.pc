@@ -1,0 +1,12 @@
+prefix=/Users/yash/build
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/coin
+
+Name: BonminTMINLP
+Description: Ampl Interface to Bonmin
+URL: https://projects.coin-or.org/Bonmin
+Version: 1.8
+Libs: -L${libdir} -lbonminampl 
+Cflags: -I${includedir}
+Requires: bonmin ipoptamplinterface 

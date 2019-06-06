@@ -1,0 +1,12 @@
+prefix=/Users/yash/build
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/coin
+
+Name: OsiVol
+Description: COIN-OR Open Solver Interface for Vol
+URL: https://projects.coin-or.org/Osi
+Version: 1.5
+Libs: -L${libdir} -lOsiVol 
+Cflags: -I${includedir}
+Requires: vol osi 

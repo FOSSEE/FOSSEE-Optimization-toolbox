@@ -1,0 +1,11 @@
+prefix=/Users/yash/build
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/coin/ThirdParty
+
+Name: Glpk
+Description: Gnu Linear Programming Kit
+URL: https://projects.coin-or.org/BuildTools
+Version: 1.10
+Libs: -L${libdir} -lcoinglpk -ldl -lm -lgmp 
+Cflags: -I${includedir}
