@@ -14,7 +14,7 @@ library_names='libcoinmumps.0.0.0.dylib libcoinmumps.0.dylib libcoinmumps.dylib'
 old_library=''
 
 # Libraries that this one depends upon.
-dependency_libs=' /Users/yash/build/lib/libcoinmetis.la -L/usr/local/Cellar/gcc/9.1.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.1.0 -L/usr/local/Cellar/gcc/9.1.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.1.0/../../.. -lgfortran -lSystem -lquadmath -lm'
+dependency_libs=' /Users/yash/Desktop/coinbrew/build/lib/libcoinmetis.la -L/usr/local/Cellar/gcc/9.1.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.1.0 -L/usr/local/Cellar/gcc/9.1.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.1.0/../../.. -lgfortran -lSystem -lquadmath -lm'
 
 # Version information for libcoinmumps.
 current=0
@@ -32,4 +32,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/Users/yash/build/lib'
+libdir='/Users/yash/Desktop/coinbrew/build/lib'

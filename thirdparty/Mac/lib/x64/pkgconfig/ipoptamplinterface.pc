@@ -1,4 +1,4 @@
-prefix=/Users/yash/build
+prefix=/Users/yash/Desktop/coinbrew/build
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include/coin

@@ -14,7 +14,7 @@ library_names='libCbc.0.0.0.dylib libCbc.0.dylib libCbc.dylib'
 old_library=''
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/usr/local/Cellar/gcc/9.1.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.1.0 -L/usr/local/Cellar/gcc/9.1.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.1.0/../../.. /Users/yash/build/lib/libCgl.la /Users/yash/build/lib/libOsiClp.la /Users/yash/build/lib/libClpSolver.la /Users/yash/build/lib/libClp.la /Users/yash/build/lib/libcoinasl.la /Users/yash/build/lib/libcoinmumps.la -lgfortran -lSystem -lquadmath /Users/yash/build/lib/libcoinmetis.la /Users/yash/build/lib/libOsi.la /Users/yash/build/lib/libCoinUtils.la -lbz2 -lz /Users/yash/build/lib/libcoinglpk.la -ldl -lm -lgmp'
+dependency_libs=' -L/usr/local/Cellar/gcc/9.1.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.1.0 -L/usr/local/Cellar/gcc/9.1.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.1.0/../../.. /Users/yash/Desktop/coinbrew/build/lib/libCgl.la /Users/yash/Desktop/coinbrew/build/lib/libOsiClp.la /Users/yash/Desktop/coinbrew/build/lib/libClpSolver.la /Users/yash/Desktop/coinbrew/build/lib/libClp.la /Users/yash/Desktop/coinbrew/build/lib/libcoinasl.la /Users/yash/Desktop/coinbrew/build/lib/libcoinmumps.la -lgfortran -lSystem -lquadmath /Users/yash/Desktop/coinbrew/build/lib/libcoinmetis.la /Users/yash/Desktop/coinbrew/build/lib/libOsi.la /Users/yash/Desktop/coinbrew/build/lib/libCoinUtils.la -lbz2 -lz /Users/yash/Desktop/coinbrew/build/lib/libcoinglpk.la -ldl -lm -lgmp'
 
 # Version information for libCbc.
 current=0
@@ -32,4 +32,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/Users/yash/build/lib'
+libdir='/Users/yash/Desktop/coinbrew/build/lib'
