@@ -1,0 +1,73 @@
+
+ ==============================================================================
+ This is ALGENCAN 3.1.1.
+ ALGENCAN, an Augmented Lagrangian method for nonlinear programming, is part of
+ the TANGO Project: Trustable Algorithms for Nonlinear General Optimization.
+ See http://www.ime.usp.br/~egbirgin/tango/ for details.
+ ==============================================================================
+
+ Processing array of parameters with   1 entrances:
+
+ ITERATIONS-OUTPUT-DETAIL                                                    10
+
+ The specification file is not being used.
+
+ Available HSL subroutines = NONE           
+
+ ALGENCAN PARAMETERS:
+
+ firstde                =                    T
+ seconde                =                    T
+ truehpr                =                    T
+ hptype in TN           =               TRUEHP
+ lsslvr in TR           =            NONE/NONE
+ lsslvr in NW           =            NONE/NONE
+ lsslvr in ACCPROC      =            NONE/NONE
+ innslvr                =                   TN
+ accproc                =                    F
+ rmfixv                 =                    T
+ slacks                 =                    F
+ scale                  =                    T
+ epsfeas                =           1.0000D-08
+ epsopt                 =           1.0000D-08
+ efstain                =           1.0000D-04
+ eostain                =           1.0000D-12
+ efacc                  =           1.0000D-04
+ eoacc                  =           1.0000D-04
+ iprint                 =                   10
+ ncomp                  =                    6
+
+ Specification filename =                   ''
+ Output filename        =       'algencan.out'
+ Solution filename      =                   ''
+
+ Number of variables               :       3
+ Number of equality constraints    :       0
+ Number of inequality constraints  :       0
+ Number of bound constraints       :       3
+ Number of fixed variables         :       0
+
+ There are no fixed variables to be removed.
+
+ The scaling feature was mainly developed for constrained problems. For
+ unconstrained and bound-constrained problem, please, set the optimality
+ tolerance (related to the sup-norm of the projected gradient of the
+ objective function) with a convenient value. The scaling feature is being
+ disabled.
+
+ User-provided subroutines calls counters: 
+
+ Subroutine fsub     (coded=T):       86
+ Subroutine gsub     (coded=T):        6
+ Subroutine hsub     (coded=T):        3
+ Subroutine csub     (coded=T):        0 (       0 calls per constraint in avg)
+ Subroutine jacsub   (coded=T):        0 (       0 calls per constraint in avg)
+ Subroutine hcsub    (coded=T):        0 (       0 calls per constraint in avg)
+ Subroutine fcsub    (coded=F):        0
+ Subroutine gjacsub  (coded=F):        0
+ Subroutine gjacpsub (coded=F):        0
+ Subroutine hlsub    (coded=F):        0
+ Subroutine hlpsub   (coded=F):        0
+
+
+ Total CPU time in seconds =     0.00
