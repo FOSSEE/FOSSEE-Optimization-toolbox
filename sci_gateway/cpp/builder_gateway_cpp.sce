@@ -28,10 +28,6 @@ Function_Names = [
 
 		//QP function
 		"solveqp","sci_solveqp", "csci6";
-		"sci_quadprogCLP","sci_quadprogCLP", "csci6";
-
-		//QCQP function
-		"sci_qcqp","sci_qcqp", "csci6";
 
 		//Unconstrained Optimization
 		"solveminuncp","sci_solveminuncp", "csci6";  
@@ -78,10 +74,6 @@ Files = [
         //CLP
         "sci_LinProg.cpp",
         "read_mps.cpp",
-	"sci_quadprogCLP.cpp",
-
-		//Algencan
-		"sci_qcqp.c",
 		
 		//Bonmin
   		'sci_minuncTMINLP.cpp',
@@ -108,11 +100,7 @@ Function_Names = [
         "rmps","sci_rmps","csci6";   
 
 		//QP function
-		"solveqp","sci_solveqp", "csci6"; 
-		"sci_quadprogCLP","sci_quadprogCLP", "csci6"; 
-
-		//QCQP function
-		"sci_qcqp","sci_qcqp", "csci6";
+		"solveqp","sci_solveqp", "csci6";  
 
 		//Unconstrained Optimization
 		"solveminuncp","sci_solveminuncp", "csci6"; 
@@ -157,12 +145,8 @@ Files = [
 
         //CLP
         "sci_LinProg.cpp",
-        "read_mps.cpp",
-	"sci_quadprogCLP.cpp",
+        "read_mps.cpp"
 
-		//Algencan
-		"sci_qcqp.c",
-		
 		//Bonmin
   		'sci_minuncTMINLP.cpp',
 		'cpp_intfminunc.cpp',
@@ -201,9 +185,9 @@ else
     lib_base_dir = third_dir + filesep() + 'linux' + filesep() + 'lib' + filesep() + Version + filesep();
     inc_base_dir = third_dir + filesep() + 'linux' + filesep() + 'include' + filesep() + 'coin';
     
-    C_Flags=["-O3 -D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -fpermissive -I"+path_builder+" -I"+inc_base_dir+" -Wl,-rpath="+lib_base_dir+" "+"-std=gnu++11"]
+    C_Flags=["-D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -fpermissive -I"+path_builder+" -I"+inc_base_dir+" -Wl,-rpath="+lib_base_dir+" "]
     
-    Linker_Flag = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils"]
+    Linker_Flag = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils" ]
     
 end
 
