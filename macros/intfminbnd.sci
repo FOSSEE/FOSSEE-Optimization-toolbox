@@ -294,7 +294,6 @@ options = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',1d10,'al
         check=1;
       end
     end
-	disp(hessy);
   endfunction
     
    //Defining an inbuilt Objective gradient function 

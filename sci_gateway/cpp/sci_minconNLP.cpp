@@ -483,7 +483,7 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 		
 
 		scilab_getDouble(env_, out[1], &check);
-4
+
 		if (check==1)
 		{
 			return true;
