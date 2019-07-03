@@ -18,7 +18,6 @@ Build_64Bits = %t;
 
 path_builder = get_absolute_file_path('builder_gateway_cpp.sce');
 
-cc = ["/usr/local/opt/gcc/bin/"];
 if getos()=="Windows" then
 //Name of All the Functions
 Function_Names = [
@@ -79,7 +78,7 @@ Files = [
         //CLP
         "sci_LinProg.cpp",
         "read_mps.cpp",
-	"sci_quadprogCLP.cpp",
+		"sci_quadprogCLP.cpp",
 
 		//Algencan
 		"sci_qcqp.c",
@@ -104,7 +103,7 @@ elseif getos()=="Darwin" then
 Function_Names = [
         
         
-        	//Linprog function
+        //Linprog function
         	"linearprog","sci_linearprog", "csci6";
         	"rmps","sci_rmps","csci6";   
 
@@ -185,7 +184,11 @@ Function_Names = [
         "rmps","sci_rmps","csci6";   
 
 		//QP function
-		"solveqp","sci_solveqp", "csci6";  
+		"solveqp","sci_solveqp", "csci6"; 
+		"sci_quadprogCLP","sci_quadprogCLP", "csci6"; 
+
+		//QCQP function
+		"sci_qcqp","sci_qcqp", "csci6";
 
 		//Unconstrained Optimization
 		"solveminuncp","sci_solveminuncp", "csci6"; 
@@ -197,14 +200,14 @@ Function_Names = [
 		"solveminconp","sci_solveminconp", "csci6";
 
 		//Integer programming functions (CBC)
-		"matintlinprog","sci_matintlinprog", "csci6";
-		"mpsintlinprog","sci_mpsintlinprog","csci6";
+		'matintlinprog','sci_matintlinprog', 'csci6';
+		'mpsintlinprog','sci_mpsintlinprog','csci6';
 
 		//BONMIN Functions
-		"solveintqp","sci_solveintqp", "csci6";
-		"inter_fminunc","cpp_intfminunc", "csci6";
-		"inter_fminbnd","cpp_intfminbnd", "csci6";
-		"inter_fmincon","cpp_intfmincon", "csci6";
+		'solveintqp','sci_solveintqp', 'csci6';
+		'inter_fminunc','cpp_intfminunc', 'csci6';
+		'inter_fminbnd','cpp_intfminbnd', 'csci6';
+		'inter_fmincon','cpp_intfmincon', 'csci6';
 
 		//fotversion
         "fotversion","sci_fotversion", 'csci6';
@@ -231,22 +234,27 @@ Files = [
         //CLP
         "sci_LinProg.cpp",
         "read_mps.cpp",
+	"sci_quadprogCLP.cpp",
 
+		//Algencan
+		"sci_qcqp.c",
+		
 		//Bonmin
-  		"sci_minuncTMINLP.cpp",
-		"cpp_intfminunc.cpp",
-		"sci_minbndTMINLP.cpp",
-		"cpp_intfminbnd.cpp",		
-		"sci_minconTMINLP.cpp",
-		"cpp_intfmincon.cpp",
-		"sci_intlinprog_matrixcpp.cpp",
-		"sci_QuadTMINLP.cpp",
-		"sci_intquadprog.cpp",
-		"sci_intlinprog_mpscpp.cpp",
+  		'sci_minuncTMINLP.cpp',
+		'cpp_intfminunc.cpp',
+		'sci_minbndTMINLP.cpp',
+		'cpp_intfminbnd.cpp',		
+		'sci_minconTMINLP.cpp',
+		'cpp_intfmincon.cpp',
+		'sci_intlinprog_matrixcpp.cpp',
+		'sci_QuadTMINLP.cpp',
+		'sci_intquadprog.cpp',
+		'sci_intlinprog_mpscpp.cpp'
 
 		"sci_fotversion.cpp"
         
     ]
+
 
 end
 
@@ -285,6 +293,6 @@ else
     
 end
 
-tbx_build_gateway(toolbox_title,Function_Names,Files,get_absolute_file_path("builder_gateway_cpp.sce"), [], Linker_Flag, C_Flags,[],cc,[]);
+tbx_build_gateway(toolbox_title,Function_Names,Files,get_absolute_file_path("builder_gateway_cpp.sce"), [], Linker_Flag, C_Flags,[]);
 
 clear toolbox_title Function_Names Files Linker_Flag C_Flags;
