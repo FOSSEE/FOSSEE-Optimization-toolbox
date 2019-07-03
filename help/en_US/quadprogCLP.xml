@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from quadprogCLP.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="quadprogCLP" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>quadprogCLP</refname>
+    <refpurpose>Solves a linear quadratic problem.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   xopt = quadprogCLP(H,f,A,b)
+   xopt = quadprogCLP(H,f,A,b,Aeq,beq)
+   xopt = quadprogCLP(H,f,A,b,Aeq,beq,lb,ub)
+   [xopt,fopt,exitflag,output,lamda] = quadprogCLP( ... )
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>H :</term>
+            <listitem><para> a symmetric matrix of double, represents coefficients of quadratic in the quadratic problem.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>f :</term>
+            <listitem><para> a vector of double, represents coefficients of linear in the quadratic problem</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>A :</term>
+            <listitem><para> a matrix of double, represents the linear coefficients in the inequality constraints A⋅x ≤ b.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>b :</term>
+            <listitem><para> a vector of double, represents the linear coefficients in the inequality constraints A⋅x ≤ b.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>Aeq :</term>
+            <listitem><para> a matrix of double, represents the linear coefficients in the equality constraints Aeq⋅x = beq.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>beq :</term>
+            <listitem><para> a vector of double, represents the linear coefficients in the equality constraints Aeq⋅x = beq.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>lb :</term>
+            <listitem><para> a vector of double, contains lower bounds of the variables. The default value is 0.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>ub :</term>
+            <listitem><para> a vector of double, contains upper bounds of the variables. The default value is %inf.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>xopt :</term>
+            <listitem><para> a vector of double, the computed solution of the optimization problem.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fopt :</term>
+            <listitem><para> a double, the value of the function at x.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>exitflag :</term>
+            <listitem><para> The exit status. See below for details.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>iterations:</term>
+            <listitem><para> Total number of itereations performed.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>output :</term>
+            <listitem><para> The structure consist of statistics about the optimization. See below for details.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>lambda :</term>
+            <listitem><para> The structure consist of the Lagrange multipliers at the solution of problem. See below for details.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+Search the minimum of a constrained linear quadratic optimization problem specified by :
+   </para>
+   <para>
+<latex>
+\begin{eqnarray}
+&amp;\mbox{min}_{x} &amp; \frac{1}{2}\cdot x\cdot H^{T}\cdot x +  f\cdot x\\
+&amp;\mbox{subject to : } &amp; A\cdot x \leq b \\
+&amp; &amp; A_{eq}\cdot x = b_{eq} \\
+\end{eqnarray}
+</latex>
+   </para>
+   <para>
+The routine calls CLP for solving the quadratic problem, Clp is a library written in C++.
+   </para>
+   <para>
+The exitflag allows to know the status of the optimization which is given back by Clp.
+<itemizedlist>
+<listitem>exitflag=0 : Optimal Solution Found </listitem>
+<listitem>exitflag=1 : Primal Infeasible</listitem>
+<listitem>exitflag=2 : Dual Infeasible</listitem>
+<listitem>exitflag=3 : Maximum Number of iterations exceeded</listitem>
+<listitem>exitflag=4 : Solution Abandoned</listitem>
+<listitem>exitflag=5 : Primal Objective Limit reached</listitem>
+<listitem>exitflag=6 : Dual Objective Limit reached</listitem>
+</itemizedlist>
+   </para>
+   <para>
+For more details on exitflag see the CLP documentation, go to http://www.coin-or.org/Clp/documentation/
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+//Ref : example 14 :
+//https://www.me.utexas.edu/~jensen/ORMM/supplements/methods/nlpmethod/S2_quadratic.pdf
+// min. -8*x1*x1 -16*x2*x2 + x1 + 4*x2
+// such that
+//    x1 + x2 <= 5,
+//    x1 <= 3,
+//    x1 >= 0,
+//    x2 >= 0
+H = [2 0
+0 8];
+f = [-8; -16];
+A = [1 1;1 0];
+b = [5;3];
+lb = [0; 0];
+ub = [%inf; %inf];
+[xopt,fopt,exitflag,output,lambda] = quadprogCLP(H,f,A,b,[],[],lb,ub)
+// Press ENTER to continue
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+//Find x in R^6 such that:
+Aeq= [1,-1,1,0,3,1;
+-1,0,-3,-4,5,6;
+2,5,3,0,1,0];
+beq=[1; 2; 3];
+A= [0,1,0,1,2,-1;
+-1,0,2,1,1,0];
+b = [-1; 2.5];
+lb=[-1000; -10000; 0; -1000; -1000; -1000];
+ub=[10000; 100; 1.5; 100; 100; 1000];
+//and minimize 0.5*x'*H*x + f'*x with
+f=[1; 2; 3; 4; 5; 6]; H=eye(6,6);
+[xopt,fopt,exitflag,output,lambda]=quadprogCLP(H,f,A,b,Aeq,beq,lb,ub)
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+//Solving Linear Programming Problem
+// min -x0 - x1
+// subject to
+//    x0+2x1 <= 3
+//  2x0+x1 <= 3
+f = [-1;-1];
+A = [1,2;2,1];
+b = [3;3];
+[xopt,fopt] = quadprogCLP([],f,A,b);
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Adarsh Shah</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -72,6 +72,9 @@ bool minbndTMINLP::get_constraints_linearity(Index m, Ipopt::TNLP::LinearityType
 //get NLP info such as number of variables,constraints,no.of elements in jacobian and hessian to allocate memory
 bool minbndTMINLP::get_nlp_info(Index& n, Index& m, Index& nnz_jac_g, Index& nnz_h_lag, TNLP::IndexStyleEnum& index_style)
 {
+	#if LOCAL_DEBUG
+			printf("inside get_nlp_info\n");
+	#endif
 	n=numVars_; // Number of variables
 	m=0; // Number of constraints
 	nnz_jac_g = 0; // No. of elements in Jacobian of constraints 
@@ -83,6 +86,9 @@ bool minbndTMINLP::get_nlp_info(Index& n, Index& m, Index& nnz_jac_g, Index& nnz
 //get variable and constraint bound info
 bool minbndTMINLP::get_bounds_info(Index n, Number* x_l, Number* x_u, Index m, Number* g_l, Number* g_u)
 {
+	#if LOCAL_DEBUG
+			printf("inside get_bounds_info\n");
+	#endif
 	unsigned int i;
 	for(i=0;i<n;i++)
 	{
@@ -98,6 +104,9 @@ bool minbndTMINLP::get_bounds_info(Index n, Number* x_l, Number* x_u, Index m, N
 // return the value of the constraints: g(x)
 bool minbndTMINLP::eval_g(Index n, const Number* x, bool new_x, Index m, Number* g)
 {
+	#if LOCAL_DEBUG
+			printf("inside eval_g\n");
+	#endif
   	// return the value of the constraints: g(x)
   	g=NULL;
   	return true;
@@ -106,6 +115,10 @@ bool minbndTMINLP::eval_g(Index n, const Number* x, bool new_x, Index m, Number*
 // return the structure or values of the jacobian
 bool minbndTMINLP::eval_jac_g(Index n, const Number* x, bool new_x,Index m, Index nele_jac, Index* iRow, Index *jCol,Number* values)
 {
+
+	#if LOCAL_DEBUG
+			printf("inside eval_jac_g\n");
+	#endif
  	if (values == NULL) 
  	{
     		// return the structure of the jacobian of the constraints
@@ -230,6 +243,9 @@ bool minbndTMINLP::eval_grad_f(Index n, const Number* x, bool new_x, Number* gra
 // This method sets initial values for required vectors . For now we are assuming 0 to all values. 
 bool minbndTMINLP::get_starting_point(Index n, bool init_x, Number* x,bool init_z, Number* z_L, Number* z_U,Index m, bool init_lambda,Number* lambda)
 {
+	#if LOCAL_DEBUG
+			printf("in the get starting point block\n");
+		#endif
  	assert(init_x == true);
   	assert(init_z == false);
   	assert(init_lambda == false);
@@ -253,11 +269,12 @@ bool minbndTMINLP::eval_h(Index n,  const Number* x, bool new_x,Number obj_facto
 		printf("eval_h started\n");
 	#endif
 
-	scilabVar* out = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) * 2);
+	
 	double check;
 	if (values==NULL)
 	{
 		Index idx=0;
+		
 		for (Index row = 0; row < numVars_; row++) 
 		{
 			for (Index col = 0; col <= row; col++)
@@ -267,6 +284,7 @@ bool minbndTMINLP::eval_h(Index n,  const Number* x, bool new_x,Number obj_facto
 				idx++;
 		  	}
 		}
+		
 	}
 
 	else 
@@ -328,8 +346,9 @@ bool minbndTMINLP::eval_h(Index n,  const Number* x, bool new_x,Number obj_facto
 		}
 
 		
-       	return true;
+       	
     }
+	return true;
 }
 
 void minbndTMINLP::finalize_solution(SolverReturn status,Index n, const Number* x, Number obj_value)
