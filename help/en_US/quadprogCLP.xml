@@ -102,13 +102,9 @@ Search the minimum of a constrained linear quadratic optimization problem specif
    <para>
 <latex>
 \begin{eqnarray}
-\begin{align*}
-\\min\: 1/2⋅x^T⋅H⋅x + f^T⋅x
-\\ subject\, to
-\\ A{}'x \leqslant b
-\\ Aeq{}'x = beq
-\\ lb \leqslant x \leqslant ub
-\end{align*}
+&amp;\mbox{min}_{x} &amp; \frac{1}{2}\cdot x\cdot H^{T}\cdot x +  f\cdot x\\
+&amp;\mbox{subject to : } &amp; A\cdot x \leq b \\
+&amp; &amp; A_{eq}\cdot x = b_{eq} \\
 \end{eqnarray}
 </latex>
    </para>

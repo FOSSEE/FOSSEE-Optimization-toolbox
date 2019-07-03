@@ -26,22 +26,37 @@ int process_ret_val(int);
 /*
  * This function returns the status of problem that has been solved.
  */
-int sci_sym_get_status(char *fname, unsigned long fname_len){
+
+const char fname[] = "sym_get_status";
+
+int sci_sym_get_status(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
+{
 
 	int status=0;
   
 	//check whether we have no input and one output argument or not
-	CheckInputArgument(pvApiCtx, 0, 0) ;//no input argument
-	CheckOutputArgument(pvApiCtx, 1, 1) ;//one output argument
+	if (nin !=0)  //Checking the input arguments
+	{
+        	Scierror(999, "%s: Wrong number of input arguments: %d expected.\n", fname, 0);
+        	return STATUS_ERROR; 
+	}
+	
+	if (nout !=1) //Checking the output arguments
 
+	{
+		Scierror(999, "%s: Wrong number of output argument(s): %d expected.\n", fname, 1);
+		return 1;
+	}
 	// Check environment
 	if(global_sym_env==NULL)
 		sciprint("Error: Symphony environment is not initialized.\n");
 	else // There is an environment opened
 		status=sym_get_status(global_sym_env);// Call function
 	// Return result to scilab
-	return returnDoubleToScilab(status);
-	}
+	out[0] = scilab_createDouble(env, status);
+	return 0;
+
+}
 
 
 /* This is a generelized function for 
@@ -55,14 +70,27 @@ int sci_sym_get_status(char *fname, unsigned long fname_len){
  * 0 if the function is proved false.
  * -1 if there is an error.
  */
-int sci_sym_get_solver_status(char *fname, unsigned long fname_len){
+
+const char fname[] = "sym_get_solver";
+
+int sci_sym_get_solver(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
+{
 	int result= -1 ;// Result to caller. Set to error.
   
 	// Check whether we have no input and one output argument or not
-	CheckInputArgument(pvApiCtx, 0, 0) ;// No input argument
+	if (nin !=0)  //Checking the input arguments
+	{
+        	Scierror(999, "%s: Wrong number of input arguments: %d expected.\n", fname, 0);
+        	return STATUS_ERROR; 
+	}
 
 	// One output argument (For scilab 1 o/p argument is fixed)	
-	CheckOutputArgument(pvApiCtx, 1, 1) ;
+	if (nout !=1) //Checking the output arguments
+
+	{
+		Scierror(999, "%s: Wrong number of output argument(s): %d expected.\n", fname, 1);
+		return 1;
+	}
 
 	/* Array of possible callers of this function */
 	char *arr_caller[]={"sym_isOptimal","sym_isInfeasible","sym_isAbandoned",
@@ -91,16 +119,19 @@ int sci_sym_get_solver_status(char *fname, unsigned long fname_len){
 	// Check environment
 	if(global_sym_env==NULL)
 		sciprint("Error: Symphony environment is not initialized.\n");
-	else {//there is an environment opened
+	else 
+	{//there is an environment opened
 		int iter = 0, length= sizeof(arr_caller) / sizeof(char *),found_at= -1;
 
 		for (;iter < length ;++iter)
 			if (!strcmp(fname,arr_caller[iter])) //Find caller
 				found_at=iter;
-		if (found_at != -1 ) {
+		if (found_at != -1 ) 
+		{
 			result = fun[found_at](global_sym_env);
 			sciprint("\n");
-			switch (result) {
+			switch (result) 
+			{
 				case TRUE: // TRUE = 1
 					sciprint(output_true[found_at]);
 					break;
@@ -116,6 +147,9 @@ int sci_sym_get_solver_status(char *fname, unsigned long fname_len){
 		else // Very rare case
 			sciprint("\nError in function mapping in scilab script\n");
 		}
-	return returnDoubleToScilab(result);
+
+	out[0] = scilab_createDouble(env, result);
+
+	return 0;
 	}
 }

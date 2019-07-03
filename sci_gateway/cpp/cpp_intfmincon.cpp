@@ -98,7 +98,6 @@ int cpp_intfmincon(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt op
 	
 	scilab_getDoubleArray(env, in[7], &ub);
 
-
 	if (scilab_isDouble(env, in[8]) == 0 || scilab_isMatrix2d(env, in[8]) == 0)
 	{
 		Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 9);
@@ -108,6 +107,7 @@ int cpp_intfmincon(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt op
 	scilab_getDoubleArray(env, in[8], &conLb);
 	size1 = scilab_getDim2d(env, in[8], &nCons, &nCons2);
 
+	
 
 	if (scilab_isDouble(env, in[9]) == 0 || scilab_isMatrix2d(env, in[9]) == 0)
 	{
@@ -116,7 +116,7 @@ int cpp_intfmincon(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt op
 	}
 	
 	scilab_getDoubleArray(env, in[9], &conUb);
-
+	
 
 	// Getting intcon
 	if (scilab_isDouble(env, in[10]) == 0 || scilab_isMatrix2d(env, in[10]) == 0)
@@ -183,12 +183,13 @@ int cpp_intfmincon(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt op
 	bonmin.options()->SetIntegerValue("bonmin.print_level",5);
     bonmin.options()->SetNumericValue("bonmin.integer_tolerance", integertolerance);
     bonmin.options()->SetIntegerValue("bonmin.node_limit",max_nodes);
-    bonmin.options()->SetNumericValue("bonmin.time_limit", 500);
+    bonmin.options()->SetIntegerValue("bonmin.time_limit", cpu_time);
     bonmin.options()->SetNumericValue("bonmin.allowable_gap", allowable_gap);
-    bonmin.options()->SetIntegerValue("bonmin.iteration_limit", iterLim);
-	
+    bonmin.options()->SetIntegerValue("bonmin.iteration_limit", 10000); //Hardcoded iteration limit is temporary
+	//bonmin.options()->SetStringValue("hessian_approximation", "limited-memory");
 
-	printf("initialized tminlp\n");	
+
+
 	//Now initialize from tminlp
 	bonmin.initialize(GetRawPtr(tminlp));
 	
@@ -208,10 +209,12 @@ int cpp_intfmincon(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt op
 
 	if(rstatus==0 ||rstatus== 3)
 	{
+
+
 		fX = tminlp->getX();
 		ObjVal = tminlp->getObjVal();
 
-		out[0] = scilab_createDoubleMatrix2d(env, nVars, 1, 0);
+		out[0] = scilab_createDoubleMatrix2d(env, 1, nVars, 0);
 		scilab_setDoubleArray(env, out[0], fX);
 
 		out[1] = scilab_createDouble(env, ObjVal);

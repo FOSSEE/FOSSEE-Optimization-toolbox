@@ -34,20 +34,16 @@ function [xopt,fopt,exitflag,iterations,output,lambda] = quadprogCLP (varargin)
     //   iterations: Total number of itereations performed.
 	//   output : The structure consist of statistics about the optimization. See below for details.
 	//   lambda : The structure consist of the Lagrange multipliers at the solution of problem. See below for details.
-	//   
+	//
 	//   Description
 	//   Search the minimum of a constrained linear quadratic optimization problem specified by :
 	//
 	//   <latex>
-	//	\begin{eqnarray}
-	//	\begin{align*}
-	//  \\min\: 1/2⋅x^T⋅H⋅x + f^T⋅x  
-	//	\\ subject\, to
-	//	\\ A{}'x \leqslant b
-	//	\\ Aeq{}'x = beq
-	//	\\ lb \leqslant x \leqslant ub
-	//	\end{align*}
-	//	\end{eqnarray}
+	//   \begin{eqnarray}
+	//   &amp;\mbox{min}_{x} &amp; \frac{1}{2}\cdot x\cdot H^{T}\cdot x \ + \  f\cdot x\\
+	//   &amp;\mbox{subject to : } &amp; A\cdot x \leq b \\
+	//   &amp; &amp; A_{eq}\cdot x = b_{eq} \\
+	//   \end{eqnarray}
 	//   </latex>
 	//   
 	//   The routine calls CLP for solving the quadratic problem, Clp is a library written in C++.
@@ -163,5 +159,22 @@ function [xopt,fopt,exitflag,iterations,output,lambda] = quadprogCLP (varargin)
     end
          
     [xopt,fopt,exitflag,iterations,output,lambda] = sci_quadprogCLP(H,f,0,A,b,Aeq,beq,lb,ub);
-    
+	
+	select exitflag
+    case 0 then
+        disp('Optimal Solution Found');
+    case 1 then
+        disp('Primal Infeasible');
+    case 2 then
+        disp('Dual Infeasible');
+    case 3 then
+        disp('Maximum Number of iterations exceeded');
+    case 4 then
+		disp('Solution Abandoned');           
+	case 5 then
+		disp('Primal Objective Limit reached');
+	case 6 then
+		disp('Dual Objective Limit reached');
+    end
+
 endfunction

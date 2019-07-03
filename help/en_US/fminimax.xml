@@ -21,76 +21,80 @@
   </refnamediv>
 
 
-<refsynopsisdiv>
-   <title>Calling Sequence</title>
-   <synopsis>
-   xopt = fminimax(fun,x0)
-   xopt = fminimax(fun,x0,A,b)
-   xopt = fminimax(fun,x0,A,b,Aeq,beq)
-   xopt = fminimax(fun,x0,A,b,Aeq,beq,lb,ub)
-   xopt = fminimax(fun,x0,A,b,Aeq,beq,lb,ub,nonlinfun)
-   xopt = fminimax(fun,x0,A,b,Aeq,beq,lb,ub,nonlinfun,options)
-   [xopt, fval] = fminimax(.....)
-   [xopt, fval, maxfval]= fminimax(.....)
-   [xopt, fval, maxfval, exitflag]= fminimax(.....)
-   [xopt, fval, maxfval, exitflag, output]= fminimax(.....)
-   [xopt, fval, maxfval, exitflag, output, lambda]= fminimax(.....)
-   
-   </synopsis>
-</refsynopsisdiv>
-
 <refsection>
-   <title>Input Parameters</title>
+   <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>fun:</term>
-      <listitem><para> The function to be minimized. fun is a function that has a vector x as an input argument, and contains the objective functions evaluated at x.</para></listitem></varlistentry>
-   <varlistentry><term>x0 :</term>
-      <listitem><para> A vector of doubles, containing the starting values of variables of size (1 X n) or (n X 1) where 'n' is the number of Variables.</para></listitem></varlistentry>
-   <varlistentry><term>A :</term>
-      <listitem><para> A matrix of doubles, containing the coefficients of linear inequality constraints of size (m X n) where 'm' is the number of linear inequality constraints.</para></listitem></varlistentry>
-   <varlistentry><term>b :</term>
-      <listitem><para> A vector of doubles, related to 'A' and represents the linear coefficients in the linear inequality constraints of size (m X 1).</para></listitem></varlistentry>
-   <varlistentry><term>Aeq :</term>
-      <listitem><para> A matrix of doubles, containing the coefficients of linear equality constraints of size (m1 X n) where 'm1' is the number of linear equality constraints.</para></listitem></varlistentry>
-   <varlistentry><term>beq :</term>
-      <listitem><para> A vector of double, vector of doubles, related to 'Aeq' and represents the linear coefficients in the equality constraints of size (m1 X 1).</para></listitem></varlistentry>
-   <varlistentry><term>lb :</term>
-      <listitem><para> A vector of doubles, containing the lower bounds of the variables of size (1 X n) or (n X 1) where 'n' is the number of variables.</para></listitem></varlistentry>
-   <varlistentry><term>ub :</term>
-      <listitem><para> A vector of doubles, containing the upper bounds of the variables of size (1 X n) or (n X 1) where 'n' is the number of variables.</para></listitem></varlistentry>
-   <varlistentry><term>nonlinfun:</term>
-      <listitem><para>  A function, representing the nonlinear Constraints functions(both Equality and Inequality) of the problem. It is declared in such a way that nonlinear inequality constraints (c), and the nonlinear equality constraints (ceq) are defined as separate single row vectors.</para></listitem></varlistentry>
-      <varlistentry><term>options :</term>
-      <listitem><para> A list, containing the option for user to specify. See below for details.</para></listitem></varlistentry>
- </variablelist>
-</refsection>
-<refsection>
-<title> Outputs</title>
- <variablelist>
-   <varlistentry><term>xopt :</term>
-      <listitem><para> A vector of doubles, containing the computed solution of the optimization problem.</para></listitem></varlistentry>
-   <varlistentry><term>fval :</term>
-      <listitem><para> A vector of doubles, containing the values of the objective functions at the end of the optimization problem.</para></listitem></varlistentry>
-   <varlistentry><term>maxfval:</term>
-      <listitem><para> A double, representing the maximum value in the vector fval.</para></listitem></varlistentry>
-   <varlistentry><term>exitflag :</term>
-      <listitem><para> An integer, containing the flag which denotes the reason for termination of algorithm. See below for details.</para></listitem></varlistentry>
-   <varlistentry><term>output :</term>
-      <listitem><para> A structure, containing the information about the optimization. See below for details.</para></listitem></varlistentry>
-   <varlistentry><term>lambda :</term>
-      <listitem><para> A structure, containing the Lagrange multipliers of lower bound, upper bound and constraints at the optimized point. See below for details.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>fun:</term>
+            <listitem><para> The function to be minimized. fun is a function that accepts a vector x and returns a vector F, the objective functions evaluated at x.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>x0 :</term>
+            <listitem><para> a vector of double, contains initial guess of variables.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>A :</term>
+            <listitem><para> a matrix of double, represents the linear coefficients in the inequality constraints A⋅x ≤ b.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>b :</term>
+            <listitem><para> a vector of double, represents the linear coefficients in the inequality constraints A⋅x ≤ b.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>Aeq :</term>
+            <listitem><para> a matrix of double, represents the linear coefficients in the equality constraints Aeq⋅x = beq.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>beq :</term>
+            <listitem><para> a vector of double, represents the linear coefficients in the equality constraints Aeq⋅x = beq.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>lb :</term>
+            <listitem><para> a vector of double, contains lower bounds of the variables.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>ub :</term>
+            <listitem><para> a vector of double,  contains upper bounds of the variables.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>nonlinfun:</term>
+            <listitem><para> function that computes the nonlinear inequality constraints c⋅x ≤ 0 and nonlinear equality constraints c⋅x = 0.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>xopt :</term>
+            <listitem><para> a vector of double, the computed solution of the optimization problem.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fopt :</term>
+            <listitem><para> a double, the value of the function at x.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>maxfval:</term>
+            <listitem><para> a 1x1 matrix of doubles, the maximum value in vector fval</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>exitflag :</term>
+            <listitem><para> The exit status. See below for details.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>output :</term>
+            <listitem><para> The structure consist of statistics about the optimization. See below for details.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>lambda :</term>
+            <listitem><para> The structure consist of the Lagrange multipliers at the solution of problem. See below for details.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
 <refsection>
    <title>Description</title>
    <para>
-fminimax minimizes the worst-case (largest) value of a set of multivariable functions, starting at an initial estimate, a problem generally referred to as the minimax problem.
+fminimax minimizes the worst-case (largest) value of a set of multivariable functions, starting at an initial estimate. This is generally referred to as the minimax problem.
    </para>
    <para>
 <latex>
-\min_{x} \max_{i} F_{i}(x)\\
- \textrm{Such that} \:\begin{cases}
+\min_{x} \max_{i} F_{i}(x)\: \textrm{such that} \:\begin{cases}
 &amp; c(x) \leq 0 \\
 &amp; ceq(x) = 0 \\
 &amp; A.x \leq b \\
@@ -100,7 +104,7 @@ fminimax minimizes the worst-case (largest) value of a set of multivariable func
 </latex>
    </para>
    <para>
-Currently, fminimax calls fmincon which uses the Ipopt solver.
+Currently, fminimax calls fmincon which uses the ip-opt algorithm.
    </para>
    <para>
 max-min problems can also be solved with fminimax, using the identity
@@ -110,29 +114,20 @@ max-min problems can also be solved with fminimax, using the identity
 \max_{x} \min_{i} F_{i}(x) = -\min_{x} \max_{i} \left( -F_{i}(x) \right)
 </latex>
    </para>
-
    <para>
-<title>Options</title>
-The options allow the user to set various parameters of the Optimization problem. The syntax for the options is given by:
-   </para>
-   <para>
-options= list("MaxIter", [---], "CpuTime", [---], "GradObj", ---, "GradCon", ---);
-   </para>
-   <para>
+The options allows the user to set various parameters of the Optimization problem.
+It should be defined as type "list" and contains the following fields.
 <itemizedlist>
-<listitem>MaxIter : A Scalar, specifying the Maximum Number of iterations that the solver should take.</listitem>
-<listitem>CpuTime : A Scalar, specifying the Maximum amount of CPU Time in seconds that the solver should take.</listitem>
-<listitem>GradObj : A function, representing the gradient function of the Objective in Vector Form.</listitem>
-<listitem>GradCon : A function, representing the gradient of the nonlinear Constraints (both Equality and Inequality) of the problem. It is declared in such a way that gradient of nonlinear inequality constraints are defined first as a separate Matrix (cg of size m2 X n or as an empty), followed by gradient of nonlinear equality constraints as a separate matrix (ceqg of size m2 X n or as an empty) where m2 &amp;amp; m3 are number of nonlinear inequality and equality constraints respectively.</listitem>
+<listitem>Syntax : options= list("MaxIter", [---], "CpuTime", [---], "GradObj", ---, "GradCon", ---);</listitem>
+<listitem>MaxIter : a Scalar, containing the Maximum Number of Iteration that the solver should take.</listitem>
+<listitem>CpuTime : a Scalar, containing the Maximum amount of CPU Time that the solver should take.</listitem>
+<listitem>GradObj : a function, representing the gradient function of the Objective in Vector Form.</listitem>
+<listitem>GradCon : a function, representing the gradient of the Non-Linear Constraints (both Equality and Inequality) of the problem. It is declared in such a way that gradient of non-linear inequality constraints are defined first as a separate Matrix (cg of size m2 X n or as an empty), followed by gradient of non-linear equality constraints as a separate Matrix (ceqg of size m2 X n or as an empty) where m2 &amp; m3 are number of non-linear inequality and equality constraints respectively.</listitem>
 <listitem>Default Values : options = list("MaxIter", [3000], "CpuTime", [600]);</listitem>
 </itemizedlist>
-The default values for the various items are given as:
    </para>
    <para>
-options = list("MaxIter", [3000], "CpuTime", [600]);
-   </para>
-   <para>
-The objective function must have a header :
+The objective function must have header :
 <programlisting>
 F = fun(x)
 </programlisting>
@@ -140,28 +135,24 @@ where x is a n x 1 matrix of doubles and F is a m x 1 matrix of doubles where m 
 On input, the variable x contains the current point and, on output, the variable F must contain the objective function values.
    </para>
    <para>
-By default, the gradient options for fminimax are turned off and and fmincon does the gradient opproximation of minmaxObjfun. In case the GradObj option is off and GradCon option is on, fminimax approximates minmaxObjfun gradient using the numderivative toolbox.
-   </para>
-<title>Syntax</title>
-<para>
-Some syntactic details about fminimax, including the syntax for the gradient, defining the nonlinear constraints, and the  constraint derivative function have been provided below: 
+By default, the gradient options for fminimax are turned off and and fmincon does the gradient opproximation of minmaxObjfun. In case the GradObj option is off and GradConstr option is on, fminimax approximates minmaxObjfun gradient using numderivative toolbox.
    </para>
    <para>
-If the user can provide exact gradients, it should be done, since it improves the convergence speed of the optimization algorithm.
+If we can provide exact gradients, we should do so since it improves the convergence speed of the optimization algorithm.
    </para>
    <para>
-Furthermore, we can enable the "GradObj" option with the statement :
+Furthermore, we must enable the "GradObj" option with the statement :
 <programlisting>
 minimaxOptions = list("GradObj",fGrad);
 </programlisting>
 This will let fminimax know that the exact gradient of the objective function is known, so that it can change the calling sequence to the objective function. Note that, fGrad should be mentioned in the form of N x n where n is the number of variables, N is the number of functions in objective function.
    </para>
    <para>
-The constraint function must have header:
+The constraint function must have header :
 <programlisting>
 [c, ceq] = confun(x)
 </programlisting>
-Where x is a n x 1 matrix of minimax doubles, c is a 1 x nni matrix of doubles and ceq is a 1 x nne matrix of doubles (nni : number of nonlinear inequality constraints, nne : number of nonlinear equality constraints).
+where x is a n x 1 matrix of dominmaxUbles, c is a 1 x nni matrix of doubles and ceq is a 1 x nne matrix of doubles (nni : number of nonlinear inequality constraints, nne : number of nonlinear equality constraints).
 On input, the variable x contains the current point and, on output, the variable c must contain the nonlinear inequality constraints and ceq must contain the nonlinear equality constraints.
    </para>
    <para>
@@ -185,281 +176,85 @@ The constraint derivative function must have header :
 where dc is a nni x n matrix of doubles and dceq is a nne x n matrix of doubles.
    </para>
    <para>
-The exitflag allows the user to know the status of the optimization which is returned by Ipopt. The values it can take and what they indicate is described below:
+The exitflag allows to know the status of the optimization which is given back by Ipopt.
 <itemizedlist>
-<listitem> 0 : Optimal Solution Found </listitem>
-<listitem> 1 : Maximum Number of Iterations Exceeded. Output may not be optimal.</listitem>
-<listitem> 2 : Maximum amount of CPU Time exceeded. Output may not be optimal.</listitem>
-<listitem> 3 : Stop at Tiny Step.</listitem>
-<listitem> 4 : Solved To Acceptable Level.</listitem>
-<listitem> 5 : Converged to a point of local infeasibility.</listitem>
+<listitem>exitflag=0 : Optimal Solution Found </listitem>
+<listitem>exitflag=1 : Maximum Number of Iterations Exceeded. Output may not be optimal.</listitem>
+<listitem>exitflag=2 : Maximum amount of CPU Time exceeded. Output may not be optimal.</listitem>
+<listitem>exitflag=3 : Stop at Tiny Step.</listitem>
+<listitem>exitflag=4 : Solved To Acceptable Level.</listitem>
+<listitem>exitflag=5 : Converged to a point of local infeasibility.</listitem>
 </itemizedlist>
    </para>
    <para>
-For more details on exitflag, see the ipopt documentation which can be found on http://www.coin-or.org/Ipopt/documentation/
+For more details on exitflag see the ipopt documentation, go to http://www.coin-or.org/Ipopt/documentation/
    </para>
    <para>
-The output data structure contains detailed information about the optimization process.
-It is of type "struct" and contains the following fields.
+The output data structure contains detailed informations about the optimization process.
+It has type "struct" and contains the following fields.
 <itemizedlist>
-<listitem>output.Iterations: The number of iterations performed.</listitem>
-<listitem>output.Cpu_Time  : The total cpu-time taken.</listitem>
-<listitem>output.Objective_Evaluation: The number of Objective Evaluations performed.</listitem>
-<listitem>output.Dual_Infeasibility  : The Dual Infeasiblity of the final soution.</listitem>
-<listitem>output.Message: The output message for the problem.</listitem>
+<listitem>output.Iterations: The number of iterations performed during the search</listitem>
+<listitem>output.Cpu_Time: The total cpu-time spend during the search</listitem>
+<listitem>output.Objective_Evaluation: The number of Objective Evaluations performed during the search</listitem>
+<listitem>output.Dual_Infeasibility: The Dual Infeasiblity of the final soution</listitem>
 </itemizedlist>
    </para>
-  <para>
-The lambda data structure contains the Lagrange multipliers at the end of optimization. In the current version the values are returned only when the the solution is optimal.
+   <para>
+The lambda data structure contains the Lagrange multipliers at the end
+of optimization. In the current version the values are returned only when the the solution is optimal.
 It has type "struct" and contains the following fields.
 <itemizedlist>
 <listitem>lambda.lower: The Lagrange multipliers for the lower bound constraints.</listitem>
 <listitem>lambda.upper: The Lagrange multipliers for the upper bound constraints.</listitem>
 <listitem>lambda.eqlin: The Lagrange multipliers for the linear equality constraints.</listitem>
 <listitem>lambda.ineqlin: The Lagrange multipliers for the linear inequality constraints.</listitem>
-<listitem>lambda.eqnonlin: The Lagrange multipliers for the nonlinear equality constraints.</listitem>
-<listitem>lambda.ineqnonlin: The Lagrange multipliers for the nonlinear inequality constraints.</listitem>
+<listitem>lambda.eqnonlin: The Lagrange multipliers for the non-linear equality constraints.</listitem>
+<listitem>lambda.ineqnonlin: The Lagrange multipliers for the non-linear inequality constraints.</listitem>
 </itemizedlist>
    </para>
-   
-</refsection>
-<para>
-A few examples displaying the various functionalities of fminimax have been provided below. You will find a series of problems and the appropriate code snippets to solve them.
-   </para>
-<refsection>
-   <title>Example</title>
- Here we solve a simple objective function, subjected to no constraints.
-<para>
-<latex>
-\begin{eqnarray}
-\mbox\min_{x} \max_{i}\ f_{i}(x)\\
-\end{eqnarray}
-\\
-\begin{eqnarray}
-&amp;f_{1}(x) &amp;= 2 \boldsymbol{\cdot} x_{1}^{2} + x_{2}^{2} - 48x_{1} - 40x_{2} + 304\\
-&amp;f_{2}(x) &amp;= -x_{1}^{2} - 3x_{2}^{2}\\
-&amp;f_{3}(x) &amp;= x_{1} + 3x_{2} - 18\\
-&amp;f_{4}(x) &amp;= -x_{1} - x_{2}\\
-&amp;f_{5}(x) &amp;= x_{1} + x_{2} - 8
-\end{eqnarray}
-</latex>
-   </para>
    <para>
+</para>
+</refsection>
 
-   </para>
+<refsection>
+   <title>Examples</title>
    <programlisting role="example"><![CDATA[
-//Example 1:
-// Objective function
-function f = myfun(x)
-f(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;     //Objectives
-f(2)= -x(1)^2 - 3*x(2)^2;
-f(3)= x(1) + 3*x(2) -18;
-f(4)= -x(1) - x(2);
-f(5)= x(1) + x(2) - 8;
+// A basic case :
+// we provide only the objective function and the nonlinear constraint
+// function
+function y = myfun(x)
+y(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;     //Objectives
+y(2)= -x(1)^2 - 3*x(2)^2;
+y(3)= x(1) + 3*x(2) -18;
+y(4)= -x(1) - x(2);
+y(5)= x(1) + x(2) - 8;
 endfunction
 // The initial guess
 x0 = [0.1,0.1];
+// The expected solution : only 4 digits are guaranteed
+xopt = [4 4]
+fopt = [0 -64 -2 -8 0]
+maxfopt = 0
 // Run fminimax
 [x,fval,maxfval,exitflag,output,lambda] = fminimax(myfun, x0)
-
-
-   ]]></programlisting>
-</refsection>
-
-<refsection>
-   <title>Example</title>
- We proceed to add simple linear inequality constraints.
-
-<para>
-<latex>
-\begin{eqnarray}
-\hspace{70pt} &amp;x_{1} + x_{2}&amp;\leq 2\\ 
-\hspace{70pt} &amp;x_{1} + x_{2}/4&amp;\leq 1\\
-\hspace{70pt} &amp;-x_{1} + x_{2}&amp;\geq -1\\
-\end{eqnarray}
-</latex>
-   </para>
-   <para>
-
-   </para>
-   <programlisting role="example"><![CDATA[
-//Example 2:
-//Objective function
-function f = myfun(x)
-f(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;     //Objectives
-f(2)= -x(1)^2 - 3*x(2)^2;
-f(3)= x(1) + 3*x(2) -18;
-f(4)= -x(1) - x(2);
-f(5)= x(1) + x(2) - 8;
-endfunction
-// The initial guess
-x0 = [0.1,0.1];
-//Linear Inequality constraints
-A=[1,1 ; 1,1/4 ; 1,-1];
-b=[2;1;1];
-// Run fminimax
-[x,fval,maxfval,exitflag,output,lambda] = fminimax(myfun, x0,A,b)
-
+// Press ENTER to continue
 
    ]]></programlisting>
 </refsection>
 
 <refsection>
-   <title>Example</title>
-Here we build up on the previous example by adding linear equality constraints.
-We add the following constraints to the problem specified above:
-<para>
-<latex>
-\begin{eqnarray}
-&amp;x_{1} - x_{2}&amp;= 1 
-\\&amp;2x_{1} + x_{2}&amp;= 2
-\end{eqnarray}
-</latex>
-   </para>
-   <para>
-
-   </para>
+   <title>Examples</title>
    <programlisting role="example"><![CDATA[
-//Example 3:
-//Objective function
-function f = myfun(x)
-f(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;     //Objectives
-f(2)= -x(1)^2 - 3*x(2)^2;
-f(3)= x(1) + 3*x(2) -18;
-f(4)= -x(1) - x(2);
-f(5)= x(1) + x(2) - 8;
+// A case where we provide the gradient of the objective
+// functions and the Jacobian matrix of the constraints.
+// The objective function and its gradient
+function y = myfun(x)
+y(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;
+y(2)= -x(1)^2 - 3*x(2)^2;
+y(3)= x(1) + 3*x(2) -18;
+y(4)= -x(1) - x(2);
+y(5)= x(1) + x(2) - 8;
 endfunction
-// The initial guess
-x0 = [0.1,0.1];
-//Linear Inequality constraints
-A=[1,1 ; 1,1/4 ; 1,-1];
-b=[2;1;1];
-//We specify the linear equality constraints below.
-Aeq = [1,-1; 2, 1];
-beq =  [1;2];
-// Run fminimax
-[x,fval,maxfval,exitflag,output,lambda] = fminimax(myfun, x0,A,b,Aeq,beq)
-
-
-   ]]></programlisting>
-</refsection>
-
-<refsection>
-   <title>Example</title>
-In this example, we proceed to add the upper and lower bounds to the objective function.
-<para>
-<latex>
-\begin{eqnarray}
--1 &amp;\leq x_{1} &amp;\leq \infty\\
--\infty &amp;\leq x_{2} &amp;\leq 1
-\end{eqnarray}
-</latex>
-   </para>
-   <para>
-
-   </para>
-   <programlisting role="example"><![CDATA[
-//Example 4:
-//Objective function
-function f = myfun(x)
-f(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;     //Objectives
-f(2)= -x(1)^2 - 3*x(2)^2;
-f(3)= x(1) + 3*x(2) -18;
-f(4)= -x(1) - x(2);
-f(5)= x(1) + x(2) - 8;
-endfunction
-// The initial guess
-x0 = [0.1,0.1];
-//Linear Inequality constraints
-A=[1,1 ; 1,1/4 ; 1,-1];
-b=[2;1;1];
-//We specify the linear equality constraints below.
-Aeq = [1,-1; 2, 1];
-beq =  [1;2];
-//The upper and lower bounds for the objective function are defined in simple vectors as shown below.
-lb = [-1;-%inf];
-ub = [%inf;1];    //
-// Run fminimax
-[x,fval,maxfval,exitflag,output,lambda] = fminimax(myfun, x0,A,b,Aeq,beq,lb,ub)
-
-
-   ]]></programlisting>
-</refsection>
-
-
-<refsection>
-   <title>Example</title>
-Finally, we add the nonlinear constraints to the problem. Note that there is a notable difference in the way this is done as compared to defining the linear constraints.
- <para>
-<latex>
-\begin{eqnarray}
-x_{1}^2-1&amp;\leq 0\\
-x_{1}^2+x_{2}^{2}-1&amp;\leq 0\\
-\end{eqnarray}
-</latex>
-</para>
-   <para>
-
-   </para>
-   <programlisting role="example"><![CDATA[
-//Example 5:
-//Objective function
-function f = myfun(x)
-f(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;     //Objectives
-f(2)= -x(1)^2 - 3*x(2)^2;
-f(3)= x(1) + 3*x(2) -18;
-f(4)= -x(1) - x(2);
-f(5)= x(1) + x(2) - 8;
-endfunction
-// The initial guess
-x0 = [0.1,0.1];
-//Linear Inequality constraints
-A=[1,1 ; 1,1/4 ; 1,-1];
-b=[2;1;1];
-//We specify the linear equality constraints below.
-Aeq = [1,-1; 2, 1];
-beq =  [1;2];
-//The upper and lower bounds for the objective function are defined in simple vectors as shown below.
-lb = [-1;-%inf];
-ub = [%inf;1];    //
-//Nonlinear constraints are required to be defined as a single function with the inequality and equality constraints in separate vectors.
-function [c,ceq]=nlc(x)
-c=[x(1)^2-1,x(1)^2+x(2)^2-1];
-ceq=[];
-endfunction
-// Run fminimax
-[x,fval,maxfval,exitflag,output,lambda] = fminimax(myfun, x0,A,b,Aeq,beq,lb,ub)
-
-
-   ]]></programlisting>
-</refsection>
-
-<refsection>
-   <title>Example</title>
-<para>
-We can further enhance the functionality of fminimax by setting input options. We can pre-define the gradient of the objective function and/or the hessian of the lagrange function and thereby improve the speed of computation. This is elaborated on in example 6. We take the following problem, specify the gradients, and the jacobian matrix of the constraints. We also set solver parameters using the options.
-</para>
-<para>
-<latex>
-\begin{eqnarray}
-1.5 + x_{1} \boldsymbol{\cdot} x_{2} - x_{1} - x_{2} &amp;\leq 0\\
--x_{1}\boldsymbol{\cdot} x_{2} - 10 &amp;\leq 0
-\end{eqnarray}
-</latex>
-</para>
-   <para>
-
-   </para>
-   <programlisting role="example"><![CDATA[
-//Example 6: Using the available options
-function f = myfun(x)
-f(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;
-f(2)= -x(1)^2 - 3*x(2)^2;
-f(3)= x(1) + 3*x(2) -18;
-f(4)= -x(1) - x(2);
-f(5)= x(1) + x(2) - 8;
-endfunction
-
 // Defining gradient of myfun
 function G = myfungrad(x)
 G = [ 4*x(1) - 48, -2*x(1), 1, -1, 1;
@@ -487,7 +282,7 @@ x(1)-1, -x(1)
 DCeq = []'
 endfunction
 // Test with both gradient of objective and gradient of constraints
-minimaxOptions = list("MaxIter", [3000], "CpuTime", [600],"GradObj",myfungrad,"GradCon",cgrad);
+minimaxOptions = list("GradObj",myfungrad,"GradCon",cgrad);
 // The initial guess
 x0 = [0,10];
 // The expected solution : only 4 digits are guaranteed
@@ -496,42 +291,6 @@ fopt = [6.73443  -189.778  6.73443  -8.86342  0.86342]
 maxfopt = 6.73443
 // Run fminimax
 [x,fval,maxfval,exitflag,output] = fminimax(myfun,x0,[],[],[],[],[],[], confun, minimaxOptions)
-   ]]></programlisting>
-</refsection>
-
-<refsection>
-   <title>Example</title>
-Infeasible Problems: Find x in R^2 such that it minimizes the objective function used above under the following constraints:
-<para>
-<latex>
-\begin{eqnarray}
-&amp;x_{1}/3 - 5x_{2}&amp;= 11 
-\\&amp;2x_{1} + x_{2}&amp;= 8
-\\ \end{eqnarray}
-</latex>
-   </para>
-<para>
-</para>
-   <programlisting role="example"><![CDATA[
-//Example 7:
-//Objective function
-function f = myfun(x)
-f(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;     //Objectives
-f(2)= -x(1)^2 - 3*x(2)^2;
-f(3)= x(1) + 3*x(2) -18;
-f(4)= -x(1) - x(2);
-f(5)= x(1) + x(2) - 8;
-endfunction
-// The initial guess
-x0 = [0.1,0.1];
-//Linear Inequality constraints
-A=[1,1 ; 1,1/4 ; 1,-1];
-b=[2;1;1];
-//We specify the linear equality constraints below.
-Aeq = [1/3,-5; 2, 1];
-beq =  [11;8];
-// Run fminimax
-[x,fval,maxfval,exitflag,output,lambda] = fminimax(myfun, x0,A,b,Aeq,beq)
    ]]></programlisting>
 </refsection>
 

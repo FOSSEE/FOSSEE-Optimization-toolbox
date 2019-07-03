@@ -73,7 +73,19 @@ if or(getscilabmode() == ["NW";"STD"]) then
         clear path_addchapter;
 end
 end
+// add demos
+// =============================================================================
 
+if ( %t ) then
+if or(getscilabmode() == ["NW";"STD"]) then
+    mprintf("\tLoad demos\n");
+    pathdemos = pathconvert(root_tlbx+"/demos/sci_FOSSEE_Optimization_Toolbox.dem.gateway.sce",%f,%t);
+    add_demo("FOSSEE_Optimization_Toolbox",pathdemos);
+    clear pathdemos ;
+end
+end
 
+// =============================================================================
 
 clear etc_tlbx root_tlbx Version a opt lib_path;
+

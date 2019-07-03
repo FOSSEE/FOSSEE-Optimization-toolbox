@@ -345,26 +345,26 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfmincon (varargin)
       end
   end
   
-options = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',1d10,'allowablegap',0,'maxiter',2147483647,'gradobj',"off",'hessian',"off")
+options = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',10000000,'allowablegap',0,'maxiter',2147483647,'gradobj',"off",'hessian',"off",'gradcon',"off")
 
   //Pushing param into default value
   
   for i = 1:(size(param))/2
     select convstr(param(2*i-1),'l')
       case 'integertolerance' then
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
+        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(2) = param(2*i);
       case 'maxnodes' then
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
+        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(4) = options(2*i);
       case 'cputime' then 
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
+        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(6) = options(2*i);
       case 'allowablegap' then
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
+        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(8) = options(2*i);
       case 'maxiter' then
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
+        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(10) = options(2*i);
       case 'gradobj' then
         Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "string");
@@ -530,11 +530,16 @@ options = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',1d10,'al
         [dy,hessfy]=numderivative(_f,x)
         hessfy = matrix(hessfy,nbVar,nbVar)
         if((type(nlc) == 13 | type(nlc) == 11) & numNlc~=0) then
-          [dy,hessny]=numderivative(nlc,x)
+			function y = nlc2(x)
+				[c, ceq] = nlc(x);
+				c = matrix(c,-1,1);
+				y = [c; ceq];
+			endfunction			
+        	[dy,hessny]=numderivative(nlc2,x)
         end
-        hessianc = []
-        for i = 1:numNlc
-            hessianc = hessianc + lambda(i)*matrix(hessny(i,:),nbVar,nbVar)
+        hessianc = lambda(1)*matrix(hessny(1,:),nbVar,nbVar);
+        for i = 2:numNlc
+            hessianc = hessianc + lambda(i)*matrix(hessny(i,:),nbVar,nbVar);
         end
         hessy = obj_factor*hessfy + hessianc;
         [hessy,check] =  checkIsreal(hessy)
@@ -547,7 +552,7 @@ options = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',1d10,'al
 
     intconsize = size(intcon,"*")
 
-	[xopt,fopt,exitflag] = inter_fmincon("_f","_gradf","_addnlc","_gradnlc", "_gradhess", x0, lb, ub, conLb, conUb, intcon, options, nbConInEq+nbConEq);
+	[xopt,fopt,exitflag] = inter_fmincon("_f","_gradf","_addnlc","_gradnlc","_gradhess",x0,lb,ub,conLb,conUb,intcon,options,nbConInEq+nbConEq);
 
     //In the cases of the problem not being solved, return NULL to the output matrices
     if( exitflag~=0 & exitflag~=3 ) then
