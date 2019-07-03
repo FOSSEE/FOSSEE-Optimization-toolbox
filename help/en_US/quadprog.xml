@@ -21,57 +21,73 @@
   </refnamediv>
 
 
-<refsynopsisdiv>
-   <title>Calling Sequence</title>
-   <synopsis>
-   xopt = quadprog(nbVar,nbCon,H,f,lb,ub,A,conLB,conUB)
-   xopt = quadprog(nbVar,nbCon,H,f,lb,ub,A,conLB,conUB,x0)
-   xopt = quadprog(nbVar,nbCon,H,f,lb,ub,A,conLB,conUB,x0,options)
-   [xopt,fopt,exitflag,output,lamda] = quadprog( ... )
-   
-   </synopsis>
-</refsynopsisdiv>
-
 <refsection>
-   <title>Input Parameters</title>
+   <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>nbVar :</term>
-      <listitem><para> A double, denoting the number of variables</para></listitem></varlistentry>
-   <varlistentry><term>nbCon :</term>
-      <listitem><para> A double, denoting the number of constraints</para></listitem></varlistentry>
-   <varlistentry><term>H :</term>
-      <listitem><para> A symmetric matrix of doubles, representing the Hessian of the quadratic problem.</para></listitem></varlistentry>
-   <varlistentry><term>f :</term>
-      <listitem><para> A vector of doubles, representing coefficients of the linear terms in the quadratic problem.</para></listitem></varlistentry>
-   <varlistentry><term>lb :</term>
-      <listitem><para> A vector of doubles, containing the lower bounds of the variables.</para></listitem></varlistentry>
-   <varlistentry><term>ub :</term>
-      <listitem><para> A vector of doubles, containing the upper bounds of the variables.</para></listitem></varlistentry>
-   <varlistentry><term>A :</term>
-      <listitem><para>  A matrix of doubles, representing the constraint matrix in conLB ≤ A⋅x ≤ conUB.</para></listitem></varlistentry>
-   <varlistentry><term>conLB :</term>
-      <listitem><para> A vector of doubles, containing the lower bounds of the constraints conLB ≤ A⋅x ≤ conUB.</para></listitem></varlistentry>
-   <varlistentry><term>conUB :</term>
-      <listitem><para> A vector of doubles, containing the upper bounds of the constraints conLB ≤ A⋅x ≤ conUB.</para></listitem></varlistentry>
-   <varlistentry><term>x0 :</term>
-      <listitem><para> A vector of doubles, containing the starting values of variables of size (1 X n) or (n X 1) where 'n' is the number of variables.</para></listitem></varlistentry>
-  <varlistentry><term>options :</term>
-      <listitem><para> A list, containing the option for user to specify. See below for details.</para></listitem></varlistentry>
-   </variablelist>
-</refsection>
-<refsection>
-<title> Outputs</title>
- <variablelist>
-   <varlistentry><term>xopt :</term>
-      <listitem><para> A vector of doubles, containing the computed solution of the optimization problem.</para></listitem></varlistentry>
-   <varlistentry><term>fopt :</term>
-      <listitem><para> A double, containing the value of the function at xopt.</para></listitem></varlistentry>
-   <varlistentry><term>exitflag :</term>
-      <listitem><para> An integer, containing the flag which denotes the reason for termination of algorithm. See below for details.</para></listitem></varlistentry>
-   <varlistentry><term>output :</term>
-      <listitem><para>  A structure, containing the information about the optimization. See below for details.</para></listitem></varlistentry>
-   <varlistentry><term>lambda :</term>
-      <listitem><para> A structure, containing the Lagrange multipliers of the lower bounds, upper bounds and constraints at the optimized point. See below for details.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>nbVar :</term>
+            <listitem><para> a double, number of variables</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>nbCon :</term>
+            <listitem><para> a double, number of constraints</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>H :</term>
+            <listitem><para> a symmetric matrix of double, represents coefficients of quadratic in the quadratic problem.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>f :</term>
+            <listitem><para> a vector of double, represents coefficients of linear in the quadratic problem</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>lb :</term>
+            <listitem><para> a vector of double, contains lower bounds of the variables.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>ub :</term>
+            <listitem><para> a vector of double, contains upper bounds of the variables.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>A :</term>
+            <listitem><para> a matrix of double, contains the constraint matrix conLB ≤ A⋅x ≤ conUB.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>conLB :</term>
+            <listitem><para> a vector of double, contains lower bounds of the constraints conLB ≤ A⋅x ≤ conUB.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>conUB :</term>
+            <listitem><para> a vector of double, contains upper bounds of the constraints conLB ≤ A⋅x ≤ conUB.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>x0 :</term>
+            <listitem><para> a vector of double, contains initial guess of variables.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>param :</term>
+            <listitem><para> a list containing the parameters to be set.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>xopt :</term>
+            <listitem><para> a vector of double, the computed solution of the optimization problem.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fopt :</term>
+            <listitem><para> a double, the value of the function at x.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>exitflag :</term>
+            <listitem><para> The exit status. See below for details.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>output :</term>
+            <listitem><para> The structure consist of statistics about the optimization. See below for details.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>lambda :</term>
+            <listitem><para> The structure consist of the Lagrange multipliers at the solution of problem. See below for details.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -83,59 +99,51 @@ Search the minimum of a constrained linear quadratic optimization problem specif
    <para>
 <latex>
 \begin{eqnarray}
-\hspace{1pt} \mbox{min}_{x} 1/2⋅x^T⋅H⋅x + f^T⋅x  \\
-\hspace{1pt} \text{Subjected to: } conLB \leq A⋅x \leq conUB \\
-\hspace{70pt} lb \leq x \leq ub \\
+&amp;\mbox{min}_{x}
+&amp; 1/2⋅x^T⋅H⋅x + f^T⋅x  \\
+&amp; \text{subject to} &amp; conLB \leq A⋅x \leq conUB \\
+&amp; &amp; lb \leq x \leq ub \\
 \end{eqnarray}
 </latex>
    </para>
    <para>
-quadprog calls Ipopt, an optimization library written in C++, to solve the optimization problem.
-   </para>
-    <para>
-<title>Options</title>
-The options allow the user to set various parameters of the Optimization problem. The syntax for the options is given by:
+The routine calls Ipopt for solving the quadratic problem, Ipopt is a library written in C++.
    </para>
    <para>
-options= list("MaxIter", [---], "CpuTime", [---], "GradObj", ---, "Hessian", ---, "GradCon", ---);
-   </para>
-   <para>
-The options should be defined as type "list" and consist of the following fields:
+The options allows the user to set various parameters of the Optimization problem.
+It should be defined as type "list" and contains the following fields.
 <itemizedlist>
-<listitem>MaxIter : A Scalar, specifying the maximum number of iterations that the solver should take.</listitem>
-<listitem>CpuTime : A Scalar, specifying the maximum amount of CPU time in seconds that the solver should take.</listitem>
+<listitem>Syntax : options= list("MaxIter", [---], "CpuTime", [---]);</listitem>
+<listitem>MaxIter : a Scalar, containing the Maximum Number of Iteration that the solver should take.</listitem>
+<listitem>CpuTime : a Scalar, containing the Maximum amount of CPU Time that the solver should take.</listitem>
+<listitem>Default Values : options = list("MaxIter", [3000], "CpuTime", [600]);</listitem>
 </itemizedlist>
    </para>
    <para>
-   The default values for the various items are given as:
-   </para>
-   <para>
-options = list("MaxIter", [3000], "CpuTime", [600]);
-   </para>
-  <para>
-The exitflag allows the user to know the status of the optimization which is returned by Ipopt. The values it can take and what they indicate is described below:
+The exitflag allows to know the status of the optimization which is given back by Ipopt.
 <itemizedlist>
-<listitem> 0 : Optimal Solution Found </listitem>
-<listitem> 1 : Maximum Number of Iterations Exceeded. Output may not be optimal.</listitem>
-<listitem> 2 : Maximum amount of CPU Time exceeded. Output may not be optimal.</listitem>
-<listitem> 3 : Stop at Tiny Step.</listitem>
-<listitem> 4 : Solved To Acceptable Level.</listitem>
-<listitem> 5 : Converged to a point of local infeasibility.</listitem>
+<listitem>exitflag=0 : Optimal Solution Found </listitem>
+<listitem>exitflag=1 : Maximum Number of Iterations Exceeded. Output may not be optimal.</listitem>
+<listitem>exitflag=2 : Maximum CPU Time exceeded. Output may not be optimal.</listitem>
+<listitem>exitflag=3 : Stop at Tiny Step.</listitem>
+<listitem>exitflag=4 : Solved To Acceptable Level.</listitem>
+<listitem>exitflag=5 : Converged to a point of local infeasibility.</listitem>
 </itemizedlist>
    </para>
    <para>
-For more details on exitflag, see the Ipopt documentation which can be found on http://www.coin-or.org/Ipopt/documentation/
+For more details on exitflag see the ipopt documentation, go to http://www.coin-or.org/Ipopt/documentation/
    </para>
    <para>
-The output data structure contains detailed information about the optimization process.
-It is of type "struct" and contains the following fields.
+The output data structure contains detailed informations about the optimization process.
+It has type "struct" and contains the following fields.
 <itemizedlist>
-<listitem>output.iterations: The number of iterations performed.</listitem>
+<listitem>output.iterations: The number of iterations performed during the search</listitem>
 <listitem>output.constrviolation: The max-norm of the constraint violation.</listitem>
 </itemizedlist>
    </para>
    <para>
-The lambda data structure contains the Lagrange multipliers at the end of optimization. In the current version, the values are returned only when the the solution is optimal.
+The lambda data structure contains the Lagrange multipliers at the end
+of optimization. In the current version the values are returned only when the the solution is optimal.
 It has type "struct" and contains the following fields.
 <itemizedlist>
 <listitem>lambda.lower: The Lagrange multipliers for the lower bound constraints.</listitem>
@@ -147,45 +155,21 @@ It has type "struct" and contains the following fields.
    <para>
 </para>
 </refsection>
-<para>
-A few examples displaying the various functionalities of quadprog have been provided below. You will find a series of problems and the appropriate code snippets to solve them.
-   </para>
+
 <refsection>
-    <title>Example</title>
-    <para>
-      We begin with a quadratic objective functions, subjected to two bounds for the functions, and two bounds for the constraints.
-    </para>
-    <para>
-Find x in R^2 such that it minimizes:
-    </para>
-   <para>
-   <latex>
-    \begin{eqnarray}
-\mbox{min}_{x} -8x_{1}^{2} -16x_{2}^{2} + x_{1} + 4x_{2}  \\
-\end{eqnarray}
-\\
-\hspace{1pt} &amp; \text{Subjected to}\\
-  \begin{eqnarray}
--\infty &amp;\leq 2x_{1} &amp;\leq 5\\
--\infty &amp;\leq x_{2} &amp;\leq 3\\
-0 &amp;\leq x_{1} &amp;\leq \infty\\
-0 &amp;\leq x_{2} &amp;\leq \infty
-\end{eqnarray}
-</latex>
-</para>
-<para>
-</para>
+   <title>Examples</title>
    <programlisting role="example"><![CDATA[
-//Example 1: Standard quadratic objective function
-//(Ref : example 14)https://www.me.utexas.edu/~jensen/ORMM/supplements/methods/nlpmethod/S2_quadratic.pdf
-// min. -8*x1^2 -16*x2^2 + x1 + 4*x2
+//Ref : example 14 :
+//https://www.me.utexas.edu/~jensen/ORMM/supplements/methods/nlpmethod/S2_quadratic.pdf
+// min. -8*x1*x1 -16*x2*x2 + x1 + 4*x2
 // such that
 //    x1 + x2 <= 5,
 //    x1 <= 3,
 //    x1 >= 0,
 //    x2 >= 0
-H = [-16 0; 0 8];
-f = [-8; -16];
+H = [-16 0;
+0 -31];
+f = [1; 4];
 A = [1 1;1 0];
 conUB = [5;3];
 conLB = [-%inf; -%inf];
@@ -200,163 +184,25 @@ nbCon = 2;
 </refsection>
 
 <refsection>
-    <title>Example</title>
-   <para>
-    We build on the previous example by providing a starting point, to facilitate the computation.
-   </para>
-   <para>
-   <latex>
-    \begin{eqnarray}
-\mbox{min}_{x} -8x_{1}^{2} -16x_{2}^{2} + x_{1} + 4x_{2}  \\
-\end{eqnarray}
-\\
-&amp; \text{Subjected to}\\
-  \begin{eqnarray}
--\infty &amp;\leq x_{1} +x_{2} &amp;\leq 5\\
--\infty &amp;\leq x_{1} &amp;\leq 3\\
-0 &amp;\leq x_{1} &amp;\leq \infty\\
-0 &amp;\leq x_{2} &amp;\leq \infty
-\end{eqnarray}
-</latex>
-</para>
-<para>
-</para>
+   <title>Examples</title>
    <programlisting role="example"><![CDATA[
-//Example 2: Standard quadratic objective function with starting points
-//Find x in R^2 such that:
-H = [-16 0; 0 8];
-f = [-8; -16];
-A = [1 1;1 0];
-conUB = [5;3];
-conLB = [-%inf; -%inf];
-lb = [0; 0];
-ub = [%inf; %inf];
-nbVar = 2;
-nbCon = 2;
-x0 = [1 ;1];
-[xopt,fopt,exitflag,output,lambda]=quadprog(nbVar,nbCon,H,f,lb,ub,A,conLB,conUB,x0)
-   ]]></programlisting>
-</refsection>
-
-<refsection>
-    <title>Example</title>
-    <para>
-We can further enhance the functionality of quadprog by setting input options. This provides us with the ability to control the solver parameters such as the maximum number of solver iterations and the max. CPU time allowed for the computation.
-  </para>
-   <para>
-   <latex>
-    \begin{eqnarray}
-\mbox{min}_{x} -8x_{1}^{2} -16x_{2}^{2} + x_{1} + 4x_{2}  \\
-\end{eqnarray}
-\\
-&amp; \text{Subjected to}\\
-  \begin{eqnarray}
--\infty &amp;\leq x_{1} +x_{2} &amp;\leq 5\\
--\infty &amp;\leq x_{1} &amp;\leq 3\\
-0 &amp;\leq x_{1} &amp;\leq \infty\\
-0 &amp;\leq x_{2} &amp;\leq \infty
-\end{eqnarray}
-</latex>
-</para>
-<para>
-</para>
-   <programlisting role="example"><![CDATA[
-//Example 3: Standard quadratic objective function with starting points and options.
-H = [-16 0; 0 8];
-f = [-8; -16];
-A = [1 1;1 0];
-conUB = [5;3];
-conLB = [-%inf; -%inf];
-lb = [0; 0];
-ub = [%inf; %inf];
-nbVar = 2;
-nbCon = 2;
-x0 = [1 ;1];
-options = list("MaxIter", 300, "CpuTime", 100);
-[xopt,fopt,exitflag,output,lambda]=quadprog(nbVar,nbCon,H,f,lb,ub,A,conLB,conUB,x0,options)
-   ]]></programlisting>
-</refsection>
-<refsection>
-    <title>Example</title>
-    <para>
-Infeasible Problems: Find x in R^2 such that it minimizes:
-    </para>
-   <para>
-   <latex>
-    \begin{eqnarray}
-\mbox{min}_{x} -8x_{1}^{2} -16x_{2}^{2} + x_{1} + 4x_{2}  \\
-\end{eqnarray}
-\\
-\hspace{1pt} &amp; \text{Subjected to}\\
-  \begin{eqnarray}
--\infty &amp;\leq 2x_{1} &amp;\leq 5\\
--\infty &amp;\leq x_{2} &amp;\leq 3\\
-4 &amp;\leq x_{1} &amp;\leq \infty\\
-0 &amp;\leq x_{2} &amp;\leq \infty
-\end{eqnarray}
-</latex>
-</para>
-<para>
-</para>
-   <programlisting role="example"><![CDATA[
-//Example 4: Infeasible Problem
-//(Ref : example 14)https://www.me.utexas.edu/~jensen/ORMM/supplements/methods/nlpmethod/S2_quadratic.pdf
-// min. -8*x1^2 -16*x2^2 + x1 + 4*x2
-// such that
-//    x1 + x2 <= 5,
-//    x1 <= 3,
-//    x1 >= 0,
-//    x2 >= 0
-H = [-16 0; 0 8];
-f = [-8; -16];
-A = [1 1;1 0]
-conUB = [5;3];
-conLB = [-%inf; -%inf];
-lb = [4; 0];
-ub = [%inf; %inf];
-nbVar = 2;
-nbCon = 2;
-[xopt,fopt,exitflag,output,lambda] = quadprog(nbVar,nbCon,H,f,lb,ub,A,conLB,conUB)
-//Press ENTER to continue
-
-   ]]></programlisting>
-</refsection>
-
-<refsection>
-    <title>Example</title>
-   <para>
-Unbounded Problems: Find x in R^2 such that it minimizes:
-   </para>
-   <para>
-  <latex>
- \begin{eqnarray}
-\mbox{min}_{x} -8x_{1}^{2} -16x_{2}^{2} + x_{1} + 4x_{2}  \\
-\end{eqnarray}\\
-&amp; \text{Subjected to}\\
-  \begin{eqnarray}
--\infty &amp;\leq 2x_{1} &amp;\geq -5\\
--\infty &amp;\leq x_{2} &amp;\leq 3\\
-0 &amp;\leq x_{1} &amp;\leq \infty\\
-0 &amp;\leq x_{2} &amp;\leq \infty
-\end{eqnarray}
-</latex>
-</para>
-<para>
-</para>
-   <programlisting role="example"><![CDATA[
-//Example 5: Unbounded Problem
-//Find x in R^2 such that:
-H = [-16 0; 0 8];
-f = [-8; -16];
-A = [-2 0;0 1];
-conUB = [5;3];
-conLB = [-%inf; -%inf];
-lb = [0; 0];
-ub = [%inf; %inf];
-nbVar = 2;
-nbCon = 2;
-x0 = [1 ;1];
-[xopt,fopt,exitflag,output,lambda]=quadprog(nbVar,nbCon,H,f,lb,ub,A,conLB,conUB,x0)
+//Find x in R^6 such that:
+A= [1,-1,1,0,3,1;
+-1,0,-3,-4,5,6;
+2,5,3,0,1,0
+0,1,0,1,2,-1;
+-1,0,2,1,1,0];
+conLB=[1;2;3;-%inf;-%inf];
+conUB = [1;2;3;-1;2.5];
+lb=[-1000;-10000; 0; -1000; -1000; -1000];
+ub=[10000; 100; 1.5; 100; 100; 1000];
+//and minimize 0.5*x'⋅H⋅x + f'⋅x with
+f=[1; 2; 3; 4; 5; 6]; H=eye(6,6);
+nbVar = 6;
+nbCon = 5;
+x0 = repmat(0,nbVar,1);
+param = list("MaxIter", 300, "CpuTime", 100);
+[xopt,fopt,exitflag,output,lambda]=quadprog(nbVar,nbCon,H,f,lb,ub,A,conLB,conUB,x0,param)
    ]]></programlisting>
 </refsection>
 

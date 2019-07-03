@@ -79,7 +79,7 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfminbnd (varargin)
 	//	//-2 <= x1,x2,x3,x4,x5,x6 <= 2
 	//    //Objective function to be minimised
 	//    function y=f(x)
-	//		y=0
+	//		y=0;
 	//		for i =1:6
 	//			y=y+sin(x(i));
 	//		end	
@@ -87,7 +87,7 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfminbnd (varargin)
 	//	//Variable bounds  
 	//	x1 = [-2, -2, -2, -2, -2, -2];
 	//  x2 = [2, 2, 2, 2, 2, 2];
-  //  intcon = [2 3 4]
+  //  intcon = [2 3 4];
 	//	//Options
 	//	options=list("MaxIter",[1500],"CpuTime", [100])
 	//	[x,fval] =intfminbnd(f ,intcon, x1, x2, options)
@@ -121,7 +121,8 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfminbnd (varargin)
 	//	x1 = [-%inf , -%inf];
 	//  x2 = [ %inf , %inf];
 	//	//Options
-	//	options=list("MaxIter",[1500],"CpuTime", [100])
+  //	options=list("MaxIter",[1500],"CpuTime", [100])
+  //  intcon = [1 2];
 	//	[x,fval,exitflag,output,lambda] =intfminbnd(f,intcon, x1, x2, options)  
 	// Authors
 	// Harpreet Singh
@@ -293,7 +294,6 @@ options = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',1d10,'al
         check=1;
       end
     end
-	disp(hessy);
   endfunction
     
    //Defining an inbuilt Objective gradient function 
