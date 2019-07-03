@@ -175,7 +175,7 @@ function [xopt,resnorm,residual,exitflag,output,lambda] = lsqnonneg (varargin)
 	nbCon = size(conMatrix,1);
 	conLB = [];
 	conUB = [] ; 
-	[xopt,fopt,status,iter,Zl,Zu,lmbda] = solveqp(nbVar,nbCon,Q,p,conMatrix,conLB,conUB,lb,ub,x0,options);
+	[xopt,fopt,status,iter,Zl,Zu,lmbda] = solveqp(int(nbVar),int(nbCon),Q,p,conMatrix,conLB,conUB,lb,ub,x0,options);
 
 	xopt = xopt';
 	residual = -1*(C*xopt-d);

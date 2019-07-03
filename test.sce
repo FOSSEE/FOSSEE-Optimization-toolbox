@@ -1,11 +1,11 @@
-//Example 6:
-//Infeasible objective function.
-function y=f(x)
-y=x(1)^2 - x(1)*x(2)/3 + x(2)^2;
-endfunction
-x0=[0 , 0];
-A=[1,1 ; 1,1/4 ; 1,-1];
-b=[2;1;1];
-Aeq = [1,1];
-beq = 3;
-[x,fval,exitflag,output,lambda,grad,hessian] =fmincon(f, x0,A,b,Aeq,beq)
+H = [-16 0; 0 8];
+f = [-8; -16];
+A = [-2 0;0 1];
+conUB = [5;3];
+conLB = [-%inf; -%inf];
+lb = [0; 0];
+ub = [%inf; %inf];
+nbVar = 2;
+nbCon = 2;
+x0 = [1 ;1];
+[xopt,fopt,exitflag,output,lambda]=quadprog(nbVar,nbCon,H,f,lb,ub,A,conLB,conUB,x0)

@@ -5,7 +5,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-// Author: Harpreet Singh
+// Author: Harpreet Singh and Yash Kataria
 // Organization: FOSSEE, IIT Bombay
 // Email: toolbox@scilab.in
 
@@ -119,7 +119,7 @@ Function_Names = [
 		'solveintqp','sci_solveintqp', 'csci6';
 		'inter_fminunc','cpp_intfminunc', 'csci6';
 		'inter_fminbnd','cpp_intfminbnd', 'csci6';
-		//'inter_fmincon','cpp_intfmincon', 'csci6';
+		'inter_fmincon','cpp_intfmincon', 'csci6';
 
 		//fotversion
         "fotversion","sci_fotversion", 'csci6';
@@ -145,19 +145,19 @@ Files = [
 
         //CLP
         "sci_LinProg.cpp",
-        "read_mps.cpp"
+        "read_mps.cpp",
 
 		//Bonmin
   		'sci_minuncTMINLP.cpp',
 		'cpp_intfminunc.cpp',
 		'sci_minbndTMINLP.cpp',
 		'cpp_intfminbnd.cpp',		
-		//'sci_minconTMINLP.cpp',
-		//'cpp_intfmincon.cpp',
+		'sci_minconTMINLP.cpp',
+		'cpp_intfmincon.cpp',
 		'sci_intlinprog_matrixcpp.cpp',
 		'sci_QuadTMINLP.cpp',
 		'sci_intquadprog.cpp',
-		'sci_intlinprog_mpscpp.cpp'
+		'sci_intlinprog_mpscpp.cpp',
 
 		"sci_fotversion.cpp"
         
@@ -185,7 +185,7 @@ elseif getos()=="Darwin" then
     	lib_base_dir = third_dir + filesep() + 'Mac' + filesep() + 'lib' + filesep() + Version + filesep();
     	inc_base_dir = third_dir + filesep() + 'Mac' + filesep() + 'include' + filesep() + 'coin';
     	C_Flags=["-D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -fpermissive -I"+path_builder+" -I"+inc_base_dir+" -Wl,-rpath "+lib_base_dir+" "]
-    	Linker_Flag = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils" ]
+    	Linker_Flag = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils" + " "+"-L"+lib_base_dir+"libbonmin"]
 
 else
     third_dir = path_builder+filesep()+'..'+filesep()+'..'+filesep()+'thirdparty';

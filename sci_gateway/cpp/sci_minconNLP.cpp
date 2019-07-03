@@ -22,6 +22,7 @@ extern "C"
 #include <sciprint.h>
 #include <string.h>
 #include <assert.h>
+#include <stdint.h>
 
 
 #define LOCAL_DEBUG 0
@@ -480,6 +481,7 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 		
 
 		scilab_getDouble(env_, out[1], &check);
+        printf("check = %f\n",check);
 		if (check==1)
 		{
 			return true;
