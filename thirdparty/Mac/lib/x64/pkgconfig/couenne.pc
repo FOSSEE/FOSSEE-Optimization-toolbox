@@ -1,0 +1,12 @@
+prefix=/Users/yash/Desktop/coinbrew/build
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/coin
+
+Name: Couenne
+Description: Convex Over and Under Envelopes for Nonlinear Estimation
+URL: https://projects.coin-or.org/Couenne
+Version: 0.5
+Libs: -L${libdir} -lCouenne 
+Cflags: -I${includedir}
+Requires: bonminamplinterface bonmin 

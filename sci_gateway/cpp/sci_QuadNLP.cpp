@@ -186,6 +186,7 @@ bool QuadNLP::eval_h(Index n, const Number* x, bool new_x,
 				}
 			}
 		}
+    printf("Reached end of eval_h");
 	return true;
 	}
 

@@ -18,53 +18,54 @@
 
 using namespace  Ipopt;
 using namespace Bonmin;
-    
+
 class minconTMINLP : public TMINLP
 {
-	private:
-
-    scilabEnv env_;				//Scilab Environment Variable
-
-	Index numVars_;             //Number of variables
-
+private:
+    
+    scilabEnv env_;                //Scilab Environment Variable
+    
+    Index numVars_;             //Number of variables
+    
     Index numCons_;             //Number of constraints
-
+    
     Index numLC_;               //Number of Linear constraints
-  	
-  	Index intconSize_;
- 
+    
+    Index intconSize_;
+    
     Number *x0_= NULL;          //lb_ is a pointer to a matrix of size of 1*numVars_ with lower bound of all variables.
- 
+    
     Number *lb_= NULL;          //lb_ is a pointer to a matrix of size of 1*numVars_ with lower bound of all variables.
-
+    
     Number *ub_= NULL;          //ub_ is a pointer to a matrix of size of 1*numVars_ with upper bound of all variables.
-
+    
     Number *conLb_= NULL;       //conLb_ is a pointer to a matrix of size of numCon_*1 with lower bound of all constraints.
-
+    
     Number *conUb_= NULL;       //conUb_ is a pointer to a matrix of size of numCon_*1 with upper bound of all constraints.
-
-    Number *finalX_= NULL;		  //finalX_ is a pointer to a matrix of size of 1*numVars_ with final value for the primal variables.
-
-  	Number finalObjVal_;        //finalObjVal_ is a scalar with the final value of the objective.
-
+    
+    Number *finalX_= NULL;          //finalX_ is a pointer to a matrix of size of 1*numVars_ with final value for the primal variables.
+    
+    Number finalObjVal_;        //finalObjVal_ is a scalar with the final value of the objective.
+    
     Number *intcon_ = NULL;
-
-  	int status_;			 		//Solver return status
-  	minconTMINLP(const minconTMINLP&);
-  	minconTMINLP& operator=(const minconTMINLP&);
-
+    
+    int status_;                     //Solver return status
+    minconTMINLP(const minconTMINLP&);
+    minconTMINLP& operator=(const minconTMINLP&);
+    
 public:
-	// Constructor
-    	minconTMINLP(scilabEnv env, Index nV, Number *x0, Number *lb, Number *ub, Index nLC, Index nCons, Number *conlb, Number *conub, Index intconSize, Number *intcon): env_(env),  numVars_(nV),x0_(x0),lb_(lb),ub_(ub),numLC_(nLC),numCons_(nCons),conLb_(conlb),conUb_(conub),intconSize_(intconSize),intcon_(intcon),finalX_(0),finalObjVal_(1e20){	}
-  
-	/** default destructor */
-  	virtual ~minconTMINLP();
-
-  	virtual bool get_variables_types(Index n, VariableType* var_types);
- 
+    // Constructor
+    minconTMINLP(scilabEnv env, Index nV, Number *x0, Number *lb, Number *ub, Index nLC, Index nCons, Number *conlb, Number *conub, Index intconSize, Number *intcon): env_(env),  numVars_(nV),x0_(x0),lb_(lb),ub_(ub),numLC_(nLC),numCons_(nCons),conLb_(conlb),conUb_(conub),intconSize_(intconSize),intcon_(intcon),finalX_(0),finalObjVal_(1e20){    }
+    
+    /** default destructor */
+    virtual ~minconTMINLP();
+    
+    virtual bool get_variables_types(Index n, VariableType* var_types);
+    
     virtual bool get_variables_linearity(Index n, Ipopt::TNLP::LinearityType* var_types);
-
+    
     virtual bool get_constraints_linearity(Index m, Ipopt::TNLP::LinearityType* const_types);
+
   	
   	/** Method to return some info about the nlp */
   	virtual bool get_nlp_info(Index& n, Index& m, Index& nnz_jac_g,
@@ -122,6 +123,8 @@ public:
   	double iterCount();		//Returns the iteration count
 
   	int returnStatus();		//Returns the status count
+
+
 };
 
 #endif

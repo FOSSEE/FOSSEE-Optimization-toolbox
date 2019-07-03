@@ -813,8 +813,7 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
 					y=[0];	
 				end				
 			end
-		disp (y)
-		disp(check)
+
   	endfunction
 
    	//Defining an inbuilt Constraint gradient function 

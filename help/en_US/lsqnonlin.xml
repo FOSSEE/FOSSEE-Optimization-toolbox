@@ -79,7 +79,7 @@ Search the minimum of a constrained nonlinear least square problem specified by 
 <latex>
 \begin{eqnarray}
 \hspace{1pt} &amp;\mbox{min}_{x}
-\hspace{1pt} &amp; (f_{1}(x)^{2} + f_{2}(x)^{2} + f_{n}(x)^{2}) \\
+\hspace{1pt} &amp; (f_{1}(x)^{2} + f_{2}(x)^{2} + ... f_{n}(x)^{2}) \\
 \hspace{1pt} &amp; &amp; lb \leq x \leq ub \\
 \end{eqnarray}
 </latex>

@@ -1,0 +1,12 @@
+prefix=/Users/yash/Desktop/coinbrew/build
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/coin
+
+Name: BCP
+Description: Branch, Cut, and Price Framework
+URL: https://projects.coin-or.org/Bcp
+Version: 1.4
+Libs: -L${libdir} -lBcp 
+Cflags: -I${includedir}
+Requires: osi-vol osi-clp 

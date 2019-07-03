@@ -1,0 +1,11 @@
+prefix=/Users/yash/Desktop/coinbrew/build
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+
+Name: Lapack
+Description: Linear algebra package
+URL: https://projects.coin-or.org/BuildTools
+Version: 1.6
+Libs: -L${libdir} -lcoinlapack -framework Accelerate   -L/usr/local/Cellar/gcc/9.1.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.1.0 -L/usr/local/Cellar/gcc/9.1.0/lib/gcc/9/gcc/x86_64-apple-darwin18/9.1.0/../../.. -lgfortran -lSystem -lquadmath -lm
+Cflags:
+Requires: 
