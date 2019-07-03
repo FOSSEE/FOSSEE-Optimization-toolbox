@@ -32,128 +32,126 @@ extern  "C"
 #include <localization.h>
 #include <sciprint.h>
 #include <wchar.h>
+#include <stdint.h>
 
-    
-    
+
 const char fname[] = "inter_fmincon";
 /* ==================================================================== */
-int cpp_intfmincon(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
-    
+int cpp_intfmincon(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out) 
 
 {
-    using namespace Ipopt;
-    using namespace Bonmin;
-    
-    
-    // Input arguments
-    
-    Number *x0 = NULL, *lb = NULL, *ub = NULL,*conLb = NULL, *conUb = NULL,*LC = NULL;
+  	using namespace Ipopt;
+  	using namespace Bonmin;
+
+
+	// Input arguments
+
+	Number *x0 = NULL, *lb = NULL, *ub = NULL,*conLb = NULL, *conUb = NULL,*LC = NULL;
     static unsigned int nVars = 0;
     int nCons = 0, nCons2= 0;
-    int x0_rows, x0_cols,intconSize, intconSize2;
-    Number *intcon = NULL,*options=NULL, *ifval=NULL;
-    
-    // Output arguments
-    Number  ObjVal=0,iteration=0,fobj_eval=0;    //Number *fX = NULL, ObjVal=0,iteration=0,cpuTime=0,fobj_eval=0;
-    Number dual_inf, constr_viol, complementarity, kkt_error;
-    int rstatus = 0;
-    
-    if (nin !=13)  //Checking the input arguments
-    {
-        Scierror(999, "%s: Wrong number of input arguments: %d expected.\n", fname, 13);
-        return STATUS_ERROR;
-    }
-    
-    if (nout !=3) //Checking the output arguments
-        
-    {
-        Scierror(999, "%s: Wrong number of output argument(s): %d expected.\n", fname, 3);
-        return 1;
-    }
-    
-    const double *fX = NULL;    //changed fX from Ipopt::Number* to const double*
-    
-    if (scilab_isDouble(env, in[5]) == 0 || scilab_isMatrix2d(env, in[5]) == 0)
-    {
-        Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 6);
-        return 1;
-    }
-    
-    scilab_getDoubleArray(env, in[5], &x0);
-    int size1 = scilab_getDim2d(env, in[5], &x0_rows, &x0_cols);
-    
-    
-    if (scilab_isDouble(env, in[6]) == 0 || scilab_isMatrix2d(env, in[6]) == 0)
-    {
-        Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 7);
-        return 1;
-    }
-    
-    scilab_getDoubleArray(env, in[6], &lb);
-    
-    
-    
-    if (scilab_isDouble(env, in[7]) == 0 || scilab_isMatrix2d(env, in[7]) == 0)
-    {
-        Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 8);
-        return 1;
-    }
-    
-    scilab_getDoubleArray(env, in[7], &ub);
-    
-    if (scilab_isDouble(env, in[8]) == 0 || scilab_isMatrix2d(env, in[8]) == 0)
-    {
-        Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 9);
-        return 1;
-    }
-    
-    scilab_getDoubleArray(env, in[8], &conLb);
-    size1 = scilab_getDim2d(env, in[8], &nCons, &nCons2);
-    
-    
-    
-    if (scilab_isDouble(env, in[9]) == 0 || scilab_isMatrix2d(env, in[9]) == 0)
-    {
-        Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 10);
-        return 1;
-    }
-    
-    scilab_getDoubleArray(env, in[9], &conUb);
-    
-    
-    // Getting intcon
-    if (scilab_isDouble(env, in[10]) == 0 || scilab_isMatrix2d(env, in[10]) == 0)
-    {
-        Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 11);
-        return 1;
-    }
-    
-    scilab_getDoubleArray(env, in[10], &intcon);
-    size1 = scilab_getDim2d(env, in[10], &intconSize, &intconSize2);
-    
-    
-    
-    if (scilab_isDouble(env, in[12]) == 0 || scilab_isMatrix2d(env, in[12]) == 0)
-    {
-        Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 13);
-        return 1;
-    }
-    
-    scilab_getDoubleArray(env, in[12], &LC);
-    
-    
-    
-    
+	int x0_rows, x0_cols,intconSize, intconSize2;
+	Number *intcon = NULL,*options=NULL, *ifval=NULL;
+	
+	// Output arguments
+	Number  ObjVal=0,iteration=0,fobj_eval=0;	//Number *fX = NULL, ObjVal=0,iteration=0,cpuTime=0,fobj_eval=0;
+	Number dual_inf, constr_viol, complementarity, kkt_error;
+	int rstatus = 0;
+
+	if (nin !=13)  //Checking the input arguments
+	{
+        	Scierror(999, "%s: Wrong number of input arguments: %d expected.\n", fname, 13);
+        	return STATUS_ERROR; 
+	}
+	
+	if (nout !=3) //Checking the output arguments
+
+	{
+		Scierror(999, "%s: Wrong number of output argument(s): %d expected.\n", fname, 3);
+		return 1;
+	}
+
+	const double *fX = NULL;	//changed fX from Ipopt::Number* to const double*
+
+	if (scilab_isDouble(env, in[5]) == 0 || scilab_isMatrix2d(env, in[5]) == 0)
+	{
+		Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 6);
+		return 1;
+	}
+	
+	scilab_getDoubleArray(env, in[5], &x0);
+	int size1 = scilab_getDim2d(env, in[5], &x0_rows, &x0_cols);
+
+	
+	if (scilab_isDouble(env, in[6]) == 0 || scilab_isMatrix2d(env, in[6]) == 0)
+	{
+		Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 7);
+		return 1;
+	}
+	
+	scilab_getDoubleArray(env, in[6], &lb);
+
+	
+
+	if (scilab_isDouble(env, in[7]) == 0 || scilab_isMatrix2d(env, in[7]) == 0)
+	{
+		Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 8);
+		return 1;
+	}
+	
+	scilab_getDoubleArray(env, in[7], &ub);
+
+	if (scilab_isDouble(env, in[8]) == 0 || scilab_isMatrix2d(env, in[8]) == 0)
+	{
+		Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 9);
+		return 1;
+	}
+	
+	scilab_getDoubleArray(env, in[8], &conLb);
+	size1 = scilab_getDim2d(env, in[8], &nCons, &nCons2);
+
+	
+
+	if (scilab_isDouble(env, in[9]) == 0 || scilab_isMatrix2d(env, in[9]) == 0)
+	{
+		Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 10);
+		return 1;
+	}
+	
+	scilab_getDoubleArray(env, in[9], &conUb);
+	
+
+	// Getting intcon
+	if (scilab_isDouble(env, in[10]) == 0 || scilab_isMatrix2d(env, in[10]) == 0)
+	{
+		Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 11);
+		return 1;
+	}
+	
+	scilab_getDoubleArray(env, in[10], &intcon);
+	size1 = scilab_getDim2d(env, in[10], &intconSize, &intconSize2);
+
+
+
+	if (scilab_isDouble(env, in[12]) == 0 || scilab_isMatrix2d(env, in[12]) == 0)
+	{
+		Scierror(999, "%s: Wrong type for input argument #%d: A double matrix expected.\n", fname, 13);
+		return 1;
+	}
+	
+	scilab_getDoubleArray(env, in[12], &LC);
+
+
+	
+
     //Initialization of parameters
-    
-    //Getting parameters
-    if (scilab_isList(env, in[11]) == 0)
+
+	//Getting parameters
+	if (scilab_isList(env, in[11]) == 0)
     {
         Scierror(999, "%s: Wrong type for input argument #%d: A list expected.\n", fname, 12);
         return 1;
     }
-    
-    
+   
 
 
 	scilabVar temp1 = scilab_getListItem( env, in[11], 1);
@@ -180,7 +178,8 @@ int cpp_intfmincon(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt op
 	nVars = x0_rows;
 	
 	
-	SmartPtr<minconTMINLP> tminlp = new minconTMINLP(env, nVars,x0,lb,ub,(unsigned int)LC,nCons,conLb,conUb,intconSize,intcon);
+	SmartPtr<minconTMINLP> tminlp = new minconTMINLP(env, nVars,x0,lb,ub,(uintptr_t)LC,nCons,conLb,conUb,intconSize,intcon);
+
 
 
 	BonminSetup bonmin;
@@ -242,3 +241,4 @@ int cpp_intfmincon(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt op
 	}
 
 }
+
