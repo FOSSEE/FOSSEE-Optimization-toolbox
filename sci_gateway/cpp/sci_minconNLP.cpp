@@ -22,6 +22,7 @@ extern "C"
 #include <sciprint.h>
 #include <string.h>
 #include <assert.h>
+#include <stdint.h>
 
 
 #define LOCAL_DEBUG 0
@@ -131,7 +132,7 @@ bool minconNLP::eval_f(Index n, const Number* x, bool new_x, Number& obj_value)
 {	
 
 	scilabVar* out = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) * 1);
-	#if LOCAL_DEBUG
+	#ifdef LOCAL_DEBUG
 		printf("Calling eval_f\n");
 	#endif	
   	double check;
@@ -180,7 +181,7 @@ bool minconNLP::eval_grad_f(Index n, const Number* x, bool new_x, Number* grad_f
 {
 	scilabVar* out = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) );
 	const Number *xNew=x;
-	#if LOCAL_DEBUG
+	#ifdef LOCAL_DEBUG
 		printf("grad_f obtained\n");
 	#endif
 	scilabVar* funcIn = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) * 1);
@@ -249,8 +250,10 @@ bool minconNLP::eval_g(Index n, const Number* x, bool new_x, Index m, Number* g)
 
 
 			scilabVar* out = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) );
-			#if LOCAL_DEBUG
-				printf("g obtained\n");
+
+			#ifdef LOCAL_DEBUG
+				printf("grad_f obtained\n");
+
 			#endif
 			scilabVar* funcIn = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) * 1);
 			funcIn[0] = scilab_createDoubleMatrix2d(env_, 1, numVars_, 0);
@@ -430,6 +433,10 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 {
 
 	scilabVar* out = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) * 1);
+    #ifdef LOCAL_DEBUG
+        printf("eval_h obtained\n");
+    printf("%d %p %d %p %d %p",n,x,m,lambda,nele_hess,values);
+    #endif
 	if (values==NULL)
 	{
 		Index idx=0;
@@ -450,7 +457,7 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 
 
 		const Number *xNew=x;
-		#if LOCAL_DEBUG
+		#ifdef LOCAL_DEBUG
 			printf("in the gradhess block\n");
 		#endif	
 
@@ -460,16 +467,14 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 		scilabVar* funcIn = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) * 1);
 		funcIn[0] = scilab_createDoubleMatrix2d(env_, 1, numVars_, 0);
 		scilab_setDoubleArray(env_, funcIn[0], x);
-		double t= 2;
-		funcIn[1] = scilab_createDouble(env_, objfac);
+        funcIn[1] = scilab_createDouble(env_, objfac);
 		funcIn[2] = scilab_createDoubleMatrix2d(env_, 1, numConstr_, 0);
 		scilab_setDoubleArray(env_, funcIn[2], lambdaNew);
-
-		scilab_call(env_, L"lHess1", 3, funcIn, 2, out);
-                               
-		
-		double* resCh;
-
+        
+        scilab_call(env_, L"lHess1", 3, funcIn, 2, out);
+        
+		double* resCh = (double*)malloc(sizeof(double)*numVars_*numVars_);
+        
 		if (scilab_isDouble(env_, out[1]) == 0 || scilab_isScalar(env_, out[1]) == 0)
 		{
 			Scierror(999, "Wrong type for input argument #%d: An int expected.\n", 2);
@@ -478,7 +483,7 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 		
 
 		scilab_getDouble(env_, out[1], &check);
-		printf("Check = %d\n", check);
+4
 		if (check==1)
 		{
 			return true;
@@ -523,14 +528,20 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 			}
 		}
 		
-	}	
+	}
+    #ifdef LOCAL_DEBUG
+        printf("Reached end of eval_h\n");
+    #endif
 	return true;
 }
 
 //returning the results
     	void minconNLP::finalize_solution(SolverReturn status,Index n, const Number* x, const Number* z_L, const Number* z_U,Index m, const Number* g, const Number* lambda, Number obj_value,const IpoptData* ip_data,IpoptCalculatedQuantities* ip_cq)
     	{
-    		finalX_ = new double[n];
+            #ifdef LOCAL_DEBUG
+                printf("Finalize start\n");
+            #endif
+            finalX_ = new double[n];
     		for (Index i=0; i<n; i++) 
     		{
     			finalX_[i] = x[i];
@@ -556,6 +567,9 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 
     		finalObjVal_ = obj_value;
     		status_ = status;
+            #ifdef LOCAL_DEBUG
+                printf("Finalize end\n");
+            #endif
     	}
 
 

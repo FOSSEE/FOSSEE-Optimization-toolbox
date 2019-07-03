@@ -115,7 +115,7 @@ public:
                       bool new_lambda, Index nele_hess, Index* iRow,
                       Index* jCol, Number* values);
 
-  virtual void QuadTMINLP::finalize_solution(TMINLP::SolverReturn status,
+  virtual void finalize_solution(TMINLP::SolverReturn status,
 				Index n, const Number* x,Number obj_value);
 
   virtual const SosInfo * sosConstraints() const{return NULL;}

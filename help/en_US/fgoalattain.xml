@@ -461,7 +461,7 @@ Options = list("MaxIter", [3000], "CpuTime", [600],"GradObj",myfungrad,"GradCon"
 // The initial guess
 
 // Run fgoalattain
-[x,fval,maxfval,exitflag,output] = fgoalattain(myfun,x0,goal,weight,[],[],[],[],[],[], confun, Options)
+[x,fval,maxfval,exitflag,output] = fgoalattain(gattainObjfun,x0,goal,weight,[],[],[],[],[],[], confun, Options)
    ]]></programlisting>
 </refsection>
 
@@ -499,7 +499,7 @@ b=[2;1;1];
 //We specify the linear equality constraints below.
 Aeq = [1/3,-5; 2, 1];
 beq =  [11;8];
-// Run fminimax
+// Run fgoalattain
 [x,fval,maxfval,exitflag,output,lambda] = fgoalattain(gattainObjfun,x0,goal,weight,A,b,Aeq,beq)
 
 

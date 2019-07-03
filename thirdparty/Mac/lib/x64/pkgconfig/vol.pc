@@ -1,0 +1,12 @@
+prefix=/Users/yash/Desktop/coinbrew/build
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/coin
+
+Name: Vol
+Description: Volume Algorithm
+URL: https://projects.coin-or.org/Vol
+Version: 1.5
+Libs: -L${libdir} -lVol 
+Cflags: -I${includedir}
+Requires: coinutils 

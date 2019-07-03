@@ -195,7 +195,7 @@ int sci_solveminconp(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt 
 	app->Options()->SetNumericValue("tol", 1e-6);
 	app->Options()->SetIntegerValue("max_iter", maxIters);
 	app->Options()->SetNumericValue("max_cpu_time", cpu_time);
-	//app->Options()->SetStringValue("hessian_approximation", "limited-memory");
+	app->Options()->SetStringValue("hessian_approximation", "limited-memory");
 
 	///////// Initialize the IpoptApplication and process the options /////////
 	ApplicationReturnStatus status;

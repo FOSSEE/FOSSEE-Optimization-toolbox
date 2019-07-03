@@ -319,7 +319,7 @@ mbox{min}_{x}\ f(x) = x_{1} - x_{2}  \- x_{3}\\
    <para>
    </para>
    <programlisting role="example"><![CDATA[
-//Example 5: Unbounded Problem
+//Example 5: Infeasible Problem
 c=[3,5,-7]'
 A=[-1,-1,4;1,1,4]
 b=[-8,5]
