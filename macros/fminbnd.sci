@@ -49,7 +49,7 @@ function [xopt,fopt,exitflag,output,lambda] = fminbnd (varargin)
   	// The options allows the user to set various parameters of the Optimization problem. 
   	// It should be defined as type "list" and contains the following fields.
 	// <itemizedlist>
-	//   <listitem>Syntax : options= list("MaxIter", [---], "CpuTime", [---], TolX, [----]);</listitem>
+	//   <listitem>Syntax : options= list("MaxIter", [---], "CpuTime", [---], "TolX", [----]);</listitem>
 	//   <listitem>MaxIter : a Scalar, containing the Maximum Number of Iteration that the solver should take.</listitem>
 	//   <listitem>CpuTime : a Scalar, containing the Maximum amount of CPU Time that the solver should take.</listitem>
 	//   <listitem>TolX : a Scalar, containing the Tolerance value that the solver should take.</listitem>

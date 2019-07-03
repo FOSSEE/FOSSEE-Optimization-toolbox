@@ -151,12 +151,12 @@ function [x,fval,maxfval,exitflag,output,lambda] = fminimax(varargin)
     //  // A basic case :
     //  // we provide only the objective function and the nonlinear constraint
     //  // function
-    //  function f = myfun(x)
-    //      f(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;     //Objectives
-    //      f(2)= -x(1)^2 - 3*x(2)^2;
-    //      f(3)= x(1) + 3*x(2) -18;
-    //      f(4)= -x(1) - x(2);
-    //      f(5)= x(1) + x(2) - 8;
+    //  function y = myfun(x)
+    //      y(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;     //Objectives
+    //      y(2)= -x(1)^2 - 3*x(2)^2;
+    //      y(3)= x(1) + 3*x(2) -18;
+    //      y(4)= -x(1) - x(2);
+    //      y(5)= x(1) + x(2) - 8;
     //  endfunction
     //  // The initial guess
     //  x0 = [0.1,0.1];
@@ -172,12 +172,12 @@ function [x,fval,maxfval,exitflag,output,lambda] = fminimax(varargin)
     //  // A case where we provide the gradient of the objective
     //  // functions and the Jacobian matrix of the constraints.
     //  // The objective function and its gradient
-    //  function f = myfun(x)
-    //      f(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;
-    //      f(2)= -x(1)^2 - 3*x(2)^2;
-    //      f(3)= x(1) + 3*x(2) -18;
-    //      f(4)= -x(1) - x(2);
-    //      f(5)= x(1) + x(2) - 8;
+    //  function y = myfun(x)
+    //      y(1)= 2*x(1)^2 + x(2)^2 - 48*x(1) - 40*x(2) + 304;
+    //      y(2)= -x(1)^2 - 3*x(2)^2;
+    //      y(3)= x(1) + 3*x(2) -18;
+    //      y(4)= -x(1) - x(2);
+    //      y(5)= x(1) + x(2) - 8;
     //  endfunction
     //  // Defining gradient of myfun
     //  function G = myfungrad(x)

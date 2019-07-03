@@ -98,9 +98,9 @@ function [xopt,fopt,exitflag,output,lambda] = quadprog (varargin)
 	//		//	x1 <= 3,
 	//		//	x1 >= 0,
 	//		//	x2 >= 0
-	//	H = [2 0
-	//		 0 8]; 
-	//	f = [-8; -16];
+	//	H = [-16 0;
+	//		 0 -31]; 
+	//	f = [1; 4];
 	//  A = [1 1;1 0];
 	//	conUB = [5;3];
 	//	conLB = [-%inf; -%inf];
