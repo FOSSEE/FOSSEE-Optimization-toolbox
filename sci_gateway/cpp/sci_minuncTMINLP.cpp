@@ -333,10 +333,8 @@ bool minuncTMINLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor
 				}
 			}
 		}
-
-		
-       	return true;
     }
+    return true;
 }
 
 
