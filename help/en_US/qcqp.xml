@@ -50,7 +50,7 @@
         </varlistentry>
         <varlistentry>
             <term>Q :</term>
-            <listitem><para> a n x n x q matrix of double, represents coefficients of quadratic terms in the quadratic constraints. x'.Q.x + c'.x &lt;= r</para></listitem>
+            <listitem><para> a [n x n] .s q matrix of double, represents coefficients of quadratic terms in the quadratic constraints. x'.Q.x + c'.x &lt;= r</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>c :</term>

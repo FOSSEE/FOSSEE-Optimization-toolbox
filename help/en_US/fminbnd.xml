@@ -199,7 +199,7 @@ options=list("MaxIter",[1500],"CpuTime", [100],"TolX",[1e-6])
 <refsection>
    <title>Authors</title>
    <simplelist type="vert">
-   <member>R.Vidyadhar , Vignesh Kannan</member>
+   <member>R.Vidyadhar , Vignesh Kannan, Adarsh Shah</member>
    </simplelist>
 </refsection>
 </refentry>
