@@ -209,7 +209,7 @@ param = list("MaxIter", 300, "CpuTime", 100);
 <refsection>
    <title>Authors</title>
    <simplelist type="vert">
-   <member>Keyur Joshi, Saikiran, Iswarya, Harpreet Singh</member>
+   <member>Keyur Joshi, Saikiran, Iswarya, Harpreet Singh, Adarsh Shah</member>
    </simplelist>
 </refsection>
 </refentry>

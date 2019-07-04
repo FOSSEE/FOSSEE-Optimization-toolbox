@@ -23,7 +23,7 @@ function [xopt,fopt,lambda,exitflag] = qcqp (varargin)
     //   x : a matrix of double, represents initial point.
 	//   H : a symmetric matrix of double, represents coefficients of quadratic terms in the quadratic problem.
     //   f : a vector of double, represents coefficients of linear terms in the quadratic problem
-    //   Q : a n x n x q matrix of double, represents coefficients of quadratic terms in the quadratic constraints. x'.Q.x + c'.x <= r
+    //   Q : a [n x n] . q matrix of double, represents coefficients of quadratic terms in the quadratic constraints. x'.Q.x + c'.x <= r
     //   c : a q x n matrix of double, represents coefficients of  linear terms in the quadratic problem. x'.Q.x + c'.x <= r
     //   r : a vector of double, represents the linear constants in the inequality constraints x'.Q.x + c'.x <= r.	
 	//   A : a matrix of double, represents the linear coefficients in the inequality constraints A⋅x ≤ b. 

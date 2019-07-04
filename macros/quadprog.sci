@@ -130,7 +130,7 @@ function [xopt,fopt,exitflag,output,lambda] = quadprog (varargin)
 	//	  param = list("MaxIter", 300, "CpuTime", 100);
 	//      [xopt,fopt,exitflag,output,lambda]=quadprog(nbVar,nbCon,H,f,lb,ub,A,conLB,conUB,x0,param)
 	// Authors
-	// Keyur Joshi, Saikiran, Iswarya, Harpreet Singh
+	// Keyur Joshi, Saikiran, Iswarya, Harpreet Singh, Adarsh Shah
     
     
 	//To check the number of input and output argument
