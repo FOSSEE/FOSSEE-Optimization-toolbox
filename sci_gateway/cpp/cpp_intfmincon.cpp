@@ -151,6 +151,8 @@ int cpp_intfmincon(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt op
         Scierror(999, "%s: Wrong type for input argument #%d: A list expected.\n", fname, 12);
         return 1;
     }
+   
+
 
 	scilabVar temp1 = scilab_getListItem( env, in[11], 1);
 	scilabVar temp2 = scilab_getListItem( env, in[11], 3);
@@ -177,6 +179,7 @@ int cpp_intfmincon(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt op
 	
 	
 	SmartPtr<minconTMINLP> tminlp = new minconTMINLP(env, nVars,x0,lb,ub,(uintptr_t)LC,nCons,conLb,conUb,intconSize,intcon);
+
 
 
 	BonminSetup bonmin;
@@ -236,5 +239,6 @@ int cpp_intfmincon(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt op
 
 	return 0;
 	}
+
 }
 

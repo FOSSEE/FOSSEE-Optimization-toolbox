@@ -65,6 +65,10 @@ public:
     virtual bool get_variables_linearity(Index n, Ipopt::TNLP::LinearityType* var_types);
 
     virtual bool get_constraints_linearity(Index m, Ipopt::TNLP::LinearityType* const_types);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5f8ef99ab732e2c00c6731b2049dc7320946d37f
   	
   	/** Method to return some info about the nlp */
   	virtual bool get_nlp_info(Index& n, Index& m, Index& nnz_jac_g,
@@ -122,6 +126,11 @@ public:
   	double iterCount();		//Returns the iteration count
 
   	int returnStatus();		//Returns the status count
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 5f8ef99ab732e2c00c6731b2049dc7320946d37f
 };
 
 #endif

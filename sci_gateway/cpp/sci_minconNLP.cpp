@@ -250,8 +250,10 @@ bool minconNLP::eval_g(Index n, const Number* x, bool new_x, Index m, Number* g)
 
 
 			scilabVar* out = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) );
+
 			#ifdef LOCAL_DEBUG
 				printf("grad_f obtained\n");
+
 			#endif
 			scilabVar* funcIn = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) * 1);
 			funcIn[0] = scilab_createDoubleMatrix2d(env_, 1, numVars_, 0);
@@ -481,7 +483,7 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 		
 
 		scilab_getDouble(env_, out[1], &check);
-        printf("check = %f\n",check);
+
 		if (check==1)
 		{
 			return true;
@@ -502,6 +504,8 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 				for (Index col=0; col < numVars_; ++col)
 				{
 					values[index++]=resCh[numVars_*row+col];
+					printf("hessian element [%d, %d] = %f\n",row, col, values[numVars_*row+col]);
+					
 				}
 			}
 		}
