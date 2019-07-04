@@ -791,7 +791,7 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
 							for i = 1:s(2)*s(2)
 								y(i)=0;
 								for j = 1:no_nlc
-									y(i)= y(i) + lambda(j)*y2((i-1)*no_nlc+j);
+									y(i)= y(i) + lambda(j)*y2(((i-1)*no_nlc)+j);
 								end
 							end
 					
