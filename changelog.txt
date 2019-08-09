@@ -1,13 +1,12 @@
 Changelog
 ---------
 Version 0.3 (July 8, 2019)
-	The toolbox has been available on Scilab 6.0.x
-	Upgraded solver libraries to their latest version and added the following     
- 	functions:	
-	*qcqp
-	*quadprogCLP
+	This version of the toolbox is now available on Scilab 6.0.x
+	Upgraded solver libraries to their latest version and added the following functions:	
+	* quadprogCLP
 	Changes to help files
 	"_gradhess" in intfmincon has been improved
+	Note that Symphony does not accept sparse matrices as input anymore. 
 	
 	
 
