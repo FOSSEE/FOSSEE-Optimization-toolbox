@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>fminunc</refname>
-    <refpurpose>Solves a multivariable unconstrained optimization problem</refpurpose>
+    <refpurpose>Solves an unconstrained optimization problem.</refpurpose>
   </refnamediv>
 
 

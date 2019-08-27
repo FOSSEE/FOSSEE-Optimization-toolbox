@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>intlinprog</refname>
-    <refpurpose>Solves a mixed integer linear programming constrained optimization problem in intlinprog format.</refpurpose>
+    <refpurpose>Solves a mixed integer linear optimization problem in intlinprog format.</refpurpose>
   </refnamediv>
 
 

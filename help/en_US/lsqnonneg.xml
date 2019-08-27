@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>lsqnonneg</refname>
-    <refpurpose>Solves nonnegative least-squares curve fitting problems.</refpurpose>
+    <refpurpose>Solves a nonnegative linear least squares optimization problem.</refpurpose>
   </refnamediv>
 
 

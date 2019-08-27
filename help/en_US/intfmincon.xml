@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>intfmincon</refname>
-    <refpurpose>Solves a constrained multivariable mixed integer nonlinear programming problem</refpurpose>
+    <refpurpose>Solves a constrained mixed-integer nonlinear optimization problem.</refpurpose>
   </refnamediv>
 
 

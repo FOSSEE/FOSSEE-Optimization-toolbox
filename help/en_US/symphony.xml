@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>symphony</refname>
-    <refpurpose>Solves a  mixed integer linear programming constrained optimization problem.</refpurpose>
+    <refpurpose>Solves a mixed-integer linear optimization problem.</refpurpose>
   </refnamediv>
 
 

@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>intquadprog</refname>
-    <refpurpose>Solves a linear quadratic problem.</refpurpose>
+    <refpurpose>Solves an integer quadratic optimization problem.</refpurpose>
   </refnamediv>
 
 

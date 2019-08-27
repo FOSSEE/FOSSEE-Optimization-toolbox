@@ -17,56 +17,56 @@
 
   <refnamediv>
     <refname>fminbnd</refname>
-    <refpurpose>Solves a multi-variable optimization problem on a bounded interval</refpurpose>
+    <refpurpose>Solves a nonlinear optimization problem on bounded variables.</refpurpose>
   </refnamediv>
 
 
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   xopt = fminbnd(f,x1,x2)
+   xopt = fminbnd(f,x1,x2,options)
+   [xopt,fopt] = fminbnd(.....)
+   [xopt,fopt,exitflag]= fminbnd(.....)
+   [xopt,fopt,exitflag,output]=fminbnd(.....)
+   [xopt,fopt,exitflag,output,lambda]=fminbnd(.....)
+   
+   </synopsis>
+</refsynopsisdiv>
+
 <refsection>
-   <title>Parameters</title>
+   <title>Input Parameters</title>
    <variablelist>
-        <varlistentry>
-            <term>f :</term>
-            <listitem><para> a function, representing the objective function of the problem</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>x1 :</term>
-            <listitem><para> a vector, containing the lower bound of the variables of size (1 X n) or (n X 1) where 'n' is the number of Variables, where n is number of Variables</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>x2 :</term>
-            <listitem><para> a vector, containing the upper bound of the variables of size (1 X n) or (n X 1) or (0 X 0) where 'n' is the number of Variables. If x2 is empty it means upper bound is +infinity</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>options :</term>
-            <listitem><para> a list, containing the option for user to specify. See below for details.</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>xopt :</term>
-            <listitem><para> a vector of doubles, containing the the computed solution of the optimization problem.</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>fopt :</term>
-            <listitem><para> a scalar of double, containing the the function value at x.</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>exitflag :</term>
-            <listitem><para> a scalar of integer, containing the flag which denotes the reason for termination of algorithm. See below for details.</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>output :</term>
-            <listitem><para> a structure, containing the information about the optimization. See below for details.</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>lambda :</term>
-            <listitem><para> a structure, containing the Lagrange multipliers of lower bound and upper bound at the optimized point. See below for details.</para></listitem>
-        </varlistentry>
+   <varlistentry><term>f :</term>
+      <listitem><para> A function, representing the objective function of the problem.</para></listitem></varlistentry>
+   <varlistentry><term><latex>x_{1}</latex> :</term>
+      <listitem><para> A vector, containing the lower bound of the variables of size (1 X n) or (n X 1) where n is number of variables. If it is empty it means that the lower bound is <latex>-\infty</latex>.</para></listitem></varlistentry>
+   <varlistentry><term><latex>x_{2}</latex> :</term>
+      <listitem><para> A vector, containing the upper bound of the variables of size (1 X n) or (n X 1) or (0 X 0) where n is the number of variables. If it is empty it means that the upper bound is <latex>\infty</latex>.</para></listitem></varlistentry>
+   <varlistentry><term>options :</term>
+      <listitem><para> A list, containing the options for user to specify. See below for details.</para></listitem></varlistentry>
+</variablelist>
+</refsection>
+      <refsection>
+<title> Outputs</title>
+ <variablelist>
+   <varlistentry><term>xopt :</term>
+      <listitem><para> A vector of doubles, containing the computed solution of the optimization problem.</para></listitem></varlistentry>
+   <varlistentry><term>fopt :</term>
+      <listitem><para> A double, containing the the function value at x.</para></listitem></varlistentry>
+   <varlistentry><term>exitflag :</term>
+      <listitem><para> An integer, containing the flag which denotes the reason for termination of algorithm. See below for details.</para></listitem></varlistentry>
+   <varlistentry><term>output :</term>
+      <listitem><para> A structure, containing the information about the optimization. See below for details.</para></listitem></varlistentry>
+   <varlistentry><term>lambda :</term>
+      <listitem><para> A structure, containing the Lagrange multipliers of lower bound, upper bound and constraints at the optimized point. See below for details.</para></listitem></varlistentry>
    </variablelist>
 </refsection>
 
 <refsection>
    <title>Description</title>
    <para>
-Search the minimum of a multi-variable function on bounded interval specified by :
+Search the minimum of a multivariable function on bounded interval specified by :
 Find the minimum of f(x) such that
    </para>
    <para>
@@ -74,47 +74,58 @@ Find the minimum of f(x) such that
 \begin{eqnarray}
 &amp;\mbox{min}_{x}
 &amp; f(x)\\
-&amp; \text{subject to} &amp; x1 \ &lt; x \ &lt; x2 \\
+&amp; \text{Subjected to:}\\
+&amp; x_{1} \leq x \leq x_{2} \\
 \end{eqnarray}
 </latex>
    </para>
    <para>
-The routine calls Ipopt for solving the Bounded Optimization problem, Ipopt is a library written in C++.
+fminbnd calls Ipopt which is an optimization library written in C++, to solve the bound optimization problem.
+   </para>
+
+<para>
+<title>Options</title>
+The options allow the user to set various parameters of the Optimization problem. The syntax for the options is given by:
    </para>
    <para>
-The options allows the user to set various parameters of the Optimization problem.
-It should be defined as type "list" and contains the following fields.
+options= list("MaxIter", [---], "CpuTime", [---], "TolX", [---]);
+   </para>
+   <para>
+The options should be defined as type "list" and consist of the following fields:
 <itemizedlist>
-<listitem>Syntax : options= list("MaxIter", [---], "CpuTime", [---], "TolX", [----]);</listitem>
-<listitem>MaxIter : a Scalar, containing the Maximum Number of Iteration that the solver should take.</listitem>
-<listitem>CpuTime : a Scalar, containing the Maximum amount of CPU Time that the solver should take.</listitem>
-<listitem>TolX : a Scalar, containing the Tolerance value that the solver should take.</listitem>
-<listitem>Default Values : options = list("MaxIter", [3000], "CpuTime", [600], TolX, [1e-4]);</listitem>
+<listitem>MaxIter : A scalar, specifying the maximum number of iterations that the solver should take.</listitem>
+<listitem>CpuTime : A scalar, specifying the maximum amount of CPU Time in seconds that the solver should take.</listitem>
+<listitem>TolX    : A scalar, containing the tolerance value that the solver should take.</listitem>
+</itemizedlist>
+The default values for the various items are given as:
+   </para>
+   <para>
+options = list("MaxIter", [3000], "CpuTime", [600]);
+   </para>
+
+   <para>
+The exitflag allows the user to know the status of the optimization which is returned by Ipopt. The values it can take and what they indicate is described below:
+<itemizedlist>
+<listitem> 0 : Optimal Solution Found </listitem>
+<listitem> 1 : Maximum Number of Iterations Exceeded. Output may not be optimal.</listitem>
+<listitem> 2 : Maximum amount of CPU Time exceeded. Output may not be optimal.</listitem>
+<listitem> 3 : Stop at Tiny Step.</listitem>
+<listitem> 4 : Solved To Acceptable Level.</listitem>
+<listitem> 5 : Converged to a point of local infeasibility.</listitem>
 </itemizedlist>
    </para>
    <para>
-The exitflag allows to know the status of the optimization which is given back by Ipopt.
-<itemizedlist>
-<listitem>exitflag=0 : Optimal Solution Found </listitem>
-<listitem>exitflag=1 : Maximum Number of Iterations Exceeded. Output may not be optimal.</listitem>
-<listitem>exitflag=2 : Maximum CPU Time exceeded. Output may not be optimal.</listitem>
-<listitem>exitflag=3 : Stop at Tiny Step.</listitem>
-<listitem>exitflag=4 : Solved To Acceptable Level.</listitem>
-<listitem>exitflag=5 : Converged to a point of local infeasibility.</listitem>
-</itemizedlist>
-   </para>
-   <para>
-For more details on exitflag see the ipopt documentation, go to http://www.coin-or.org/Ipopt/documentation/
+For more details on exitflag, see the ipopt documentation which can be found on http://www.coin-or.org/Ipopt/documentation/
    </para>
    <para>
 The output data structure contains detailed informations about the optimization process.
-It has type "struct" and contains the following fields.
+It is of type "struct" and contains the following fields.
 <itemizedlist>
-<listitem>output.Iterations: The number of iterations performed during the search</listitem>
-<listitem>output.Cpu_Time: The total cpu-time spend during the search</listitem>
-<listitem>output.Objective_Evaluation: The number of Objective Evaluations performed during the search</listitem>
-<listitem>output.Dual_Infeasibility: The Dual Infeasiblity of the final soution</listitem>
-<listitem>output.Message: The output message for the problem</listitem>
+<listitem>output.Iterations: The number of iterations performed.</listitem>
+<listitem>output.Cpu_Time  : The total cpu-time taken.</listitem>
+<listitem>output.Objective_Evaluation: The number of Objective Evaluations performed.</listitem>
+<listitem>output.Dual_Infeasibility  : The Dual Infeasiblity of the final soution.</listitem>
+<listitem>output.Message: The output message for the problem.</listitem>
 </itemizedlist>
    </para>
    <para>
@@ -130,12 +141,70 @@ It has type "struct" and contains the following fields.
 </para>
 </refsection>
 
+ <para>
+A few examples displaying the various functionalities of fminbnd have been provided below. You will find a series of problems and the appropriate code snippets to solve them.
+   </para>
 <refsection>
-   <title>Examples</title>
+   <title>Example</title>
+<para>
+ Here we solve a simple nonlinear objective function, bounded in the interval [0,1000].
+   </para>
+   <para>
+Find x in R such that it minimizes:
+   </para>
+   <para>
+<latex>
+\begin{eqnarray}
+\mbox{min}_{x}\ f(x) = \dfrac{1}{x^{2}} 
+\end{eqnarray}
+\\\text{Subjected to:}\\
+\begin{eqnarray}
+\hspace{70pt} &amp;0  &amp;\leq x &amp;\leq 1000\\
+\end{eqnarray}
+</latex>
+   </para>
+   <para>
+</para>
    <programlisting role="example"><![CDATA[
-//Find x in R^6 such that it minimizes:
-//f(x)= sin(x1) + sin(x2) + sin(x3) + sin(x4) + sin(x5) + sin(x6)
-//-2 <= x1,x2,x3,x4,x5,x6 <= 2
+Example 1: Minimizing a bound function in R.
+//Objective function to be minimised
+function y=f(x)
+y=1/x^2
+endfunction
+//Variable bounds
+x1 = [0];
+x2 = [1000];
+//Calling Ipopt
+[x,fval,exitflag,output,lambda] =fminbnd(f, x1, x2)
+
+
+   ]]></programlisting>
+</refsection>
+
+
+<refsection>
+   <title>Example</title>
+<para>
+Here we solve a bounded objective function in R^6. We use this function to illustrate how we can further enhance the functionality of fminbnd by setting input options. We can pre-define the gradient of the objective function and/or the hessian of the lagrange function and thereby improve the speed of computation. This is elaborated on in example 2. We also set solver parameters using the options.
+   </para>
+   <para>
+Find x in R^6 such that it minimizes:
+   </para>
+   <para>
+<latex>
+\begin{eqnarray}
+\mbox{min}_{x}\ f(x) = sin(x_{1}) + sin(x_{2}) + sin(x_{3}) + sin(x_{4}) + sin(x_{5}) + sin(x_{6})
+\end{eqnarray}
+\\\text{Subjected to:}\\
+\begin{eqnarray}
+\hspace{70pt} &amp;-2  &amp;\leq x{1},  x{2},  x{3},  x{4},  x{5},  x{6}  &amp;\leq 2\\
+\end{eqnarray}
+</latex>
+   </para>
+<para>
+</para>
+   <programlisting role="example"><![CDATA[
+//Example 2: Solving an objective function in R^6.
 //Objective function to be minimised
 function y=f(x)
 y=0
@@ -150,38 +219,30 @@ x2 = [2, 2, 2, 2, 2, 2];
 options=list("MaxIter",[1500],"CpuTime", [100],"TolX",[1e-6])
 //Calling Ipopt
 [x,fval] =fminbnd(f, x1, x2, options)
-// Press ENTER to continue
-
    ]]></programlisting>
 </refsection>
 
 <refsection>
-   <title>Examples</title>
+   <title>Example</title>
+<para>
+Unbounded Problems: Find x in R^2 such that it minimizes:
+</para>
+   <para>
+<latex>
+\begin{eqnarray}
+f(x) = -((x_{1}-1)^{2}+(x_{2}-1)^{2})
+\end{eqnarray}
+\\\text{Subjected to:}\\
+\begin{eqnarray}
+-\infty &amp;\leq x_{1} &amp;\leq \infty\\
+-\infty &amp;\leq x_{2} &amp;\leq \infty
+\end{eqnarray}
+</latex>
+   </para>
+   <para>
+   </para>
    <programlisting role="example"><![CDATA[
-//Find x in R such that it minimizes:
-//f(x)= 1/x^2
-//0 <= x <= 1000
-//Objective function to be minimised
-function y=f(x)
-y=1/x^2
-endfunction
-//Variable bounds
-x1 = [0];
-x2 = [1000];
-//Calling Ipopt
-[x,fval,exitflag,output,lambda] =fminbnd(f, x1, x2)
-// Press ENTER to continue
-
-   ]]></programlisting>
-</refsection>
-
-<refsection>
-   <title>Examples</title>
-   <programlisting role="example"><![CDATA[
-//The below problem is an unbounded problem:
-//Find x in R^2 such that it minimizes:
-//f(x)= -[(x1-1)^2 + (x2-1)^2]
-//-inf <= x1,x2 <= inf
+//Example 3: Unbounded objective function.
 //Objective function to be minimised
 function y=f(x)
 y=-((x(1)-1)^2+(x(2)-1)^2);
@@ -199,7 +260,7 @@ options=list("MaxIter",[1500],"CpuTime", [100],"TolX",[1e-6])
 <refsection>
    <title>Authors</title>
    <simplelist type="vert">
-   <member>R.Vidyadhar , Vignesh Kannan, Adarsh Shah</member>
+   <member>R.Vidyadhar , Vignesh Kannan</member>
    </simplelist>
 </refsection>
 </refentry>

@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>quadprogmat</refname>
-    <refpurpose>Solves a linear quadratic problem.</refpurpose>
+    <refpurpose>Solves a quadratic optimization problem (with input in Matlab format).</refpurpose>
   </refnamediv>
 
 

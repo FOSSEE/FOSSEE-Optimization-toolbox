@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>intfminunc</refname>
-    <refpurpose>Solves an unconstrained multivariable mixed integer nonlinear programming optimization problem</refpurpose>
+    <refpurpose>Solves an unconstrained mixed-integer nonlinear optimization problem.</refpurpose>
   </refnamediv>
 
 

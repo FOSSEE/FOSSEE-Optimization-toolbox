@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>lsqlin</refname>
-    <refpurpose>Solves a linear quadratic problem.</refpurpose>
+    <refpurpose>Solves a linear least squares optimization problem.</refpurpose>
   </refnamediv>
 
 

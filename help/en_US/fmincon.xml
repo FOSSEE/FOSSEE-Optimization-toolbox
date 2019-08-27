@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>fmincon</refname>
-    <refpurpose>Solves a multivariable constrained optimization problem.</refpurpose>
+    <refpurpose>Solves a general nonlinear optimization problem.</refpurpose>
   </refnamediv>
 
 
