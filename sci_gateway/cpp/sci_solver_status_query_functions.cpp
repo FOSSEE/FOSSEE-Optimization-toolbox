@@ -10,7 +10,7 @@
 // Email: toolbox@scilab.in
 
 #include "symphony.h"
-#include "sci_iofunc.hpp"
+
 extern sym_environment* global_sym_env;//defined in globals.cpp
 
 extern "C" {
@@ -71,16 +71,16 @@ int sci_sym_get_status(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOp
  * -1 if there is an error.
  */
 
-const char fname[] = "sym_get_solver";
+const char fname2[] = "sym_get_solver_status";
 
-int sci_sym_get_solver(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
+int sci_sym_get_solver_status(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
 {
 	int result= -1 ;// Result to caller. Set to error.
   
 	// Check whether we have no input and one output argument or not
 	if (nin !=0)  //Checking the input arguments
 	{
-        	Scierror(999, "%s: Wrong number of input arguments: %d expected.\n", fname, 0);
+        	Scierror(999, "%s: Wrong number of input arguments: %d expected.\n", fname2, 0);
         	return STATUS_ERROR; 
 	}
 
@@ -88,7 +88,7 @@ int sci_sym_get_solver(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOp
 	if (nout !=1) //Checking the output arguments
 
 	{
-		Scierror(999, "%s: Wrong number of output argument(s): %d expected.\n", fname, 1);
+		Scierror(999, "%s: Wrong number of output argument(s): %d expected.\n", fname2, 1);
 		return 1;
 	}
 

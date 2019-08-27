@@ -24,7 +24,7 @@ function [xopt,fopt,status,output] = symphony_call(nbVar,nbCon,objCoef,isInt,lb,
     
    //Choosing to launch basic or advanced version
     if(~issparse(A)) then
-        sym_loadProblemBasic(nbVar,nbCon,lb,ub,objCoef,isInt,objSense,A,conLB,conUB);
+        sym_loadProblemBasic(int32(nbVar), int32(nbCon),lb,ub,objCoef,isInt,objSense,A,conLB,conUB);
     else
         // Changing to Constraint Matrix into sparse matrix
         A_advanced=sparse(A);
