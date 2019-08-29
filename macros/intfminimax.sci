@@ -168,8 +168,9 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
     minmaxStartpoint = varargin(2)
     Checktype("fminimax", minmaxStartpoint, "minmaxStartpoint", 2, "constant")
 
-    minmaxNumvar = size(minmaxStartpoint,"*")
+    minmaxNumvar = length(minmaxStartpoint)
     Checkvector("fminimax", minmaxStartpoint, "minmaxStartpoint", 2, minmaxNumvar)
+	disp(minmaxNumvar)
     minmaxStartpoint = minmaxStartpoint(:)
 
     if(minmaxRhs < 3) then // if A and b are not provided, declare as empty
@@ -203,8 +204,8 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
 
     minmaxNumrowA = size(minmaxA,"r")
     if(minmaxA <> []) then
-        Checkdims("fminimax", minmaxA, "A", 4, [minmaxNumrowA minmaxNumvar])
-        Checkvector("fminimax", minmaxB, "b", 5, minmaxNumrowA)
+        Checkdims("intfminimax", minmaxA, "A", 4, [minmaxNumrowA minmaxNumvar])
+        Checkvector("intfminimax", minmaxB, "b", 5, minmaxNumrowA)
         minmaxB = minmaxB(:)
     end
 
@@ -217,17 +218,17 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
         minmaxBeq = varargin(7)
     end
 
-    Checktype("fminimax", minmaxAeq, "Aeq", 6, "constant")
-    Checktype("fminimax", minmaxBeq, "beq", 7, "constant")
+    Checktype("intfminimax", minmaxAeq, "Aeq", 6, "constant")
+    Checktype("intfminimax", minmaxBeq, "beq", 7, "constant")
 
     // Check if Aeq and beq of proper dimensions
     if(minmaxAeq <> [] & minmaxBeq == []) then
-        errmsg = msprintf(gettext("%s: Incompatible input arguments #%d and #%d: matrix Aeq is empty, but the column vector beq is not empty"), "fminimax", 6, 7)
+        errmsg = msprintf(gettext("%s: Incompatible input arguments #%d and #%d: matrix Aeq is empty, but the column vector beq is not empty"), "intfminimax", 6, 7)
         error(errmsg)
     end
 
     if(minmaxAeq == [] & minmaxBeq <> []) then
-        errmsg = msprintf(gettext("%s: Incompatible input arguments #%d and #%d: matrix Aeq is not empty, but the column vector beq is empty"), "fminimax", 6, 7)
+        errmsg = msprintf(gettext("%s: Incompatible input arguments #%d and #%d: matrix Aeq is not empty, but the column vector beq is empty"), "intfminimax", 6, 7)
         error(errmsg)
     end
 
@@ -247,8 +248,8 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
         minmaxUb = varargin(7)
     end
 
-    Checktype("fminimax", minmaxLb, "lb", 6, "constant")
-    Checktype("fminimax", minmaxUb, "ub", 7, "constant")
+    Checktype("intfminimax", minmaxLb, "lb", 6, "constant")
+    Checktype("intfminimax", minmaxUb, "ub", 7, "constant")
 
     // Check dimensions of minmaxLb and minmaxUb
     if(minmaxLb <> []) then
@@ -268,7 +269,7 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
         minmaxNonlinfun = varargin(10)
     end
 	if(minmaxNonlinfun<>[]) then
-	    Checktype("fminimax", minmaxNonlinfun, "nonlinfun", 10, "function")
+	    Checktype("intfminimax", minmaxNonlinfun, "nonlinfun", 10, "function")
 	end
 
     //To check, Whether minimaxOptions is been entered by user

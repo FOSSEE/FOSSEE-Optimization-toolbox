@@ -132,9 +132,7 @@ bool minconNLP::eval_f(Index n, const Number* x, bool new_x, Number& obj_value)
 {	
 
 	scilabVar* out = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) * 1);
-	#ifdef LOCAL_DEBUG
-		printf("Calling eval_f\n");
-	#endif	
+
   	double check;
 	double obj=0;
 	
@@ -181,9 +179,7 @@ bool minconNLP::eval_grad_f(Index n, const Number* x, bool new_x, Number* grad_f
 {
 	scilabVar* out = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) );
 	const Number *xNew=x;
-	#ifdef LOCAL_DEBUG
-		printf("grad_f obtained\n");
-	#endif
+	
 	scilabVar* funcIn = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) * 1);
 	funcIn[0] = scilab_createDoubleMatrix2d(env_, 1, numVars_, 0);
 	scilab_setDoubleArray(env_, funcIn[0], x);
@@ -251,10 +247,7 @@ bool minconNLP::eval_g(Index n, const Number* x, bool new_x, Index m, Number* g)
 
 			scilabVar* out = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) );
 
-			#ifdef LOCAL_DEBUG
-				printf("grad_f obtained\n");
-
-			#endif
+			
 			scilabVar* funcIn = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) * 1);
 			funcIn[0] = scilab_createDoubleMatrix2d(env_, 1, numVars_, 0);
 			scilab_setDoubleArray(env_, funcIn[0], x);
@@ -433,10 +426,7 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 {
 
 	scilabVar* out = (scilabVar*)malloc(sizeof(scilabVar) * (numVars_) * 1);
-    #ifdef LOCAL_DEBUG
-        printf("eval_h obtained\n");
-    printf("%d %p %d %p %d %p",n,x,m,lambda,nele_hess,values);
-    #endif
+   
 	if (values==NULL)
 	{
 		Index idx=0;
@@ -457,10 +447,7 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 
 
 		const Number *xNew=x;
-		#ifdef LOCAL_DEBUG
-			printf("in the gradhess block\n");
-		#endif	
-
+		
 		const Number *lambdaNew=lambda;
     	double objfac=obj_factor;
 
@@ -529,18 +516,14 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 		}
 		
 	}
-    #ifdef LOCAL_DEBUG
-        printf("Reached end of eval_h\n");
-    #endif
+    
 	return true;
 }
 
 //returning the results
     	void minconNLP::finalize_solution(SolverReturn status,Index n, const Number* x, const Number* z_L, const Number* z_U,Index m, const Number* g, const Number* lambda, Number obj_value,const IpoptData* ip_data,IpoptCalculatedQuantities* ip_cq)
     	{
-            #ifdef LOCAL_DEBUG
-                printf("Finalize start\n");
-            #endif
+           
             finalX_ = new double[n];
     		for (Index i=0; i<n; i++) 
     		{
@@ -567,9 +550,7 @@ bool minconNLP::eval_h(Index n, const Number* x, bool new_x,Number obj_factor, I
 
     		finalObjVal_ = obj_value;
     		status_ = status;
-            #ifdef LOCAL_DEBUG
-                printf("Finalize end\n");
-            #endif
+      
     	}
 
 
