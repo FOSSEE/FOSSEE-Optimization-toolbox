@@ -253,7 +253,7 @@ b=[2;1;1];
 ////Integer constraints
 intcon = [1];
 // Run intfminimax
-[x,fval,maxfval,exitflag] = intfminimax(myfun, intcon,x0,A,b)
+[x,fval,maxfval,exitflag] = intfminimax(myfun, x0,intcon,A,b)
 
 
    ]]></programlisting>
@@ -295,7 +295,7 @@ beq =  [1;2];
 //Integer constraints
 intcon = [1];
 // Run intfminimax
-[x,fval,maxfval,exitflag] = intfminimax(myfun, intcon,x0,A,b,Aeq,beq)
+[x,fval,maxfval,exitflag] = intfminimax(myfun, x0,intcon,A,b,Aeq,beq)
 
 
    ]]></programlisting>
@@ -339,7 +339,7 @@ ub = [%inf;1];
 //Integer constraints
 intcon = [1];
 // Run intfminimax
-[x,fval,maxfval,exitflag] = intfminimax(myfun, intcon,x0,A,b,Aeq,beq,lb,ub)
+[x,fval,maxfval,exitflag] = intfminimax(myfun, x0,intcon,A,b,Aeq,beq,lb,ub)
 
 
    ]]></programlisting>
@@ -388,7 +388,7 @@ ceq=[];
 endfunction
 intcon = [1];
 // Run intfminimax
-[x,fval,maxfval,exitflag] = intfminimax(myfun, intcon,x0,A,b,Aeq,beq,lb,ub)
+[x,fval,maxfval,exitflag] = intfminimax(myfun, x0,intcon,A,b,Aeq,beq,lb,ub)
 
 
    ]]></programlisting>
@@ -457,7 +457,7 @@ maxfopt = 6.73443
 //integer constraints
 intcon = [1];
 // Run intfminimax
-[x,fval,maxfval,exitflag] = intfminimax(myfun,intcon,x0,[],[],[],[],[],[], confun, Options)
+[x,fval,maxfval,exitflag] = intfminimax(myfun,x0,intcon,[],[],[],[],[],[], confun, Options)
    ]]></programlisting>
 </refsection>
 
