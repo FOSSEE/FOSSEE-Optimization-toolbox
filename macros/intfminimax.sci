@@ -240,16 +240,16 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
     end
 
     // Proper initialisation of minmaxLb and minmaxUb
-    if(minmaxRhs < 6) then // if minmaxLb and minmaxUb are not provided, declare as empty
+    if(minmaxRhs < 8) then // if minmaxLb and minmaxUb are not provided, declare as empty
         minmaxLb = []
         minmaxUb = []
     else
-        minmaxLb = varargin(6)
-        minmaxUb = varargin(7)
+        minmaxLb = varargin(8)
+        minmaxUb = varargin(9)
     end
 
-    Checktype("fminimax", minmaxLb, "lb", 6, "constant")
-    Checktype("fminimax", minmaxUb, "ub", 7, "constant")
+    Checktype("fminimax", minmaxLb, "lb", 8, "constant")
+    Checktype("fminimax", minmaxUb, "ub", 9, "constant")
 
     // Check dimensions of minmaxLb and minmaxUb
     if(minmaxLb <> []) then
