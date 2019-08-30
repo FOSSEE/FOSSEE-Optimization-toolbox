@@ -28,9 +28,9 @@ extern "C"{
 #include <localization.h>
 #include <sciprint.h>
 //Solver function
- const char fname[] = "sci_quadprogCLP";
+ const char fname[] = "quadprog_CLP";
 /* ==================================================================== */
-int sci_quadprogCLP(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out) 
+int sci_quadprog_CLP(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out) 
 {
 
 	//Quad Matrix H

@@ -57,6 +57,7 @@ Function_Names = [
         //Linprog function
         "linearprog","sci_linearprog", "csci6";
         "rmps","sci_rmps", "csci6";
+		"quadprog_CLP","sci_quadprog_CLP", "csci6";
 
 		//QP function
 		"solveqp","sci_solveqp", "csci6";
@@ -116,6 +117,7 @@ Files = [
         //CLP
         "sci_LinProg.cpp",
         "read_mps.cpp",
+		"sci_quadprogCLP.cpp",
 		
 		//Bonmin
   		'sci_minuncTMINLP.cpp',
@@ -171,7 +173,8 @@ Function_Names = [
         
         //Linprog function
     	"linearprog","sci_linearprog", "csci6";
-    	"rmps","sci_rmps","csci6";   
+    	"rmps","sci_rmps","csci6"; 
+		"quadprog_CLP","sci_quadprog_CLP", "csci6";
 
 		//QP function
 		"solveqp","sci_solveqp", "csci6"; 
@@ -290,6 +293,7 @@ Function_Names = [
         //Linprog function
         "linearprog","sci_linearprog", "csci6";
         "rmps","sci_rmps","csci6";   
+		"quadprog_CLP","sci_quadprog_CLP", "csci6";
 
 		//QP function
 		"solveqp","sci_solveqp", "csci6";  
@@ -348,6 +352,7 @@ Files = [
         //CLP
         "sci_LinProg.cpp",
         "read_mps.cpp"
+		"sci_quadprogCLP.cpp",
 
 		//Bonmin
   		'sci_minuncTMINLP.cpp',

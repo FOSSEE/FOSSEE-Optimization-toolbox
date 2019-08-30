@@ -158,7 +158,7 @@ function [xopt,fopt,exitflag,iterations,output,lambda] = quadprogCLP (varargin)
         ub = varargin(8);
     end
          
-    [xopt,fopt,exitflag,iterations,output,lambda] = sci_quadprogCLP(H,f,0,A,b,Aeq,beq,lb,ub);
+    [xopt,fopt,exitflag,iterations,output,lambda] = quadprog_CLP(H,f,0,A,b,Aeq,beq,lb,ub);
 	
 	select exitflag
     case 0 then

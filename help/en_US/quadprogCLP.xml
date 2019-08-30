@@ -33,47 +33,46 @@
 </refsynopsisdiv>
 
 <refsection>
-   <title>Parameters</title>
+    <title>Input Parameters</title>
    <variablelist>
         <varlistentry>
             <term>H :</term>
-            <listitem><para> a symmetric matrix of double, represents coefficients of quadratic in the quadratic problem.</para></listitem>
+            <listitem><para> A symmetric matrix of doubles, represents coefficients of quadratic terms in the objective function.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>f :</term>
-            <listitem><para> a vector of double, represents coefficients of linear in the quadratic problem</para></listitem>
+            <listitem><para> a vector of doubles, represents coefficients of the linear terms in the objective function</para></listitem>
         </varlistentry>
-        <varlistentry>
-            <term>A :</term>
-            <listitem><para> a matrix of double, represents the linear coefficients in the inequality constraints A⋅x ≤ b.</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>b :</term>
-            <listitem><para> a vector of double, represents the linear coefficients in the inequality constraints A⋅x ≤ b.</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>Aeq :</term>
-            <listitem><para> a matrix of double, represents the linear coefficients in the equality constraints Aeq⋅x = beq.</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>beq :</term>
-            <listitem><para> a vector of double, represents the linear coefficients in the equality constraints Aeq⋅x = beq.</para></listitem>
-        </varlistentry>
+       
+        <varlistentry><term>A :</term>
+      <listitem><para> A matrix of doubles, containing the coefficients of linear inequality constraints of size (m X n) where 'm' is the number of linear inequality constraints.</para></listitem></varlistentry>
+   <varlistentry><term>b :</term>
+      <listitem><para> A vector of doubles, related to 'A' and containing the the Right hand side equation of the linear inequality constraints of size (m X 1).</para></listitem></varlistentry>
+
+   <varlistentry><term>Aeq :</term>
+      <listitem><para> A matrix of doubles, containing the coefficients of linear equality constraints of size (m1 X n) where 'm1' is the number of linear equality constraints.</para></listitem></varlistentry>
+   <varlistentry><term>beq :</term>
+	 <listitem><para> A vector of doubles, related to 'Aeq' and containing the the Right hand side equation of the linear equality constraints of size (m1 X 1).</para></listitem></varlistentry>
         <varlistentry>
             <term>lb :</term>
-            <listitem><para> a vector of double, contains lower bounds of the variables. The default value is 0.</para></listitem>
+            <listitem><para> a vector of doubles, contains lower bounds of the variables. The default value is 0.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>ub :</term>
             <listitem><para> a vector of double, contains upper bounds of the variables. The default value is %inf.</para></listitem>
         </varlistentry>
+ </variablelist>
+</refsection>
+<refsection>
+<title> Outputs</title>
+ <variablelist>
         <varlistentry>
             <term>xopt :</term>
-            <listitem><para> a vector of double, the computed solution of the optimization problem.</para></listitem>
+            <listitem><para> a vector of doubles, the computed solution of the optimization problem.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>fopt :</term>
-            <listitem><para> a double, the value of the function at x.</para></listitem>
+            <listitem><para> a double, the value of the objective function at xopt.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>exitflag :</term>
@@ -81,15 +80,15 @@
         </varlistentry>
         <varlistentry>
             <term>iterations:</term>
-            <listitem><para> Total number of itereations performed.</para></listitem>
+            <listitem><para> Total number of iterations performed.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>output :</term>
-            <listitem><para> The structure consist of statistics about the optimization. See below for details.</para></listitem>
+            <listitem><para> The structure that contains the statistics about the optimization. See below for details.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>lambda :</term>
-            <listitem><para> The structure consist of the Lagrange multipliers at the solution of problem. See below for details.</para></listitem>
+            <listitem><para> The structure that contains the Lagrange multipliers at the solution of problem. See below for details.</para></listitem>
         </varlistentry>
    </variablelist>
 </refsection>
@@ -102,17 +101,18 @@ Search the minimum of a constrained linear quadratic optimization problem specif
    <para>
 <latex>
 \begin{eqnarray}
-&amp;\mbox{min}_{x} &amp; \frac{1}{2}\cdot x\cdot H^{T}\cdot x +  f\cdot x\\
-&amp;\mbox{subject to : } &amp; A\cdot x \leq b \\
-&amp; &amp; A_{eq}\cdot x = b_{eq} \\
+\hspace{1pt} \mbox{min}_{x} 1/2⋅x^T⋅H⋅x + f^T⋅x  \\
+\hspace{70pt} A\cdot x \leq b \\
+\hspace{70pt} A_{eq}\cdot x = b_{eq} \\
+\hspace{70pt} lb \leq x \leq ub \\
 \end{eqnarray}
 </latex>
    </para>
    <para>
-The routine calls CLP for solving the quadratic problem, Clp is a library written in C++.
+The routine calls CLP for solving the quadratic problem, CLP is a library written in C++.
    </para>
    <para>
-The exitflag allows to know the status of the optimization which is given back by Clp.
+The exitflag allows to know the status of the optimization which is given back by CLP.
 <itemizedlist>
 <listitem>exitflag=0 : Optimal Solution Found </listitem>
 <listitem>exitflag=1 : Primal Infeasible</listitem>
