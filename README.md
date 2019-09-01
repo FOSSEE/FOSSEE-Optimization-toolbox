@@ -2,6 +2,8 @@
 
 A toolbox that provides mixed integer linear programming, quadratic programming and non linear programming tools in Scilab through the Symphony and Ipopt libraries.
 
+NOTE: On linux systems with gfortran8 as the default version, the user will need to install libgfortran4 for the toolbox to load. This can be done by sudo apt-get install libgfortran4 (for systems with aptitude as the package manager). 
+
 
 ## To Download
 1. [Visit the link
