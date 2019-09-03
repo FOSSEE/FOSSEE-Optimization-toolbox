@@ -241,7 +241,7 @@ b=[2;1;2];
 //We specify the linear equality constraints below.
 Aeq = [1,-1; 2, 1];
 beq =  [1;2];
-[x,fval,exitflag,output,lambda,grad,hessian] =fmincon(f, x0,A,b,Aeq,beq);
+[x,fval,exitflag,output,lambda,grad,hessian] =fmincon(f, x0,A,b,Aeq,beq)
 
 
    ]]></programlisting>
@@ -278,7 +278,7 @@ beq =  [1;2];
 //The upper and lower bounds for the objective function are defined in simple vectors as shown below.
 lb = [-1;-%inf];
 ub = [%inf;1];    //
-[x,fval,exitflag,output,lambda,grad,hessian] =fmincon(f, x0,A,b,Aeq,beq,lb,ub);
+[x,fval,exitflag,output,lambda,grad,hessian] =fmincon(f, x0,A,b,Aeq,beq,lb,ub)
 //Press ENTER to continue
 
    ]]></programlisting>
@@ -320,7 +320,7 @@ function [c,ceq]=nlc(x)
 c=[x(1)^2-1,x(1)^2+x(2)^2-1];
 ceq=[];
 endfunction
-[x,fval,exitflag,output,lambda,grad,hessian] =fmincon(f, x0,A,b,Aeq,beq,lb,ub,nlc);
+[x,fval,exitflag,output,lambda,grad,hessian] =fmincon(f, x0,A,b,Aeq,beq,lb,ub,nlc)
 //Press ENTER to continue
 
    ]]></programlisting>
@@ -456,7 +456,7 @@ endfunction
 x0=[0 , 0];
 A=[-1,-1 ; 1,1];
 b=[-2;1];
-[x,fval,exitflag,output,lambda,grad,hessian] =fmincon(f, x0,A,b);
+[x,fval,exitflag,output,lambda,grad,hessian] =fmincon(f, x0,A,b)
 
 ]]></programlisting>
 

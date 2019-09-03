@@ -76,7 +76,7 @@
 <refsection>
    <title>Description</title>
    <para>
-Search the minimum or maximum of a constrained mixed integer linear programming optimization problem specified by:
+Search the minimum or maximum of a constrained mixed-integer linear programming optimization problem specified by:
    </para>
       <para>
 <latex>
@@ -161,7 +161,7 @@ A few examples displaying the various functionalities of symphony have been prov
 </latex>
    </para>
    <programlisting role="example"><![CDATA[
-//Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed integer programming in a Swedish steel mill." Interfaces 7, no. 2 (1977): 39-43.
+//Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed-integer programming in a Swedish steel mill." Interfaces 7, no. 2 (1977): 39-43.
 // Objective function
 c = [350*5,330*3,310*4,280*6,500,450,400,100]';
 // Lower Bound of variable
@@ -182,7 +182,7 @@ xopt = [1 1 0 1 7.25 0 0.25 3.5]
 fopt = [8495]
 options = list("time_limit", 25);
 // Calling Symphony
-[x,f,status,output] = symphony(8,3,c,isInt,lb,ub,A,conlb,conub,1,options);
+[x,f,status,output] = symphony(8,3,c,isInt,lb,ub,A,conlb,conub,1,options)
 // Press ENTER to continue
 
    ]]></programlisting>
@@ -196,7 +196,7 @@ Here we provide the sense (maximization/minimization) of the objective and show 
 <para>
    </para>
    <programlisting role="example"><![CDATA[
-//Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed integer programming in a Swedish steel mill." Interfaces 7, no. 2 (1977): 39-43.
+//Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed-integer programming in a Swedish steel mill." Interfaces 7, no. 2 (1977): 39-43.
 // Objective function
 c = [350*5,330*3,310*4,280*6,500,450,400,100]';
 // Lower Bound of variable
@@ -217,7 +217,7 @@ xopt = [1 1 0 1 7.25 0 0.25 3.5]
 fopt = [8495]
 options = list("time_limit", 25);
 // Calling Symphony
-[x,f,status,output] = symphony(8,3,c,isInt,lb,ub,A,conlb,conub,1,options);
+[x,f,status,output] = symphony(8,3,c,isInt,lb,ub,A,conlb,conub,1,options)
 // Press ENTER to continue
 
    ]]></programlisting>
@@ -329,7 +329,7 @@ xopt = [0 1 1 0 0 1 0 1 0 1 0 0 0 0 0 0 0 1 0 0 0 0 1 0 1 1 0 1 1 0 1 ..
 // Optimal value
 fopt = [ -24381 ]
 // Calling Symphony
-[x,f,status,output] = symphony(nbVar,nbCon,c,isInt,lb,ub,A,conLB,conUB,-1,options);
+[x,f,status,output] = symphony(nbVar,nbCon,c,isInt,lb,ub,A,conLB,conUB,-1,options)
    ]]></programlisting>
 </refsection>
 

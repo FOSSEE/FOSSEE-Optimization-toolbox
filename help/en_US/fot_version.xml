@@ -30,6 +30,17 @@
 </refsynopsisdiv>
 
 <refsection>
+   <title>Example</title>
+   We call fotversion as given below:
+   <programlisting role="example"><![CDATA[
+//Example 1:
+fotversion()
+// Press ENTER to continue
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
    <title>Authors</title>
    <simplelist type="vert">
    <member>Sreerag Iyer (VJTI, Mumbai)</member>

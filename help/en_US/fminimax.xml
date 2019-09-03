@@ -133,9 +133,11 @@ options = list("MaxIter", [3000], "CpuTime", [600]);
    </para>
    <para>
 The objective function must have a header :
-<programlisting>
+</para>
+   <para>
 F = fun(x)
-</programlisting>
+</para>
+   <para>
 where x is a n x 1 matrix of doubles and F is a m x 1 matrix of doubles where m is the total number of objective functions inside F.
 On input, the variable x contains the current point and, on output, the variable F must contain the objective function values.
    </para>
@@ -151,16 +153,20 @@ If the user can provide exact gradients, it should be done, since it improves th
    </para>
    <para>
 Furthermore, we can enable the "GradObj" option with the statement :
-<programlisting>
+</para>
+   <para>
 minimaxOptions = list("GradObj",fGrad);
-</programlisting>
+</para>
+   <para>
 This will let fminimax know that the exact gradient of the objective function is known, so that it can change the calling sequence to the objective function. Note that, fGrad should be mentioned in the form of N x n where n is the number of variables, N is the number of functions in objective function.
    </para>
    <para>
 The constraint function must have header:
-<programlisting>
+</para>
+   <para>
 [c, ceq] = confun(x)
-</programlisting>
+</para>
+   <para>
 Where x is a n x 1 matrix of minimax doubles, c is a 1 x nni matrix of doubles and ceq is a 1 x nne matrix of doubles (nni : number of nonlinear inequality constraints, nne : number of nonlinear equality constraints).
 On input, the variable x contains the current point and, on output, the variable c must contain the nonlinear inequality constraints and ceq must contain the nonlinear equality constraints.
    </para>
@@ -172,16 +178,20 @@ If we can provide exact gradients, we should do so since it improves the converg
    </para>
    <para>
 Furthermore, we must enable the "GradCon" option with the statement :
-<programlisting>
+</para>
+   <para>
 minimaxOptions = list("GradCon",confunGrad);
-</programlisting>
+</para>
+   <para>
 This will let fminimax know that the exact gradient of the objective function is known, so that it can change the calling sequence to the objective function.
    </para>
    <para>
 The constraint derivative function must have header :
-<programlisting>
+</para>
+   <para>
 [dc,dceq] = confungrad(x)
-</programlisting>
+</para>
+   <para>
 where dc is a nni x n matrix of doubles and dceq is a nne x n matrix of doubles.
    </para>
    <para>

@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>intquadprog</refname>
-    <refpurpose>Solves an integer quadratic optimization problem.</refpurpose>
+    <refpurpose>Solves a mixed integer quadratic optimization problem.</refpurpose>
   </refnamediv>
 
 
@@ -165,7 +165,7 @@ f=[1; 2; 3; 4; 5; 6]; H=eye(6,6);
 //Integer Constraints
 intcon = [2 ,4];
 //Running intquadprog
-[xopt,fopt,exitflag,output,lambda]=intquadprog(H,f,intcon)
+[xopt,fopt,exitflag,output]=intquadprog(H,f,intcon)
    ]]></programlisting>
 </refsection>
 
@@ -332,6 +332,7 @@ begin{eqnarray}
 </para>
 <programlisting role="example"><![CDATA[
 //Example 6:
+//Currently, this crashes Scilab because of a segfault error.
 //Minimize 0.5*x'*H*x + f'*x with
 f=[1; 2; 3; 4; 5; 6]; H=eye(6,6);
 f=[1; 2; 3; 4; 5; 6]; H=eye(6,6);

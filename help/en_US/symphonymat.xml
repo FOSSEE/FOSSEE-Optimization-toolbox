@@ -73,7 +73,7 @@
 <refsection>
    <title>Description</title>
    <para>
-Search the minimum or maximum of a constrained mixed integer linear programming optimization problem specified by :
+Search the minimum or maximum of a constrained mixed-integer linear programming optimization problem specified by :
    </para>
    <para>
 <latex>
@@ -160,7 +160,7 @@ Find x in R^8 such that it minimizes:
 </para>
    <programlisting role="example"><![CDATA[
 // Example 1:
-// Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed integer
+// Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed-integer
 // programming in a Swedish steel mill." Interfaces 7, no. 2 (1977): 39-43. Modified acc. to requirements.
 c = [350*5,330*3,310*4,280*6,500,450,400,100]';
 A = [6,4.25, 5.5, 7.75, 3, 3.25, 3.5,3.75; 
@@ -199,7 +199,7 @@ We add the following bounds to the problem specified above:   </para>
 </para>
    <programlisting role="example"><![CDATA[
 // Example 2:
-// Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed integer
+// Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed-integer
 // programming in a Swedish steel mill." Interfaces 7, no. 2 (1977): 39-43. Modified acc. to requirements.
   c = [350*5,330*3,310*4,280*6,500,450,400,100]';
   //Inequality constraints
@@ -238,7 +238,7 @@ In this example, we proceed to add the linear equality constraints to the object
 </para>
    <programlisting role="example"><![CDATA[
 // Example 3:
-// Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed integer
+// Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed-integer
 // programming in a Swedish steel mill." Interfaces 7, no. 2 (1977): 39-43. Modified acc. to requirements.
 c = [350*5,330*3,310*4,280*6,500,450,400,100]';
 //Inequality constraints
@@ -274,7 +274,7 @@ In this example, we further enhance the functionality of symphonymat by setting 
 </para>
    <programlisting role="example"><![CDATA[
 // Example 4:
-// Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed integer
+// Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed-integer
 // programming in a Swedish steel mill." Interfaces 7, no. 2 (1977): 39-43. Modified acc. to requirements.
 c = [350*5,330*3,310*4,280*6,500,450,400,100]';
 //Inequality constraints
@@ -331,7 +331,7 @@ Find x in R^8 such that it minimizes:
 </para>
    <programlisting role="example"><![CDATA[
 // Example 5:
-// Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed integer 
+// Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed-integer 
 // programming in a Swedish steel mill." Interfaces 7, no. 2 (1977): 39-43. Modified acc. to requirements.
 c = [350*5,330*3,310*4,280*6,500,450,400,100]';
 //Inequality constraints 
@@ -376,7 +376,7 @@ Unbounded Problems. Find x in R^8 such that it minimizes:
 </para>
    <programlisting role="example"><![CDATA[
 // Example 6:
-// Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed integer
+// Reference: Westerberg, Carl-Henrik, Bengt Bjorklund, and Eskil Hultman. "An application of mixed-integer
 // programming in a Swedish steel mill." Interfaces 7, no. 2 (1977): 39-43. Modified acc. to requirements.
 c = [350*5,330*3,310*4,280*6,500,450,400,100]';
 //Inequality constraints

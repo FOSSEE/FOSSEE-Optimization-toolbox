@@ -336,7 +336,8 @@ ub=[%inf,%inf,%inf]
 <refsection>
    <title>Example</title>
    <programlisting role="example"><![CDATA[
-filepath = get_absolute_file_path('linprog.dem.sce');
+//This example will work only in the toolbox base directory
+filepath = filepath = "./demos";
 filepath = filepath + "exmip1.mps"
 [xopt,fopt,exitflag,output,lambda] =linprog(filepath)
    ]]></programlisting>

@@ -166,7 +166,7 @@ Find x in R such that it minimizes:
    <para>
 </para>
    <programlisting role="example"><![CDATA[
-Example 1: Minimizing a bound function in R.
+//Example 1: Minimizing a bound function in R.
 //Objective function to be minimised
 function y=f(x)
 y=1/x^2

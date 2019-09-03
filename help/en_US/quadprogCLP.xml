@@ -131,8 +131,9 @@ For more details on exitflag see the CLP documentation, go to http://www.coin-or
 </refsection>
 
 <refsection>
-   <title>Examples</title>
+   <title>Example</title>
    <programlisting role="example"><![CDATA[
+//Example 1:
 //Ref : example 14 :
 //https://www.me.utexas.edu/~jensen/ORMM/supplements/methods/nlpmethod/S2_quadratic.pdf
 // min. -8*x1*x1 -16*x2*x2 + x1 + 4*x2
@@ -155,8 +156,9 @@ ub = [%inf; %inf];
 </refsection>
 
 <refsection>
-   <title>Examples</title>
+   <title>Example</title>
    <programlisting role="example"><![CDATA[
+//Example 2:
 //Find x in R^6 such that:
 Aeq= [1,-1,1,0,3,1;
 -1,0,-3,-4,5,6;
@@ -175,8 +177,9 @@ f=[1; 2; 3; 4; 5; 6]; H=eye(6,6);
 </refsection>
 
 <refsection>
-   <title>Examples</title>
+   <title>Example</title>
    <programlisting role="example"><![CDATA[
+//Example 3:
 //Solving Linear Programming Problem
 // min -x0 - x1
 // subject to

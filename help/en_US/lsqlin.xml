@@ -205,7 +205,7 @@ b = [191
 209
 162];
 //Run lsqlin
-[xopt,resnorm,residual,exitflag,output,lambda] = lsqlin(C,d,A,b);
+[xopt,resnorm,residual,exitflag,output,lambda] = lsqlin(C,d,A,b)
    ]]></programlisting>
 </refsection>
 

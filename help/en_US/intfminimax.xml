@@ -134,9 +134,9 @@ options= list("IntegerTolerance", [---], "MaxNodes",[---], "MaxIter", [---], "Al
    <para>
 
 The objective function must have header :
-<programlisting>
+<para>
 F = fun(x)
-</programlisting>
+</para>
 where x is a n x 1 matrix of doubles and F is a m x 1 matrix of doubles where m is the total number of objective functions inside F.
 On input, the variable x contains the current point and, on output, the variable F must contain the objective function values.
    </para>
@@ -447,7 +447,7 @@ x(1)-1, -x(1)
 DCeq = []'
 endfunction
 // Test with both gradient of objective and gradient of constraints
-Options = list("MaxIter", [3000], "CpuTime", [600],"GradObj",myfungrad,"GradCon",cgrad);
+Options = list("MaxIter", [3000], "CpuTime", [600],"GradObj","myfungrad","GradCon","cgrad");
 // The initial guess
 x0 = [0,10];
 // The expected solution : only 4 digits are guaranteed

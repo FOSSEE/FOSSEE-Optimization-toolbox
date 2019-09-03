@@ -83,7 +83,7 @@
 <refsection>
    <title>Description</title>
    <para>
-Search the minimum of a mixed integer constrained optimization problem specified by :
+Search the minimum of a mixed-integer constrained optimization problem specified by :
 Find the minimum of f(x) such that
    </para>
    <para>

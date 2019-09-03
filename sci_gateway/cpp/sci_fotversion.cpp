@@ -38,7 +38,7 @@ int sci_fotversion(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt op
 	}
 
 	//FOT Version
-	char fotver[]="0.2";
+	char fotver[]="0.3";
 	sciprint("FOSSEE Optimization Toolbox: Version %s",fotver);
 
 	//Latest Git id commit	
