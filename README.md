@@ -78,4 +78,3 @@ problem.
 
 * quadprogCLP: Solves a quadratic optimization problem.
 
-* qcqp: Solves a quadratic constrained quadratic optimization problem.
