@@ -14,7 +14,7 @@ NOTE: On linux systems with gfortran8 as the default version, the user will need
 ## To use
 1. In Scilab, change the working directory to the root directory of the repository
 2. Run `exec loader.sce` in the scilab console.
-3. The Toolbox is now ready, to see help type `help FOSSEE Optimization Toolbox` in console.
+3. The Toolbox is now ready, to see help type `help` in console.
 4. The demos are available in `Demos folder`.
 5. To run a demo type `exec <name of function>.dem.sce`
 6. Test cases are available in `tests folder`.

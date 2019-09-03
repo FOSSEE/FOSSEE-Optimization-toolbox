@@ -23,36 +23,36 @@ if getos()=="Windows" then
 Function_Names = [
     	
 		//for opening-closing environment and checking if it is open-close
-		"sym_open","sci_sym_open", "csci6";
-		"sym_close","sci_sym_close", "csci6";
+		//"sym_open",//"sci_sym_open", "csci6";
+		//"sym_close",//"sci_sym_close", "csci6";
 		
 		//run time parameters
-		"sym_resetParams","sci_sym_set_defaults", "csci6";
-		"sym_setIntParam","sci_sym_set_int_param", "csci6";
-		"sym_getIntParam","sci_sym_get_int_param", "csci6";
-		"sym_setDblParam","sci_sym_set_dbl_param", "csci6";
-		"sym_getDblParam","sci_sym_get_dbl_param", "csci6";
-		"sym_setStrParam","sci_sym_set_str_param", "csci6";
-		"sym_getStrParam","sci_sym_get_str_param", "csci6";
+		//"sym_resetParams",//"sci_sym_set_defaults", "csci6";
+		//"sym_setIntParam",//"sci_sym_set_int_param", "csci6";
+		//"sym_getIntParam",//"sci_sym_get_int_param", "csci6";
+		//"sym_setDblParam",//"sci_sym_set_dbl_param", "csci6";
+		//"sym_getDblParam",//"sci_sym_get_dbl_param", "csci6";
+		//"sym_setStrParam",//"sci_sym_set_str_param", "csci6";
+		//"sym_getStrParam",//"sci_sym_get_str_param", "csci6";
 
 		//problem loaders
-		"sym_loadProblemBasic","sci_sym_loadProblemBasic", "csci6";
-		//"sym_loadProblem","sci_sym_loadProblem", "csci";
+		//"sym_loadProblemBasic",//"sci_sym_loadProblemBasic", "csci6";
+		////"sym_loadProblem",//"sci_sym_loadProblem", "csci";
 		
 		//solve
-		"sym_solve","sci_sym_solve", "csci6";
+		//"sym_solve",//"sci_sym_solve", "csci6";
 		
 		//post solve functions
-		"sym_getStatus","sci_sym_get_status", "csci6";
-		"sym_isOptimal","sci_sym_get_solver_status", "csci6";
-		"sym_isInfeasible","sci_sym_get_solver_status", "csci6";
-		"sym_isAbandoned","sci_sym_get_solver_status", "csci6";
-		"sym_isIterLimitReached","sci_sym_get_solver_status", "csci6";
-		"sym_isTimeLimitReached","sci_sym_get_solver_status", "csci6";
-		"sym_isTargetGapAchieved","sci_sym_get_solver_status", "csci6";
-		"sym_getVarSoln","sci_sym_getVarSoln", "csci6";
-		"sym_getObjVal","sci_sym_getObjVal", "csci6";
-		"sym_getIterCount","sci_sym_get_iteration_count", "csci6";
+		//"sym_getStatus",//"sci_sym_get_status", "csci6";
+		//"sym_isOptimal",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isInfeasible",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isAbandoned",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isIterLimitReached",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isTimeLimitReached",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isTargetGapAchieved",//"sci_sym_get_solver_status", "csci6";
+		//"sym_getVarSoln",//"sci_sym_getVarSoln", "csci6";
+		//"sym_getObjVal",//"sci_sym_getObjVal", "csci6";
+		//"sym_getIterCount",//"sci_sym_get_iteration_count", "csci6";
   
         //Linprog function
         "linearprog","sci_linearprog", "csci6";
@@ -91,14 +91,14 @@ Files = [
         "sci_iofunc.cpp",
         
  		//Symphony
-		"globals.cpp",
-		"sci_sym_openclose.cpp",
-		"sci_solver_status_query_functions.cpp",
-		"sci_sym_solve.cpp",                    
-		"sci_sym_loadproblem.cpp",
-		"sci_sym_solution.cpp",
-    	"sci_sym_get_iteration_count.cpp",
-		"sci_sym_set_variables.cpp",
+		//"globals.cpp",
+		//"sci_sym_openclose.cpp",
+		//"sci_solver_status_query_functions.cpp",
+		//"sci_sym_solve.cpp",                    
+		//"sci_sym_loadproblem.cpp",
+		//"sci_sym_solution.cpp",
+    	//"sci_sym_get_iteration_count.cpp",
+		//"sci_sym_set_variables.cpp",
 
 		// IPOPT
 		"sci_QuadNLP.cpp",
@@ -140,36 +140,36 @@ elseif getos()=="Darwin" then
 Function_Names = [
         
 		//for opening-closing environment and checking if it is open-close
-		"sym_open","sci_sym_open", "csci6";
-		"sym_close","sci_sym_close", "csci6";
+		//"sym_open",//"sci_sym_open", "csci6";
+		//"sym_close",//"sci_sym_close", "csci6";
 		
 		//run time parameters
-		"sym_resetParams","sci_sym_set_defaults", "csci6";
-		"sym_setIntParam","sci_sym_set_int_param", "csci6";
-		"sym_getIntParam","sci_sym_get_int_param", "csci6";
-		"sym_setDblParam","sci_sym_set_dbl_param", "csci6";
-		"sym_getDblParam","sci_sym_get_dbl_param", "csci6";
-		"sym_setStrParam","sci_sym_set_str_param", "csci6";
-		"sym_getStrParam","sci_sym_get_str_param", "csci6";
+		//"sym_resetParams",//"sci_sym_set_defaults", "csci6";
+		//"sym_setIntParam",//"sci_sym_set_int_param", "csci6";
+		//"sym_getIntParam",//"sci_sym_get_int_param", "csci6";
+		//"sym_setDblParam",//"sci_sym_set_dbl_param", "csci6";
+		//"sym_getDblParam",//"sci_sym_get_dbl_param", "csci6";
+		//"sym_setStrParam",//"sci_sym_set_str_param", "csci6";
+		//"sym_getStrParam",//"sci_sym_get_str_param", "csci6";
 
 		//problem loaders
-		"sym_loadProblemBasic","sci_sym_loadProblemBasic", "csci6";
-		//"sym_loadProblem","sci_sym_loadProblem";
+		//"sym_loadProblemBasic",//"sci_sym_loadProblemBasic", "csci6";
+		////"sym_loadProblem",//"sci_sym_loadProblem";
 		
 		//solve
-		"sym_solve","sci_sym_solve", "csci6";
+		//"sym_solve",//"sci_sym_solve", "csci6";
 		
 		//post solve functions
-		"sym_getStatus","sci_sym_get_status", "csci6";
-		"sym_isOptimal","sci_sym_get_solver_status", "csci6";
-		"sym_isInfeasible","sci_sym_get_solver_status", "csci6";
-		"sym_isAbandoned","sci_sym_get_solver_status", "csci6";
-		"sym_isIterLimitReached","sci_sym_get_solver_status", "csci6";
-		"sym_isTimeLimitReached","sci_sym_get_solver_status", "csci6";
-		"sym_isTargetGapAchieved","sci_sym_get_solver_status", "csci6";
-		"sym_getVarSoln","sci_sym_getVarSoln", "csci6";
-		"sym_getObjVal","sci_sym_getObjVal", "csci6";
-		"sym_getIterCount","sci_sym_get_iteration_count", "csci6";
+		//"sym_getStatus",//"sci_sym_get_status", "csci6";
+		//"sym_isOptimal",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isInfeasible",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isAbandoned",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isIterLimitReached",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isTimeLimitReached",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isTargetGapAchieved",//"sci_sym_get_solver_status", "csci6";
+		//"sym_getVarSoln",//"sci_sym_getVarSoln", "csci6";
+		//"sym_getObjVal",//"sci_sym_getObjVal", "csci6";
+		//"sym_getIterCount",//"sci_sym_get_iteration_count", "csci6";
         
         //Linprog function
     	"linearprog","sci_linearprog", "csci6";
@@ -208,14 +208,14 @@ Files = [
         //"sci_iofunc.cpp",
 
 		//Symphony
-		"globals.cpp",
-		"sci_sym_openclose.cpp",
-		"sci_solver_status_query_functions.cpp",
-		"sci_sym_solve.cpp",                    
-		"sci_sym_loadproblem.cpp",
-		"sci_sym_solution.cpp",
-    	"sci_sym_get_iteration_count.cpp",
-		"sci_sym_set_variables.cpp",
+		//"globals.cpp",
+		//"sci_sym_openclose.cpp",
+		//"sci_solver_status_query_functions.cpp",
+		//"sci_sym_solve.cpp",                    
+		//"sci_sym_loadproblem.cpp",
+		//"sci_sym_solution.cpp",
+    	//"sci_sym_get_iteration_count.cpp",
+		//"sci_sym_set_variables.cpp",
 
         // IPOPT
 		"sci_QuadNLP.cpp",
@@ -259,36 +259,36 @@ else
 Function_Names = [
         
        //for opening-closing environment and checking if it is open-close
-		"sym_open","sci_sym_open", "csci6";
-		"sym_close","sci_sym_close", "csci6";
+		//"sym_open",//"sci_sym_open", "csci6";
+		//"sym_close",//"sci_sym_close", "csci6";
 		
 		//run time parameters
-		"sym_resetParams","sci_sym_set_defaults", "csci6";
-		"sym_setIntParam","sci_sym_set_int_param", "csci6";
-		"sym_getIntParam","sci_sym_get_int_param", "csci6";
-		"sym_setDblParam","sci_sym_set_dbl_param", "csci6";
-		"sym_getDblParam","sci_sym_get_dbl_param", "csci6";
-		"sym_setStrParam","sci_sym_set_str_param", "csci6";
-		"sym_getStrParam","sci_sym_get_str_param", "csci6";
+		//"sym_resetParams",//"sci_sym_set_defaults", "csci6";
+		//"sym_setIntParam",//"sci_sym_set_int_param", "csci6";
+		//"sym_getIntParam",//"sci_sym_get_int_param", "csci6";
+		//"sym_setDblParam",//"sci_sym_set_dbl_param", "csci6";
+		//"sym_getDblParam",//"sci_sym_get_dbl_param", "csci6";
+		//"sym_setStrParam",//"sci_sym_set_str_param", "csci6";
+		//"sym_getStrParam",//"sci_sym_get_str_param", "csci6";
 
 		//problem loaders
-		"sym_loadProblemBasic","sci_sym_loadProblemBasic", "csci6";
-		//"sym_loadProblem","sci_sym_loadProblem", "csci6";
+		//"sym_loadProblemBasic",//"sci_sym_loadProblemBasic", "csci6";
+		////"sym_loadProblem",//"sci_sym_loadProblem", "csci6";
 		
 		//solve
-		"sym_solve","sci_sym_solve", "csci6";
+		//"sym_solve",//"sci_sym_solve", "csci6";
 		
 		//post solve functions
-		"sym_getStatus","sci_sym_get_status", "csci6";
-		"sym_isOptimal","sci_sym_get_solver_status", "csci6";
-		"sym_isInfeasible","sci_sym_get_solver_status", "csci6";
-		"sym_isAbandoned","sci_sym_get_solver_status", "csci6";
-		"sym_isIterLimitReached","sci_sym_get_solver_status", "csci6";
-		"sym_isTimeLimitReached","sci_sym_get_solver_status", "csci6";
-		"sym_isTargetGapAchieved","sci_sym_get_solver_status", "csci6";
-		"sym_getVarSoln","sci_sym_getVarSoln", "csci6";
-		"sym_getObjVal","sci_sym_getObjVal", "csci6";
-		"sym_getIterCount","sci_sym_get_iteration_count", "csci6";
+		//"sym_getStatus",//"sci_sym_get_status", "csci6";
+		//"sym_isOptimal",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isInfeasible",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isAbandoned",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isIterLimitReached",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isTimeLimitReached",//"sci_sym_get_solver_status", "csci6";
+		//"sym_isTargetGapAchieved",//"sci_sym_get_solver_status", "csci6";
+		//"sym_getVarSoln",//"sci_sym_getVarSoln", "csci6";
+		//"sym_getObjVal",//"sci_sym_getObjVal", "csci6";
+		//"sym_getIterCount",//"sci_sym_get_iteration_count", "csci6";
         
         //Linprog function
         "linearprog","sci_linearprog", "csci6";
@@ -326,14 +326,14 @@ Files = [
         //"sci_iofunc.cpp",
         
         //Symphony
-		"globals.cpp",
-		"sci_sym_openclose.cpp",
-		"sci_solver_status_query_functions.cpp",
-		"sci_sym_solve.cpp",                    
-		"sci_sym_loadproblem.cpp",
-		"sci_sym_solution.cpp",
-    	"sci_sym_get_iteration_count.cpp",
-		"sci_sym_set_variables.cpp",
+		//"globals.cpp",
+		//"sci_sym_openclose.cpp",
+		//"sci_solver_status_query_functions.cpp",
+		//"sci_sym_solve.cpp",                    
+		//"sci_sym_loadproblem.cpp",
+		//"sci_sym_solution.cpp",
+    	//"sci_sym_get_iteration_count.cpp",
+		//"sci_sym_set_variables.cpp",
 
         // IPOPT
 		"sci_QuadNLP.cpp",
