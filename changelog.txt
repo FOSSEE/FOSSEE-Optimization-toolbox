@@ -1,19 +1,13 @@
 Changelog
 ---------
-Version 0.3 (July 8, 2019)
-	This version of the toolbox is now available on Scilab 6.0.x
-	Upgraded solver libraries to their latest version and added the following functions:	
-	* quadprogCLP
-	
-	Changes to help files
-
-	"_gradhess" in intfmincon has been improved
-
-	intfminimax made functional
-
-	Note that Symphony does not accept sparse matrices as input anymore. 
-	
-	
+Version 0.3 (September 3, 2019)
+  This version of the toolbox works for Scilab 6.0.x. It does not work
+  for older versions of Scilab. 
+  Symphony has been temporarily disabled, will be reintroduced in the future
+  Upgraded solver libraries to their latest version and added the quadprogCLP function.	
+  Improvements in help files and examples
+  "_gradhess" in intfmincon has been improved
+  Bug fixes for intfminimax
 
 Version 0.2.3 (December 11, 2018)
 
@@ -28,19 +22,19 @@ Version 0.2.2 (July 27, 2018)
 Version 0.2.1 (July 20, 2018)
 
   Changed names of the following functions:
-    *cbcintlinprog => intlinprog
-    *intqpipopt => intquadprog
-    *qpipopt => quadprog
-    *qpipoptmat => quadprogmat
+    * cbcintlinprog => intlinprog
+    * intqpipopt => intquadprog
+    * qpipopt => quadprog
+    * qpipoptmat => quadprogmat
  				
 Version 0.2 (July 5, 2018)
 
   Upgraded solver libraries to their latest version and added the following     
  functions:
-    *cbcintlinprog 				
-    *fotversion
-    *intfminbnd
-    *intfmincon
-    *intfminimax
-    *intfminunc
-    *intqpipopt   
+    * cbcintlinprog 				
+    * fotversion
+    * intfminbnd
+    * intfmincon
+    * intfminimax
+    * intfminunc
+    * intqpipopt   
