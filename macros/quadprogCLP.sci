@@ -10,7 +10,7 @@
 // Email: toolbox@scilab.in
 
 
-function [xopt,fopt,exitflag,iterations,output,lambda] = quadprogCLP (varargin)
+function [xopt,fopt,exitflag,output,lambda] = quadprogCLP (varargin)
 	// Solves a linear quadratic problem.
 	//
 	//   Syntax
@@ -147,6 +147,9 @@ function [xopt,fopt,exitflag,iterations,output,lambda] = quadprogCLP (varargin)
         beq = varargin(6);
     end
 
+	nbConInEq = size(A,1);
+   	nbConEq = size(Aeq,1);
+
     if(rhs<7) then
         lb = zeros(n, 1);
     else
@@ -158,7 +161,43 @@ function [xopt,fopt,exitflag,iterations,output,lambda] = quadprogCLP (varargin)
         ub = varargin(8);
     end
          
-    [xopt,fopt,exitflag,iterations,output,lambda] = quadprog_CLP(H,f,0,A,b,Aeq,beq,lb,ub);
+    [xopt,fopt,exitflag,iterations,Zl,dual] = quadprog_CLP(H,f,0,A,b,Aeq,beq,lb,ub);
+
+	 xopt = xopt';
+
+   output = struct("Iterations"      , [],..
+                   "constrviolation"	, []);
+                  
+   output.Iterations = iterations;
+   output.constrviolation = max([0;norm(Aeq*xopt'-beq, 'inf');(lb-xopt');(xopt'-ub);(A*xopt'-b)]);
+   lambda = struct("lower"           , [], ..
+                   "upper"           , [], ..
+                   "ineqlin"           , [], ..
+                   "eqlin"      , []);
+   
+    rc = Zl; //The reduced cost vector
+    for i= 1:length(rc)
+    
+        if abs(rc(i)) < 10^-6 then
+            rc(i) = 0;
+        end
+        
+        if rc(i) == 0 then
+            lambda.lower(i) = 0;
+            lambda.upper(i) = 0;
+        elseif rc(i) > 0 then
+            lambda.lower(i) = rc(i);
+            lambda.upper(i) = 0;
+        else
+            lambda.lower(i) = 0;
+            lambda.upper(i) = rc(i);
+        end
+             
+    end
+
+	nbCon = nbConEq + nbConInEq;
+	lambda.eqlin =dual(1:nbConEq);
+	lambda.ineqlin =dual(nbConEq+1:nbCon);
 	
 	select exitflag
     case 0 then

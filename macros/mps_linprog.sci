@@ -62,16 +62,39 @@ function [xopt,fopt,exitflag,output,lambda] =mps_linprog(varargin)
    [xopt,fopt,status,iter,Zl,dual] = rmps(mpsFile,options);
    
    xopt = xopt';
-   fopt=fopt;
    exitflag = status;
-   output = struct("Iterations"      , []);
+   output = struct("Iterations"      , [],..
+                   "constrviolation"	, []);
+                  
    output.Iterations = iter;
-   lambda = struct("reduced_cost"           , [], ..
-                   "dual"           ,[]);
+   output.constrviolation =[] //max([0;norm(Aeq*xopt'-beq, 'inf');(lb-xopt');(xopt'-ub);(A*xopt'-b)]);
+   lambda = struct("lower"           , [], ..
+                   "upper"           , [], ..
+                   "dual"           , []..
+                  );
    
-    lambda.reduced_cost = Zl;
-    lambda.dual =dual;
-
+    rc = Zl; //The reduced cost vector
+    for i= 1:length(rc)
+    
+        if abs(rc(i)) < 10^-6 then
+            rc(i) = 0;
+        end
+        
+        if rc(i) == 0 then
+            lambda.lower(i) = 0;
+            lambda.upper(i) = 0;
+        elseif rc(i) > 0 then
+            lambda.lower(i) = rc(i);
+            lambda.upper(i) = 0;
+        else
+            lambda.lower(i) = 0;
+            lambda.upper(i) = rc(i);
+        end
+             
+    end
+	
+	
+	lambda.dual =dual;
 	select status
 
 	case 0 then

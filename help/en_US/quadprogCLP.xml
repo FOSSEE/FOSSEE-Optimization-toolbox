@@ -101,10 +101,13 @@ Search the minimum of a constrained quadratic optimization problem specified by:
    <para>
 <latex>
 \begin{eqnarray}
-\hspace{1pt} \mbox{min}_{x} 1/2⋅x^T⋅H⋅x + f^T⋅x  \\
-\hspace{70pt} A\cdot x \leq b \\
-\hspace{70pt} A_{eq}\cdot x = b_{eq} \\
-\hspace{70pt} lb \leq x \leq ub \\
+\hspace{1pt} \mbox{min}_{x} \frac{1}{2}⋅x^T⋅H⋅x + f^T⋅x  \\
+\end{eqnarray}
+\\\text{Subjected to:}\\
+\begin{eqnarray}
+\hspace{70pt} A\cdot x &amp;\leq b \\
+\hspace{70pt} A_{eq}\cdot x &amp;= b_{eq} \\
+\hspace{70pt} lb \leq x &amp;\leq ub \\
 \end{eqnarray}
 </latex>
    </para>

@@ -337,7 +337,7 @@ ub=[%inf,%inf,%inf]
    <title>Example</title>
    <programlisting role="example"><![CDATA[
 //This example will work only in the toolbox base directory
-filepath = filepath = "./demos";
+filepath = "./demos/";
 filepath = filepath + "exmip1.mps"
 [xopt,fopt,exitflag,output,lambda] =linprog(filepath)
    ]]></programlisting>

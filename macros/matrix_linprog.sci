@@ -208,12 +208,31 @@ function [xopt,fopt,exitflag,output,lambda] = matrix_linprog (varargin)
    output.Iterations = iter;
    output.constrviolation = []//max([0;norm(Aeq*xopt-beq, 'inf');(lb-xopt);(xopt-ub);(A*xopt-b)]);
    lambda = struct("lower"           , [], ..
+                   "upper"           , [], ..
                    "ineqlin"           , [], ..
                    "eqlin"      , []);
    
-    lambda.lower = []//Zl;
-	lambda.eqlin = []//dual(1:nbConEq);
-	lambda.ineqlin = []//dual(nbConEq+1:nbCon);
+    rc = Zl; //The reduced cost vector
+    for i= 1:length(rc)
+    
+        if abs(rc(i)) < 10^-6 then
+            rc(i) = 0;
+        end
+        
+        if rc(i) == 0 then
+            lambda.lower(i) = 0;
+            lambda.upper(i) = 0;
+        elseif rc(i) > 0 then
+            lambda.lower(i) = rc(i);
+            lambda.upper(i) = 0;
+        else
+            lambda.lower(i) = 0;
+            lambda.upper(i) = rc(i);
+        end
+             
+    end
+	lambda.eqlin =dual(1:nbConEq);
+	lambda.ineqlin =dual(nbConEq+1:nbCon);
 	select status
 
 	case 0 then
