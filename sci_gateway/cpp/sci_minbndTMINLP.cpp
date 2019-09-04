@@ -27,7 +27,7 @@ extern "C"
 using namespace Ipopt;
 using namespace Bonmin;
 
-#define LOCAL_DEBUG 1
+#define LOCAL_DEBUG 0
 
 minbndTMINLP::~minbndTMINLP()
 {
