@@ -147,7 +147,7 @@ F &amp;=
 [1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6]
 \end{array}
 \end{eqnarray}\\
-\text{With integer constraints as: } \\
+\text{With integer constraints as: }
 \begin{eqnarray}
 \begin{array}{c}
 [2 &amp; 4] \\

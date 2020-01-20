@@ -55,13 +55,13 @@ int sci_fotversion(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt op
 	char cbcver[]=CBC_VERSION;
 	char clpver[]=CLP_VERSION;
 	char osiver[]=OSI_VERSION;
-	char symver[]=SYMPHONY_VERSION;
+	//char symver[]=SYMPHONY_VERSION;
 	char ipover[]=IPOPT_VERSION;
 	char bonver[]=BONMIN_VERSION;
 	
 	sciprint("\n\nLibraries used in toolbox:\n");	
 	sciprint(" CLP: %s\n",clpver);
-	sciprint(" Symphony: %s\n",symver);
+	//sciprint(" Symphony: %s\n",symver);
 	sciprint(" IPOPT (with Mumps): %s\n",ipover);
 	sciprint(" OSI: %s\n",osiver);
 	sciprint(" CBC: %s\n",cbcver); 
