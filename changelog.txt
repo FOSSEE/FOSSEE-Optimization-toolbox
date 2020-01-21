@@ -1,7 +1,7 @@
 Changelog
 ---------
 Version 0.3 (January 20, 2020)
-  This version of the toolbox is a Beta release and works for Scilab 6.0.x. It does not work for older versions of Scilab.
+  Toolbox ported to Scilab 6. It will not work for older versions of Scilab
   Symphony has been temporarily disabled, will be reintroduced in the future
   Upgraded solver libraries to their latest version and added the quadprogCLP function.	
   Improvements in help files and examples
