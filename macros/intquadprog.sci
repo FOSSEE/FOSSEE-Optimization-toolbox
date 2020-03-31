@@ -451,7 +451,7 @@ function varargout = intquadprog (varargin)
     case 2 then
         printf("\nOutput is Continuous Unbounded.s\n");
     case 3 then
-        printf("\nLimit Exceeded.\n");
+        printf("\nStop at Tiny Step.\n");
     case 4 then
         printf("\nUser Interrupt.\n");
     case 5 then

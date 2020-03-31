@@ -10,20 +10,36 @@ if fileinfo('loader.sce') <> [] then
   mdelete('loader.sce');
 end
 // ------------------------------------------------------
-if fileinfo('libFOSSEE_Optimization_Toolbox.so') <> [] then
-  mdelete('libFOSSEE_Optimization_Toolbox.so');
+if fileinfo('Makelib.mak') <> [] then
+  if ~ exists("dynamic_linkwindowslib") then
+    load("SCI/modules/dynamic_link/macros/windows/lib")
+  end
+  unix_s(dlwGetEnvCmd() + ' && nmake /Y /nologo /f Makelib.mak clean');
+  mdelete('Makelib.mak');
 end
 // ------------------------------------------------------
-if fileinfo('libFOSSEE_Optimization_Toolbox.cpp') <> [] then
-  mdelete('libFOSSEE_Optimization_Toolbox.cpp');
+if isdir('Debug') then
+  rmdir('Debug','s');
 end
 // ------------------------------------------------------
-if fileinfo('libFOSSEE_Optimization_Toolbox.hxx') <> [] then
-  mdelete('libFOSSEE_Optimization_Toolbox.hxx');
+if isdir('Release') then
+  rmdir('Release','s');
 end
 // ------------------------------------------------------
-if fileinfo('libFOSSEE_Optimization_Toolbox.h') <> [] then
-  mdelete('libFOSSEE_Optimization_Toolbox.h');
+if fileinfo('FOSSEE_Optimization_Toolbox.dll') <> [] then
+  mdelete('FOSSEE_Optimization_Toolbox.dll');
+end
+// ------------------------------------------------------
+if fileinfo('FOSSEE_Optimization_Toolbox.cpp') <> [] then
+  mdelete('FOSSEE_Optimization_Toolbox.cpp');
+end
+// ------------------------------------------------------
+if fileinfo('FOSSEE_Optimization_Toolbox.hxx') <> [] then
+  mdelete('FOSSEE_Optimization_Toolbox.hxx');
+end
+// ------------------------------------------------------
+if fileinfo('FOSSEE_Optimization_Toolbox.h') <> [] then
+  mdelete('FOSSEE_Optimization_Toolbox.h');
 end
 // ------------------------------------------------------
 chdir(curdir);

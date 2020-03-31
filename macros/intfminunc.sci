@@ -349,7 +349,7 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfminunc (varargin)
         case 2 then
             printf("\nObjective Function is Continuous Unbounded.\n");
         case 3 then
-            printf("\Limit Exceeded.\n");
+            printf("\Stop at Tiny Step.\n");
         case 4 then
             printf("\nUser Interrupt.\n");
         case 5 then

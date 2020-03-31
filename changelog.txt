@@ -1,5 +1,9 @@
 Changelog
 ---------
+Version 0.3.1 (March 31, 2020)
+  Problems with fmincon evident in version 0.3 have been fixed
+  Exit flag status for IPOPT and BONMIN libraries have been changed
+
 Version 0.3 (January 20, 2020)
   Toolbox ported to Scilab 6. It will not work for older versions of Scilab
   Symphony has been temporarily disabled, will be reintroduced in the future
