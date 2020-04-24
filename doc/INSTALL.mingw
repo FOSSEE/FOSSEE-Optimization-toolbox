@@ -1,0 +1,146 @@
+How to compile using MinGW on Windows
+Ashutosh Mahajan, IIT Bombay
+April 24, 2020
+
+Some steps of how to compile FOT using MinGW are listed in this document.
+These are based on memory and need to be replicated once to ensure something
+important is not missed out.  There are four main steps. Some of them are
+quite complicated, others rather easy.
+
+Step-0: Prerequisites
+------------------------------------------------------------------------------
+0.1. Windows-10 with about 10GB free space on a 64-bit computer
+
+0.2. Fast internet connection
+
+0.3. Make sure your username on Windows does not have spaces in it (username
+     amahajan is OK, but Ashutosh Mahajan is not OK). Make a new user if needed.
+
+Step-1: Installing Equation-Solution and Scilab
+------------------------------------------------------------------------------
+This is the easy part.
+
+1.1. Download and install Scilab 6.1
+
+1.2. Download and install Equation Solution
+     ftp://ftp.equation.com/gcc/gcc-8.3.0-64.exe
+
+1.3. Install MinGW toolbox from Atoms in Scilab
+
+1.4. Check if Scilab and mingw toolbox is installed correctly
+
+1.5. On Scilab, haveacompiler and mgw_detectCompiler, both commands should
+     return True
+
+1.6. On Scilab, mgw_getArchBinPath should print the directory of where Equation
+     Solution installed the gcc compiler. 
+
+1.7. Open a command prompt, and type
+     gcc --version
+     It should show version 8.3.0. Similarly gfortran --version should also
+     work.
+
+Step-2: Installing MSYS2
+------------------------------------------------------------------------------
+coin-or packages need several other tools for compiling in addition to the gcc,
+g++, gfortran compilers. We need msys for these tools (make, cmake, autoconf,
+git, etc.)
+
+2.1 Install msys2 from https://www.msys2.org/ Select the x86_64 version.
+
+2.2 Once msys2 is installed, we need to bring it up to date and install the
+    packages. Open the msys app and launch MINGW64 (mingw64-w64) shell. Do not
+    open an MSYS or MINGW32 shell. Type 
+    echo $MSYSTEM 
+    to check if you are in the MING64 shell.
+
+2.3 In the shell, do
+    pacman -Syu
+
+2.4 Close the terminal and repeat the previous steps 2.2-2.3 until no more
+    updates are received. Close the terminal after each update.
+
+2.5 Now add new packages. Open MINGW64 terminal (not others) and do
+    pacman -S git gcc gcc-fortran cmake pkgconfig wget autoconf make perl tar
+
+Step-3: Compiling Coin-OR Libraries
+------------------------------------------------------------------------------
+This is the most timetaking and important step.
+
+3.1 Open a MINGW64 terminal (and not others) from MSYS2.
+
+3.2 cd $HOME
+    git clone https://github.com/coin-or/coinbrew.git
+    cd $HOME
+    mkdir bonmin-master
+    cd bonmin-master
+    $HOME/coinbrew/coinbrew fetch Bonmin --no-third-party
+
+3.3 This will fetch the master (unstable) version of Bonmin and all
+    coin-or dependencies (Cbc, CoinUtils, Ipopt, Clp etc) in the folder
+    $HOME/bonmin-master.
+
+3.4 You should see 8 folders:
+    Bonmin  Cbc  Cgl  Clp  CoinUtils  Data  Ipopt  Osi  ThirdParty
+
+3.5 We have to compile them one by one. It is important to compile them in a
+    build directory different from these. 
+    mkdir $HOME/build
+    cd $HOME/build
+    mkdir CoinUtils
+
+3.6 Lets start compiling. For each package, we need to first configure and
+    then make. g++, gcc and gfortran from the Equation-Solution should be used,
+    not the ones in MSYS. 
+
+    In the below command, CC, CXX and F77 should be modified to the path of
+    gcc, g++ and gfortran provided by Equation-Solution.  
+
+    cd $HOME/build/CoinUtils
+    $HOME/bonmin-master/CoinUtils/configure --without-lapack --disable-zlib --disable-bzlib --disable-readline --disable-coinutils-threads --enable-shared --disable-static --prefix=$HOME/build CC=/c/Users/amahajan/gcc/bin/gcc.exe CXX=/c/Users/amahajan/gcc/bin/g++.exe F77=/c/Users/amahajan/gcc/bin/gfortran.exe
+
+3.7 If no errors are reported and a Makefile is generated in the directory,
+    then start compiling. The -j4 is optional, tells the system to compile using 4 cpus on
+    the computer. Change it suitably.
+    make -j4
+    make install
+
+3.8 If there are no errors reported, you should see shared libraries
+    libcoinutils.dll.a and libcoinutils.la in $HOME/build/lib and .dll files
+    in $HOME/build/bin. If not, fix the errors and try again.
+
+3.9 Now do Osi. Again change the CC, CXX and F77.
+    mkdir $HOME/build/Osi
+    cd $HOME/build/Osi
+    $HOME/bonmin-master/Osi/configure --without-lapack --disable-zlib --disable-bzlib --disable-readline --disable-coinutils-threads --enable-shared --disable-static --prefix=$HOME/build/ CC=/c/Users/amahajan/gcc/bin/gcc.exe CXX=/c/Users/amahajan/gcc/bin/g++.exe F77=/c/Users/amahajan/gcc/bin/gfortran.exe
+    make -j4
+    make install
+    check $HOME/build/lib and $HOME/build/bin for new libs and dll files. 
+
+3.10 Next is Clp. Again remember to change the CC, CXX and F77.
+     mkdir $HOME/build/Clp
+     cd $HOME/build/Clp
+     $HOME/bonmin-master/Clp/configure --without-lapack --disable-zlib --disable-bzlib --disable-readline --disable-coinutils-threads --enable-shared --disable-static --prefix=$HOME/build CC=/c/Users/amahajan/gcc/bin/gcc.exe CXX=/c/Users/amahajan/gcc/bin/g++.exe F77=/c/Users/amahajan/gcc/bin/gfortran.exe
+     make -j4
+     make install
+     check $HOME/build/lib and $HOME/build/bin for libClp.dll and libClpSolver.dll files
+
+3.11 Next comes Cgl. Again remember to change the CC, CXX and F77.
+     mkdir $HOME/build/Cgl
+     cd $HOME/build/Cgl
+     $HOME/bonmin-master/Cgl/configure --without-lapack --disable-zlib --disable-bzlib --disable-readline --disable-coinutils-threads --enable-shared --disable-static --prefix=$HOME/build CC=/c/Users/amahajan/gcc/bin/gcc.exe CXX=/c/Users/amahajan/gcc/bin/g++.exe F77=/c/Users/amahajan/gcc/bin/gfortran.exe
+     make -j4
+     make install
+     check $HOME/build/lib and $HOME/build/bin for libCgl.dll files
+
+3.12 Compiling Cbc is a landmark. Again remember to change the CC, CXX and F77.
+     mkdir $HOME/build/Cbc
+     cd $HOME/build/Cbc
+     $HOME/bonmin-master/Cbc/configure --without-lapack --disable-zlib --disable-bzlib --disable-readline --disable-coinutils-threads --enable-shared --disable-static --prefix=$HOME/build CC=/c/Users/amahajan/gcc/bin/gcc.exe CXX=/c/Users/amahajan/gcc/bin/g++.exe F77=/c/Users/amahajan/gcc/bin/gfortran.exe --disable-cbc-parallel
+     make -j4
+     make install
+     check $HOME/build/lib and $HOME/build/bin for libCbc.dll and
+     libCbcSolver.dll files
+
+3.13 If you have successfully compiled Cbc, pat yourself on the back. We are
+     halfway to glory.
