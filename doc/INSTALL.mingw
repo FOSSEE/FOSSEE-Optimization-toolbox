@@ -1,6 +1,5 @@
 How to compile using MinGW on Windows
 Ashutosh Mahajan, IIT Bombay
-April 24, 2020
 
 Some steps of how to compile FOT using MinGW are listed in this document.
 These are based on memory and need to be replicated once to ensure something
@@ -9,36 +8,36 @@ quite complicated, others rather easy.
 
 Step-0: Prerequisites
 ------------------------------------------------------------------------------
-0.1. Windows-10 with about 10GB free space on a 64-bit computer
+0.1 Windows-10 with about 10GB free space on a 64-bit computer
 
-0.2. Fast internet connection
+0.2 Fast internet connection
 
-0.3. Make sure your username on Windows does not have spaces in it (username
-     amahajan is OK, but Ashutosh Mahajan is not OK). Make a new user if needed.
+0.3 Make sure your username on Windows does not have spaces in it (username
+    amahajan is OK, but Ashutosh Mahajan is not OK). Make a new user if needed.
 
 Step-1: Installing Equation-Solution and Scilab
 ------------------------------------------------------------------------------
 This is the easy part.
 
-1.1. Download and install Scilab 6.1
+1.1 Download and install Scilab 6.1
 
-1.2. Download and install Equation Solution
-     ftp://ftp.equation.com/gcc/gcc-8.3.0-64.exe
+1.2 Download and install Equation Solution
+    ftp://ftp.equation.com/gcc/gcc-8.3.0-64.exe
 
-1.3. Install MinGW toolbox from Atoms in Scilab
+1.3 Install MinGW toolbox from Atoms in Scilab
 
-1.4. Check if Scilab and mingw toolbox is installed correctly
+1.4 Check if Scilab and mingw toolbox is installed correctly
 
-1.5. On Scilab, haveacompiler and mgw_detectCompiler, both commands should
-     return True
+1.5 On Scilab, haveacompiler and mgw_detectCompiler, both commands should
+    return True
 
-1.6. On Scilab, mgw_getArchBinPath should print the directory of where Equation
-     Solution installed the gcc compiler. 
+1.6 On Scilab, mgw_getArchBinPath should print the directory of where Equation
+    Solution installed the gcc compiler. 
 
-1.7. Open a command prompt, and type
-     gcc --version
-     It should show version 8.3.0. Similarly gfortran --version should also
-     work.
+1.7 Open a command prompt, and type
+    gcc --version
+    It should show version 8.3.0. Similarly gfortran --version should also
+    work.
 
 Step-2: Installing MSYS2
 ------------------------------------------------------------------------------
@@ -65,7 +64,7 @@ git, etc.)
 
 Step-3: Compiling Coin-OR Libraries
 ------------------------------------------------------------------------------
-This is the most timetaking and important step.
+This is the most time taking step.
 
 3.1 Open a MINGW64 terminal (and not others) from MSYS2.
 
@@ -143,4 +142,106 @@ This is the most timetaking and important step.
      libCbcSolver.dll files
 
 3.13 If you have successfully compiled Cbc, pat yourself on the back. We are
-     halfway to glory.
+     halfway to glory. Next is Ipopt along with its prerequisites:
+     Lapack and Mumps, both of which are Fortran codes. Building shared
+     libraries for Fortran is a bit tricky. Here is what I tried.
+
+3.14 Download and compile Lapack:
+     cd $HOME/bonmin-master
+     wget http://www.netlib.org/lapack/lapack-3.7.1.tgz
+     tar -zxf lapack-3.7.1.tgz
+     Check whether lapack-3.7.1 directory has been created with its source
+     code. 
+     
+3.15 Compile lapack using cmake. Again we need to specify the non-default
+     compilers and related flags. Change the
+     CMAKE_C_COMPILER:FILEPATH, -DCMAKE_C_COMPILER_AR:FILEPATH,
+     -DCMAKE_C_COMPILER_RANLIB:FILEPATH, -DCMAKE_Fortran_COMPILER:FILEPATH,
+     -DCMAKE_Fortran_COMPILER_AR:FILEPATH, and
+     -DCMAKE_Fortran_COMPILER_RANLIB:FILEPATH
+     to point to Equation Solution binaries.
+
+     mkdir $HOME/build/lapack-3.7.1
+     cd $HOME/build/lapack-3.7.1
+     /usr/bin/cmake -DCMAKE_C_COMPILER:FILEPATH=/c/Users/amahajan/gcc/bin/gcc.exe -DCMAKE_C_COMPILER_AR:FILEPATH=/c/Users/amahajan/gcc/bin/gcc-ar.exe -DCMAKE_C_COMPILER_RANLIB:FILEPATH=/c/Users/amahajan/gcc/bin/gcc-ranlib.exe -DCMAKE_Fortran_COMPILER:FILEPATH=/c/Users/amahajan/gcc/bin/gfortran.exe -DCMAKE_Fortran_COMPILER_AR:FILEPATH=/c/Users/amahajan/gcc/bin/gcc-ar.exe -DCMAKE_Fortran_COMPILER_RANLIB:FILEPATH=/c/Users/amahajan/gcc/bin/gcc-ranlib.exe -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_INSTALL_PREFIX:PATH=${HOME}/build -DCMAKE_SYSTEM_NAME="Windows" -DBUILD_TESTING:BOOL=OFF ../
+     If no errors are reported, then make
+     make -j 4
+     make install
+     
+     If you see Fortran related errors or if you do not see libblas.dll and
+     liblapack.dll files in the $HOME/build/lib folder, then something went
+     wrong. Contact me for a possible solution.
+
+3.15 On to Mumps. Again remember to change the CC, CXX and FC (we don't
+     have F77, but FC for fortran compiler).
+
+     mkdir $HOME/build/Mumps
+     cd $HOME/build/Mumps
+     $HOME/bonmin-master/ThirdParty/Mumps/configure --without-lapack --disable-zlib --disable-bzlib --disable-readline --disable-pthread-mumps --enable-shared --disable-static --prefix=$HOME/build CC=/c/Users/amahajan/gcc/bin/gcc.exe CXX=/c/Users/amahajan/gcc/bin/g++.exe FC=/c/Users/amahajan/gcc/bin/gfortran.exe --with-lapack LDFLAGS=-L/home/amahajan/FOT-2/build-shared-master/lib LT_LDFLAGS=-Wl,--allow-multiple-definition
+     If no errors are seen, then make
+     make -j4
+     make install
+
+3.16 Next is Ipopt. Again remember to change the CC, CXX and F77 flags
+     mkdir $HOME/build/Ipopt
+     cd $HOME/build/Ipopt
+     $HOME/bonmin-master/Ipopt/configure --without-lapack --disable-zlib --disable-bzlib --disable-readline --disable-pthread-mumps --enable-shared --disable-static --prefix=$HOME/build CC=/c/Users/amahajan/gcc/bin/gcc.exe CXX=/c/Users/amahajan/gcc/bin/g++.exe F77=/c/Users/amahajan/gcc/bin/gfortran.exe --with-lapack --with-mumps LDFLAGS=-L/home/amahajan/FOT-2/build-shared-master/lib LT_LDFLAGS=-Wl,--allow-multiple-definition
+     Check for errors, if none proceed
+     make -j4
+     make install
+     check that libipopt.dll files are compiled in the $HOME/build/lib and 
+     $HOME/build/bin directories
+
+3.17 Lastly, compile Bonmin. Again remember to change the CC, CXX and F77
+     flags.
+     mkdir $HOME/build/Bonmin
+     cd $HOME/build/Bonmin
+     $HOME/bonmin-master/Bonmin/configure --with-ipopt --with-cbc --disable-zlib --disable-bzlib --disable-readline --disable-pthread-mumps --enable-shared --disable-static --prefix=$HOME/build CC=/c/Users/amahajan/gcc/bin/gcc.exe CXX=/c/Users/amahajan/gcc/bin/g++.exe F77=/c/Users/amahajan/gcc/bin/gfortran.exe --with-lapack --with-mumps LDFLAGS=-L/home/amahajan/FOT-2/build-shared-master/lib LT_LDFLAGS=-Wl,--allow-multiple-definition
+     make -j4
+     make
+
+3.18 It is unlikely that all steps would have run without errors. If all goes
+     well, you should see these library files.
+     ls $HOME/build/lib
+     cmake            libCbc.dll.a        libCgl.dll.a  libClpSolver.dll.a  libCoinUtils.dll.a  liblapack.dll.a  libOsiCbc.la            libOsiCommonTest.la
+     libblas.dll.a    libCbc.la           libCgl.la     libClpSolver.la     libCoinUtils.la     libOsi.dll.a     libOsiClp.dll.a         libsipopt.dll.a
+     libbonmin.dll.a  libCbcSolver.dll.a  libClp.dll.a  libcoinmumps.dll.a  libipopt.dll.a      libOsi.la        libOsiClp.la            libsipopt.la
+     libbonmin.la     libCbcSolver.la     libClp.la     libcoinmumps.la     libipopt.la         libOsiCbc.dll.a  libOsiCommonTest.dll.a  pkgconfig
+
+     ls $HOME/build/bin
+     cbc.exe  libblas.dll      libCbc-0.dll        libCgl-0.dll  libClpSolver-0.dll  libCoinUtils-0.dll  liblapack.dll  libOsiCbc-0.dll  libOsiCommonTest-0.dll
+     clp.exe  libbonmin-0.dll  libCbcSolver-0.dll  libClp-0.dll  libcoinmumps-0.dll  libipopt-3.dll      libOsi-0.dll   libOsiClp-0.dll  libsipopt-3.dll
+
+3.19 All these and the include folder is required by Scilab.
+
+Step-4: Building the Scilab gateway
+------------------------------------------------------------------------------
+You should have cloned or downloaded the FOSSEE-Optimization-Toolbox from
+github.
+
+4.1  Delete all files and directories inside
+     FOSSEE-Optimization-Toolbox\thirdparty\windows\lib\x64
+     and copy all contents of build/bin directory that we just compiled in
+     Step-3 to it. The x64 directory should have the .dll.a files.
+
+4.2  Next delete all files and directories inside
+     FOSSEE-Optimization-Toolbox\thirdparty\windows\bin\x64
+     and copy all contents of build/bin directory that we just compiled in
+     Step-3 to it. The x64 directory should have the .dll and .exe files.
+
+4.3  Start scilab. Check if mingw toolbox is loaded.
+     mgw_detectEquationPkg command should return 'T' (true)
+     mgw_getArchBinPath command should show the path to Equation Solution gcc
+
+4.4  Change directory to FOSSEE-Optimization-Toolbox
+     cd c:\Users\amahajan\Desktop\FOSSEE-Optimization-Toolbox 
+     or whereever you have kept it. Compile the FOT toolbox:
+     exec builder.sce
+     If no errors were reported then
+     edit loader.sce
+     and change paths and sequence of the library (.dll) files used.
+     exec loader.sce
+     help intfmincon
+     Run the examples given there.
+
+
