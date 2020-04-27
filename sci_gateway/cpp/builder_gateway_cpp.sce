@@ -382,17 +382,31 @@ if getos()=="Windows" then
     third_dir = path_builder+filesep()+'..'+filesep()+'..'+filesep()+'thirdparty';
     lib_base_dir = third_dir + filesep() + 'windows' + filesep() + 'lib' + filesep() + Version + filesep();
     //inc_base_dir = third_dir + filesep() + 'windows' + filesep() + 'include' + filesep() + 'coin';
-    inc_base_dir = third_dir + filesep() + 'linux' + filesep() + 'include' + filesep() + 'coin';
+    inc_base_dir = third_dir + filesep() + 'windows' + filesep() + 'include' + filesep() + 'coin-or';
     threads_dir=third_dir + filesep() + 'linux' + filesep() + 'include' + filesep() + 'pthreads-win32';
     C_Flags=['-D__USE_DEPRECATED_STACK_FUNCTIONS__  -I -w '+path_builder+' '+ '-I '+inc_base_dir+' '+'-I '+threads_dir+' ']   
-    Linker_Flag  = [lib_base_dir+"libcoinblas.lib "+lib_base_dir+"libcoinlapack.lib "+lib_base_dir+"libcoinmumps.lib "+lib_base_dir+"libClp.lib "+lib_base_dir+"libipopt.lib "+lib_base_dir+"libOsi.lib "+lib_base_dir+"libOsiClp.lib "+lib_base_dir+"libCoinUtils.lib "+lib_base_dir+"libCgl.lib "+lib_base_dir+"libOsiSym.lib "+lib_base_dir+"libSym.lib "+lib_base_dir+"libCbcSolver.lib "+lib_base_dir+"libCbc.lib "+lib_base_dir+"libbonmin.lib "+lib_base_dir+"pthreadVC2.lib " ]
+    libs  = [lib_base_dir+"libbonmin.dll";
+             lib_base_dir+"libipopt.dll";
+             lib_base_dir+"libcoinmumps.dll";
+             lib_base_dir+"libCbcSolver.dll";
+             lib_base_dir+"libCbc.dll";
+             lib_base_dir+"libCgl.dll";
+             lib_base_dir+"libClp.dll";
+             lib_base_dir+"libOsi.dll";
+             lib_base_dir+"libOsiClp.dll";
+             lib_base_dir+"libCoinUtils.dll";
+             lib_base_dir+"liblapack.dll";
+             lib_base_dir+"libblas.dll";
+                    ]
+    
+    // [+lib_base_dir+"pthreadVC2.lib" ]
 
 elseif getos()=="Darwin" then 
 	third_dir = path_builder+filesep()+'..'+filesep()+'..'+filesep()+'thirdparty';
     	lib_base_dir = third_dir + filesep() + 'Mac' + filesep() + 'lib' + filesep() + Version + filesep();
     	inc_base_dir = third_dir + filesep() + 'Mac' + filesep() + 'include' + filesep() + 'coin';
     	C_Flags=["-D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -fpermissive -I"+path_builder+" -I"+inc_base_dir+" -Wl,-rpath "+lib_base_dir+" "]
-    	Linker_Flag = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils" + " "+"-L"+lib_base_dir+"libbonmin"]
+    	libs = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils" + " "+"-L"+lib_base_dir+"libbonmin"]
 
 
 else
@@ -402,10 +416,23 @@ else
     
     C_Flags=["-D__USE_DEPRECATED_STACK_FUNCTIONS__ -w -fpermissive -I"+path_builder+" -I"+inc_base_dir+" -Wl,-rpath="+lib_base_dir+" "+"-std=gnu++11"+" -fno-zero-initialized-in-bss"]
     
-    Linker_Flag = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils" ]
+    libs = ["-L"+lib_base_dir+"libSym"+" "+"-L"+lib_base_dir+"libipopt"+" "+"-L"+lib_base_dir+"libClp"+" "+"-L"+lib_base_dir+"libOsiClp"+" "+"-L"+lib_base_dir+"libCoinUtils" ]
     
 end
 
-tbx_build_gateway(toolbox_title,Function_Names,Files,get_absolute_file_path("builder_gateway_cpp.sce"), [], Linker_Flag, C_Flags);
-
+disp("lib_base_dir = "+lib_base_dir)
+tbx_build_gateway(toolbox_title,Function_Names,Files,get_absolute_file_path("builder_gateway_cpp.sce"), libs, "", C_Flags);
+""
 clear toolbox_title Function_Names Files Linker_Flag C_Flags;
+
+//function tbx_build_gateway(libname,      ..
+//    names,        ..
+//    files,        ..
+//    gateway_path, ..
+//    libs,         ..
+//    ldflags,      ..
+//    cflags,       ..
+//    fflags,       ..
+//    cc,           ..
+//    makename,     ..
+//    ismex)
