@@ -60,7 +60,7 @@ git, etc.)
     updates are received. Close the terminal after each update.
 
 2.5 Now add new packages. Open MINGW64 terminal (not others) and do
-    pacman -S git gcc gcc-fortran cmake pkgconfig wget autoconf make perl tar
+    pacman -S git gcc gcc-fortran cmake pkgconfig wget autoconf make perl tar patch patchutils quilt
 
 Step-3: Compiling Coin-OR Libraries
 ------------------------------------------------------------------------------
@@ -163,7 +163,7 @@ This is the most time taking step.
 
      mkdir $HOME/build/lapack-3.7.1
      cd $HOME/build/lapack-3.7.1
-     /usr/bin/cmake -DCMAKE_C_COMPILER:FILEPATH=/c/Users/amahajan/gcc/bin/gcc.exe -DCMAKE_C_COMPILER_AR:FILEPATH=/c/Users/amahajan/gcc/bin/gcc-ar.exe -DCMAKE_C_COMPILER_RANLIB:FILEPATH=/c/Users/amahajan/gcc/bin/gcc-ranlib.exe -DCMAKE_Fortran_COMPILER:FILEPATH=/c/Users/amahajan/gcc/bin/gfortran.exe -DCMAKE_Fortran_COMPILER_AR:FILEPATH=/c/Users/amahajan/gcc/bin/gcc-ar.exe -DCMAKE_Fortran_COMPILER_RANLIB:FILEPATH=/c/Users/amahajan/gcc/bin/gcc-ranlib.exe -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_INSTALL_PREFIX:PATH=${HOME}/build -DCMAKE_SYSTEM_NAME="Windows" -DBUILD_TESTING:BOOL=OFF ../
+     /usr/bin/cmake -DCMAKE_C_COMPILER:FILEPATH=/c/Users/amahajan/gcc/bin/gcc.exe -DCMAKE_C_COMPILER_AR:FILEPATH=/c/Users/amahajan/gcc/bin/gcc-ar.exe -DCMAKE_C_COMPILER_RANLIB:FILEPATH=/c/Users/amahajan/gcc/bin/gcc-ranlib.exe -DCMAKE_Fortran_COMPILER:FILEPATH=/c/Users/amahajan/gcc/bin/gfortran.exe -DCMAKE_Fortran_COMPILER_AR:FILEPATH=/c/Users/amahajan/gcc/bin/gcc-ar.exe -DCMAKE_Fortran_COMPILER_RANLIB:FILEPATH=/c/Users/amahajan/gcc/bin/gcc-ranlib.exe -DBUILD_SHARED_LIBS:BOOL=ON -DCMAKE_INSTALL_PREFIX:PATH=${HOME}/build -DCMAKE_SYSTEM_NAME="Windows" -DBUILD_TESTING:BOOL=OFF -DCMAKE_SHARED_LINKER_FLAGS:STRING=-Wl,--allow-multiple-definition $HOME/bonmin-master/ThirdParty/lapack-3.7.1/
      If no errors are reported, then make
      make -j 4
      make install
@@ -172,8 +172,12 @@ This is the most time taking step.
      liblapack.dll files in the $HOME/build/lib folder, then something went
      wrong. Contact me for a possible solution.
 
-3.15 On to Mumps. Again remember to change the CC, CXX and FC (we don't
-     have F77, but FC for fortran compiler).
+3.16 On to Mumps. First get Mumps, then build it.
+     Again remember to change the CC, CXX and FC (we don't have F77, but FC
+     for fortran compiler).
+
+     cd $HOME/bonmin-master/ThirdParty/Mumps
+     ./get.Mumps
 
      mkdir $HOME/build/Mumps
      cd $HOME/build/Mumps
@@ -182,7 +186,7 @@ This is the most time taking step.
      make -j4
      make install
 
-3.16 Next is Ipopt. Again remember to change the CC, CXX and F77 flags
+3.17 Next is Ipopt. Again remember to change the CC, CXX and F77 flags
      mkdir $HOME/build/Ipopt
      cd $HOME/build/Ipopt
      $HOME/bonmin-master/Ipopt/configure --without-lapack --disable-zlib --disable-bzlib --disable-readline --disable-pthread-mumps --enable-shared --disable-static --prefix=$HOME/build CC=/c/Users/amahajan/gcc/bin/gcc.exe CXX=/c/Users/amahajan/gcc/bin/g++.exe F77=/c/Users/amahajan/gcc/bin/gfortran.exe --with-lapack --with-mumps LDFLAGS=-L/home/amahajan/FOT-2/build-shared-master/lib LT_LDFLAGS=-Wl,--allow-multiple-definition
@@ -192,7 +196,7 @@ This is the most time taking step.
      check that libipopt.dll files are compiled in the $HOME/build/lib and 
      $HOME/build/bin directories
 
-3.17 Lastly, compile Bonmin. Again remember to change the CC, CXX and F77
+3.18 Lastly, compile Bonmin. Again remember to change the CC, CXX and F77
      flags.
      mkdir $HOME/build/Bonmin
      cd $HOME/build/Bonmin
@@ -200,7 +204,7 @@ This is the most time taking step.
      make -j4
      make
 
-3.18 It is unlikely that all steps would have run without errors. If all goes
+3.19 It is unlikely that all steps would have run without errors. If all goes
      well, you should see these library files.
      ls $HOME/build/lib
      cmake            libCbc.dll.a        libCgl.dll.a  libClpSolver.dll.a  libCoinUtils.dll.a  liblapack.dll.a  libOsiCbc.la            libOsiCommonTest.la
@@ -212,7 +216,7 @@ This is the most time taking step.
      cbc.exe  libblas.dll      libCbc-0.dll        libCgl-0.dll  libClpSolver-0.dll  libCoinUtils-0.dll  liblapack.dll  libOsiCbc-0.dll  libOsiCommonTest-0.dll
      clp.exe  libbonmin-0.dll  libCbcSolver-0.dll  libClp-0.dll  libcoinmumps-0.dll  libipopt-3.dll      libOsi-0.dll   libOsiClp-0.dll  libsipopt-3.dll
 
-3.19 All these and the include folder is required by Scilab.
+3.20 All these and the include folder is required by Scilab.
 
 Step-4: Building the Scilab gateway
 ------------------------------------------------------------------------------
@@ -229,11 +233,16 @@ github.
      and copy all contents of build/bin directory that we just compiled in
      Step-3 to it. The x64 directory should have the .dll and .exe files.
 
-4.3  Start scilab. Check if mingw toolbox is loaded.
+4.3  Similarly, delete all files and folders inside
+     FOSSEE-Optimization-Toolbox\thirdparty\windows\include
+     and copy all contents of build/include directory that we just compiled
+     in Step-3 to it. Usually there is only the coin-or folder there.
+
+4.4  Start scilab. Check if mingw toolbox is loaded.
      mgw_detectEquationPkg command should return 'T' (true)
      mgw_getArchBinPath command should show the path to Equation Solution gcc
 
-4.4  Change directory to FOSSEE-Optimization-Toolbox
+4.5  Change directory to FOSSEE-Optimization-Toolbox
      cd c:\Users\amahajan\Desktop\FOSSEE-Optimization-Toolbox 
      or whereever you have kept it. Compile the FOT toolbox:
      exec builder.sce
