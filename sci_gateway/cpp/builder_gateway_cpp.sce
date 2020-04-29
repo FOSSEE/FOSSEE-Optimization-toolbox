@@ -178,7 +178,7 @@ Function_Names = [
 
 		//QP function
 		"solveqp","sci_solveqp", "csci6"; 
-		"sci_quadprogCLP","sci_quadprogCLP", "csci6"; 
+		//"sci_quadprogCLP","sci_quadprogCLP", "csci6"; 
 	
 		//Unconstrained Optimization
 		"solveminuncp","sci_solveminuncp", "csci6"; 
