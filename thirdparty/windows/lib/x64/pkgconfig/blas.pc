@@ -1,0 +1,8 @@
+libdir=/home/Navi/build/lib
+includedir=/home/Navi/build/include
+
+Name: BLAS
+Description: FORTRAN reference implementation of BLAS Basic Linear Algebra Subprograms
+Version: 3.7.1
+URL: http://www.netlib.org/blas/
+Libs: -L${libdir} -lblas
