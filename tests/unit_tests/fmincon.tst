@@ -92,7 +92,7 @@ options=list("MaxIter", [1500], "CpuTime", [500], "GradObj", fGrad, "Hessian", l
 //Calling Ipopt
 [xopt,fval,exitflag,output] =fmincon(f, x0,A,b,Aeq,beq,lb,ub,nlc,options)
 
-assert_close ( xopt , [ -1.5811388 2.236068 -1.5811388 ]' , 0.0005 );
+assert_close ( xopt , [ 1.5811388 -2.236068 1.5811388 ]' , 0.0005 );
 assert_close ( fval , [-7.0710678 ]' , 0.0005 );
 assert_checkequal( exitflag , int32(0) );
 printf("Test Successful");
