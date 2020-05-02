@@ -1,0 +1,15 @@
+prefix=/home/Navi/build
+#prefix=${pcfiledir}/../..
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/coin-or/mumps
+
+Name: Mumps
+Description: Multifrontal Massively Parallel sparse direct Solver
+URL: https://github.com/coin-or-tools/ThirdParty-MUMPS
+Version: trunk
+Cflags: -I${includedir}
+Libs: -L${libdir} -lcoinmumps
+Requires.private: lapack blas 
+#Libs: -L${libdir} -lcoinmumps   
+#Requires: lapack blas 

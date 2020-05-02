@@ -1,0 +1,15 @@
+prefix=/home/Navi/build
+#prefix=${pcfiledir}/../..
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/coin-or
+
+Name: CBC
+Description: COIN-OR Branch and Cut
+URL: https://github.com/coin-or/Cbc
+Version: trunk
+Cflags: -I${includedir}
+Libs: -L${libdir} -lCbcSolver -lCbc
+Requires.private: osi-clp clp cgl osi coinutils 
+#Libs: -L${libdir} -lCbcSolver -lCbc      
+#Requires: osi-clp clp cgl osi coinutils 

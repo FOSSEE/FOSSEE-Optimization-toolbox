@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!--Begin Entities-->
+<!ENTITY a93b13c435ae21badb8111f7a0ae31649 SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/fgoalattain.xml">
+<!ENTITY a1874f9bc4dbdf585519853a269621d5a SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/fminbnd.xml">
+<!ENTITY aad5218c4e713f0da444dc70817620f84 SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/fmincon.xml">
+<!ENTITY a7ef39bd3cf7f2e67a35a251f1fe42db4 SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/fminimax.xml">
+<!ENTITY a9a76b183c31c9bb915cbfa98bcbe85cb SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/fminunc.xml">
+<!ENTITY afaab74af14b14bbbe4c174f9576a4bf9 SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/fot_version.xml">
+<!ENTITY a91a4e40e7ff0d8b93237b13687e3f20d SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/intfminbnd.xml">
+<!ENTITY a7f0d2363adce2a1b1b17452f4f4b74bf SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/intfmincon.xml">
+<!ENTITY a120e0818b5f4d1c82cb9bb21fe890ace SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/intfminimax.xml">
+<!ENTITY a0640a5c7e7524d906aa2e8ed5fd064ee SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/intfminunc.xml">
+<!ENTITY a4d818e4a423000f195bd51b109f19063 SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/intlinprog.xml">
+<!ENTITY a677ed027129d28f028115de5f547bc55 SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/intquadprog.xml">
+<!ENTITY a23aed8cab9b0a4dfc7fabe43b618c5e9 SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/linprog.xml">
+<!ENTITY ad3f99e441c736837f4c213fbc270dda2 SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/lsqlin.xml">
+<!ENTITY a0a6d1c2e24c71684286434ed1d830986 SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/lsqnonlin.xml">
+<!ENTITY aa3c78a371a8151d200b3a5ce53d639ce SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/lsqnonneg.xml">
+<!ENTITY a8edc9857b22e9f6122798e0f47602df2 SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/quadprog.xml">
+<!ENTITY a277bcc5c90cffd32d079c1ff55b0d0b7 SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/quadprogCLP.xml">
+<!ENTITY a66602090bfe9695176f6a9e702e3d904 SYSTEM "file:///C:/msys64/home/Navi/FOSSEE-Optimization-toolbox/help/en_US/quadprogmat.xml">
+<!--End Entities-->
+]>
+<book version="5.0-subset Scilab" xml:lang="en_US"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:mml="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info xml:id='fossee_optimization_toolbox_manual'>
+    <title>FOSSEE_Optimization_Toolbox</title>
+  </info>
+
+<part xml:id='section_379a900a86286b53c9f3703637d04943'>
+<title>FOSSEE_Optimization_Toolbox</title>
+&a93b13c435ae21badb8111f7a0ae31649;
+&a1874f9bc4dbdf585519853a269621d5a;
+&aad5218c4e713f0da444dc70817620f84;
+&a7ef39bd3cf7f2e67a35a251f1fe42db4;
+&a9a76b183c31c9bb915cbfa98bcbe85cb;
+&afaab74af14b14bbbe4c174f9576a4bf9;
+&a91a4e40e7ff0d8b93237b13687e3f20d;
+&a7f0d2363adce2a1b1b17452f4f4b74bf;
+&a120e0818b5f4d1c82cb9bb21fe890ace;
+&a0640a5c7e7524d906aa2e8ed5fd064ee;
+&a4d818e4a423000f195bd51b109f19063;
+&a677ed027129d28f028115de5f547bc55;
+&a23aed8cab9b0a4dfc7fabe43b618c5e9;
+&ad3f99e441c736837f4c213fbc270dda2;
+&a0a6d1c2e24c71684286434ed1d830986;
+&aa3c78a371a8151d200b3a5ce53d639ce;
+&a8edc9857b22e9f6122798e0f47602df2;
+&a277bcc5c90cffd32d079c1ff55b0d0b7;
+&a66602090bfe9695176f6a9e702e3d904;
+</part>
+</book>

@@ -1,0 +1,15 @@
+prefix=/home/Navi/build
+#prefix=${pcfiledir}/../..
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include/coin-or
+
+Name: CGL
+Description: COIN-OR Cut Generation Library
+URL: https://github.com/coin-or/Clp
+Version: trunk
+Cflags: -I${includedir}
+Libs: -L${libdir} -lCgl
+Requires.private: osi-clp osi coinutils 
+#Libs: -L${libdir} -lCgl    
+#Requires: osi-clp osi coinutils 
