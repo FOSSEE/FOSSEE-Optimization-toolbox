@@ -5,7 +5,7 @@
 #include "CbcConfig.h"
 #include "ClpConfig.h"
 #include "OsiConfig.h"
-//#include "SymConfig.h"
+#include "SymConfig.h"
 #include "IpoptConfig.h"
 #include "BonminConfig.h"
 #include "stdio.h"
