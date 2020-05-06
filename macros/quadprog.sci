@@ -197,16 +197,16 @@ function [xopt,fopt,exitflag,output,lambda] = quadprog (varargin)
 	end
 
 	//Check type of variables
-	Checktype("quadprog", nbVar, "nbVar", 1, "constant")
-	Checktype("quadprog", nbCon, "nbCon", 2, "constant")
-	Checktype("quadprog", H, "H", 3, "constant")
-	Checktype("quadprog", f, "f", 4, "constant")
-	Checktype("quadprog", lb, "lb", 5, "constant")
-	Checktype("quadprog", ub, "lb", 6, "constant")
-	Checktype("quadprog", A, "A", 7, "constant")
-	Checktype("quadprog", conLB, "conlb", 8, "constant")
-	Checktype("quadprog", conUB, "conub", 9, "constant")
-	Checktype("quadprog", x0, "x0", 10, "constant")
+	fot_Checktype("quadprog", nbVar, "nbVar", 1, "constant")
+	fot_Checktype("quadprog", nbCon, "nbCon", 2, "constant")
+	fot_Checktype("quadprog", H, "H", 3, "constant")
+	fot_Checktype("quadprog", f, "f", 4, "constant")
+	fot_Checktype("quadprog", lb, "lb", 5, "constant")
+	fot_Checktype("quadprog", ub, "lb", 6, "constant")
+	fot_Checktype("quadprog", A, "A", 7, "constant")
+	fot_Checktype("quadprog", conLB, "conlb", 8, "constant")
+	fot_Checktype("quadprog", conUB, "conub", 9, "constant")
+	fot_Checktype("quadprog", x0, "x0", 10, "constant")
 
    options = list(..
       "MaxIter"     , [3000], ...

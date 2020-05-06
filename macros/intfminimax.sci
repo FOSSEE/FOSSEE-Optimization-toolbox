@@ -157,20 +157,20 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
 
     // Check number of input and output arguments
     [minmaxLhs,minmaxRhs] = argn()
-    Checkrhs("fminimax", minmaxRhs, [2 3 5 7 9 10 11])
-    Checklhs("fminimax", minmaxLhs, 1:7)
+    fot_Checkrhs("fminimax", minmaxRhs, [2 3 5 7 9 10 11])
+    fot_Checklhs("fminimax", minmaxLhs, 1:7)
 
     // Proper initialisation of objective function
     minmaxObjfun = varargin(1)
-    Checktype("fminimax", minmaxObjfun, "minmaxObjfun", 1, "function")
+    fot_Checktype("fminimax", minmaxObjfun, "minmaxObjfun", 1, "function")
 
     // Proper initialisation of starting point
     minmaxStartpoint = varargin(2)
-    Checktype("fminimax", minmaxStartpoint, "minmaxStartpoint", 2, "constant")
+    fot_Checktype("fminimax", minmaxStartpoint, "minmaxStartpoint", 2, "constant")
 
 
     minmaxNumvar = length(minmaxStartpoint)
-    Checkvector("fminimax", minmaxStartpoint, "minmaxStartpoint", 2, minmaxNumvar)
+    fot_Checkvector("fminimax", minmaxStartpoint, "minmaxStartpoint", 2, minmaxNumvar)
     minmaxStartpoint = minmaxStartpoint(:)
 
     if(minmaxRhs < 3) then // if A and b are not provided, declare as empty
@@ -188,8 +188,8 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
         minmaxB = varargin(5)
     end
 
-    Checktype("fminimax", minmaxA, "A", 4, "constant")
-    Checktype("fminimax", minmaxB, "b", 5, "constant")
+    fot_Checktype("fminimax", minmaxA, "A", 4, "constant")
+    fot_Checktype("fminimax", minmaxB, "b", 5, "constant")
 
     // Check if A and b of proper dimensions
     if(minmaxA <> [] & minmaxB == []) then
@@ -204,8 +204,8 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
 
     minmaxNumrowA = size(minmaxA,"r")
     if(minmaxA <> []) then
-        Checkdims("fminimax", minmaxA, "A", 4, [minmaxNumrowA minmaxNumvar])
-        Checkvector("fminimax", minmaxB, "b", 5, minmaxNumrowA)
+        fot_Checkdims("fminimax", minmaxA, "A", 4, [minmaxNumrowA minmaxNumvar])
+        fot_Checkvector("fminimax", minmaxB, "b", 5, minmaxNumrowA)
         minmaxB = minmaxB(:)
     end
 
@@ -218,8 +218,8 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
         minmaxBeq = varargin(7)
     end
 
-    Checktype("fminimax", minmaxAeq, "Aeq", 6, "constant")
-    Checktype("fminimax", minmaxBeq, "beq", 7, "constant")
+    fot_Checktype("fminimax", minmaxAeq, "Aeq", 6, "constant")
+    fot_Checktype("fminimax", minmaxBeq, "beq", 7, "constant")
 
     // Check if Aeq and beq of proper dimensions
     if(minmaxAeq <> [] & minmaxBeq == []) then
@@ -234,8 +234,8 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
 
     minmaxNumrowAeq = size(minmaxAeq,"r")
     if(minmaxAeq <> []) then
-        Checkdims("fminimax", minmaxAeq, "Aeq", 6, [minmaxNumrowAeq minmaxNumvar])
-        Checkvector("fminimax", minmaxBeq, "beq", 7, minmaxNumrowAeq)
+        fot_Checkdims("fminimax", minmaxAeq, "Aeq", 6, [minmaxNumrowAeq minmaxNumvar])
+        fot_Checkvector("fminimax", minmaxBeq, "beq", 7, minmaxNumrowAeq)
         minmaxBeq = minmaxBeq(:)
     end
 
@@ -248,17 +248,17 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
         minmaxUb = varargin(9)
     end
 
-    Checktype("fminimax", minmaxLb, "lb", 8, "constant")
-    Checktype("fminimax", minmaxUb, "ub", 9, "constant")
+    fot_Checktype("fminimax", minmaxLb, "lb", 8, "constant")
+    fot_Checktype("fminimax", minmaxUb, "ub", 9, "constant")
 
     // Check dimensions of minmaxLb and minmaxUb
     if(minmaxLb <> []) then
-        Checkvector("fminimax", minmaxLb, "lb", 8, minmaxNumvar)
+        fot_Checkvector("fminimax", minmaxLb, "lb", 8, minmaxNumvar)
         minmaxLb = minmaxLb(:)
     end
 
     if(minmaxUb <> []) then
-        Checkvector("fminimax", minmaxUb, "ub", 9, minmaxNumvar)
+        fot_Checkvector("fminimax", minmaxUb, "ub", 9, minmaxNumvar)
         minmaxUb = minmaxUb(:)
     end
 
@@ -269,7 +269,7 @@ function [x,fval,maxfval,exitflag] = intfminimax(varargin)
         minmaxNonlinfun = varargin(10)
     end
 	if(minmaxNonlinfun<>[]) then
-	    Checktype("fminimax", minmaxNonlinfun, "nonlinfun", 10, "function")
+	    fot_Checktype("fminimax", minmaxNonlinfun, "nonlinfun", 10, "function")
 	end
 
     //To check, Whether minimaxOptions is been entered by user
@@ -328,22 +328,22 @@ minmaxoptions = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',1d
   for i = 1:(size(minmaxUserOptions))/2
     select convstr(minmaxUserOptions(2*i-1),'l')
       case 'integertolerance' then
-        Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "constant");
+        fot_Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "constant");
         minmaxoptions(2) = minmaxUserOptions(2*i);
       case 'maxnodes' then
-        Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "constant");
+        fot_Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "constant");
         minmaxoptions(4) = minmaxUserOptions(2*i);
       case 'cputime' then 
-        Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "constant");
+        fot_Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "constant");
         minmaxoptions(6) = minmaxUserOptions(2*i);
       case 'allowablegap' then
-        Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "constant");
+        fot_Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "constant");
         minmaxoptions(8) = minmaxUserOptions(2*i);
       case 'maxiter' then
-        Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "constant");
+        fot_Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "constant");
         minmaxoptions(10) = minmaxUserOptions(2*i);
       case 'gradobj' then
-        Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "string");
+        fot_Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "string");
         if(convstr(minmaxUserOptions(2*i),'l') == "on") then
           minmaxoptions(12) = "on"
         elseif(convstr(minmaxUserOptions(2*i),'l') == "off") then
@@ -352,7 +352,7 @@ minmaxoptions = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',1d
           error(999, 'Unknown string passed in gradobj.');
         end
       case 'gradcon' then
-        Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "string");
+        fot_Checktype("intfminimax_options", minmaxUserOptions(2*i), minmaxUserOptions(2*i-1), 2*i, "string");
         if(convstr(minmaxUserOptions(2*i),'l') == "on") then
           minmaxoptions(14) = "on"
         elseif(convstr(minmaxUserOptions(2*i),'l') == "off") then

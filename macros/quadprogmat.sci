@@ -212,16 +212,16 @@ function [xopt,fopt,exitflag,output,lambda] = quadprogmat (varargin)
 	end
 
 	//Check type of variables
-	Checktype("quadprogmat", H, "H", 1, "constant")
-	Checktype("quadprogmat", f, "f", 2, "constant")
-	Checktype("quadprogmat", A, "A", 3, "constant")
-	Checktype("quadprogmat", b, "b", 4, "constant")
-	Checktype("quadprogmat", Aeq, "Aeq", 5, "constant")
-	Checktype("quadprogmat", beq, "beq", 6, "constant")
-	Checktype("quadprogmat", lb, "lb", 7, "constant")
-	Checktype("quadprogmat", ub, "ub", 8, "constant")
-	Checktype("quadprogmat", x0, "x0", 9, "constant")
-	Checktype("quadprogmat", param, "param", 10, "list")
+	fot_Checktype("quadprogmat", H, "H", 1, "constant")
+	fot_Checktype("quadprogmat", f, "f", 2, "constant")
+	fot_Checktype("quadprogmat", A, "A", 3, "constant")
+	fot_Checktype("quadprogmat", b, "b", 4, "constant")
+	fot_Checktype("quadprogmat", Aeq, "Aeq", 5, "constant")
+	fot_Checktype("quadprogmat", beq, "beq", 6, "constant")
+	fot_Checktype("quadprogmat", lb, "lb", 7, "constant")
+	fot_Checktype("quadprogmat", ub, "ub", 8, "constant")
+	fot_Checktype("quadprogmat", x0, "x0", 9, "constant")
+	fot_Checktype("quadprogmat", param, "param", 10, "list")
 
 	options = list("MaxIter"     , [3000], ...
 				  "CpuTime"   , [600]);

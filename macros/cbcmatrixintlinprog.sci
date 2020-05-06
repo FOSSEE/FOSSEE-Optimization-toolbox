@@ -71,14 +71,14 @@ function [xopt,fopt,status,output] = cbcmatrixintlinprog (varargin)
    end
 
     //Check type of variables
-    Checktype("cbcintlinprog", c, "c", 1, "constant")
-    Checktype("cbcintlinprog", intcon, "intcon", 2, "constant")
-    Checktype("cbcintlinprog", A, "A", 3, "constant")
-    Checktype("cbcintlinprog", b, "b", 4, "constant")
-    Checktype("cbcintlinprog", Aeq, "Aeq", 5, "constant")
-    Checktype("cbcintlinprog", beq, "beq", 6, "constant")
-    Checktype("cbcintlinprog", lb, "lb", 7, "constant")
-    Checktype("cbcintlinprog", ub, "ub", 8, "constant")
+    fot_Checktype("cbcintlinprog", c, "c", 1, "constant")
+    fot_Checktype("cbcintlinprog", intcon, "intcon", 2, "constant")
+    fot_Checktype("cbcintlinprog", A, "A", 3, "constant")
+    fot_Checktype("cbcintlinprog", b, "b", 4, "constant")
+    fot_Checktype("cbcintlinprog", Aeq, "Aeq", 5, "constant")
+    fot_Checktype("cbcintlinprog", beq, "beq", 6, "constant")
+    fot_Checktype("cbcintlinprog", lb, "lb", 7, "constant")
+    fot_Checktype("cbcintlinprog", ub, "ub", 8, "constant")
 
     // Check if the user gives empty matrix
     if (size(lb,2)==0) then

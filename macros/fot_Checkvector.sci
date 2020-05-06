@@ -2,7 +2,7 @@
 //
 // This file must be used under the terms of the GNU LGPL license.
 
-function errmsg = Checkvector ( funname , var , varname , ivar , nbval )
+function errmsg = fot_Checkvector ( funname , var , varname , ivar , nbval )
   // Generates an error if the variable is not a vector.
   //
   // Calling Sequence

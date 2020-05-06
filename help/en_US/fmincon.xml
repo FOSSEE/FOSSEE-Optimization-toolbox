@@ -24,18 +24,21 @@
 <refsynopsisdiv>
    <title>Calling Sequence</title>
    <synopsis>
-   xopt = fmincon(f,x0,A,b)
-   xopt = fmincon(f,x0,A,b,Aeq,beq)
-   xopt = fmincon(f,x0,A,b,Aeq,beq,lb,ub)
-   xopt = fmincon(f,x0,A,b,Aeq,beq,lb,ub,nlc)
-   xopt = fmincon(f,x0,A,b,Aeq,beq,lb,ub,nlc,options)
-   [xopt,fopt] = fmincon(.....)
-   [xopt,fopt,exitflag]= fmincon(.....)
-   [xopt,fopt,exitflag,output]= fmincon(.....)
-   [xopt,fopt,exitflag,output,lambda]=fmincon(.....)
-   [xopt,fopt,exitflag,output,lambda,gradient]=fmincon(.....)
-   [xopt,fopt,exitflag,output,lambda,gradient,hessian]=fmincon(.....)
-   
+     xopt = fmincon(f,x0,A,b)
+     xopt = fmincon(f,x0,A,b,options)
+     xopt = fmincon(f,x0,A,b,Aeq,beq)
+     xopt = fmincon(f,x0,A,b,Aeq,beq,options)
+     xopt = fmincon(f,x0,A,b,Aeq,beq,lb,ub)
+     xopt = fmincon(f,x0,A,b,Aeq,beq,lb,ub,options)
+     xopt = fmincon(f,x0,A,b,Aeq,beq,lb,ub,nlc)
+     xopt = fmincon(f,x0,A,b,Aeq,beq,lb,ub,nlc,options)
+     [xopt,fopt] = fmincon(.....)
+     [xopt,fopt,exitflag]= fmincon(.....)
+     [xopt,fopt,exitflag,output]= fmincon(.....)
+     [xopt,fopt,exitflag,output,lambda]=fmincon(.....)
+     [xopt,fopt,exitflag,output,lambda,gradient]=fmincon(.....)
+     [xopt,fopt,exitflag,output,lambda,gradient,hessian]=fmincon(.....)
+
    </synopsis>
 </refsynopsisdiv>
 
@@ -61,14 +64,14 @@
    <varlistentry><term>nlc :</term>
       <listitem><para> A function, representing the nonlinear Constraints functions(both Equality and Inequality) of the problem. It is declared in such a way that nonlinear inequality constraints (c), and the nonlinear equality constraints (ceq) are defined as separate single row vectors.</para></listitem></varlistentry>
    <varlistentry><term>options :</term>
-      <listitem><para> A list, containing the option for user to specify. See below for details.</para></listitem></varlistentry>
+      <listitem><para> A struct, containing the option for user to specify. See below for details.</para></listitem></varlistentry>
  </variablelist>
 </refsection>
 <refsection>
 <title> Outputs</title>
  <variablelist>
    <varlistentry><term>xopt :</term>
-      <listitem><para> A vector of doubles, containing the computed solution of the optimization problem.</para></listitem></varlistentry>
+      <listitem><para> A vector of doubles, containing the computed solution of the optimization problem of size similar to x0.</para></listitem></varlistentry>
    <varlistentry><term>fopt :</term>
       <listitem><para> A double, containing the value of the function at x.</para></listitem></varlistentry>
    <varlistentry><term>exitflag :</term>
@@ -113,10 +116,10 @@ fmincon calls Ipopt, an optimization library written in C++, to solve the Constr
 The options allow the user to set various parameters of the Optimization problem. The syntax for the options is given by:
    </para>
    <para>
-options= list("MaxIter", [---], "CpuTime", [---], "GradObj", ---, "Hessian", ---, "GradCon", ---);
+options= struct("MaxIter", [---], "CpuTime", [---], "GradObj", ---, "Hessian", ---, "GradCon", ---);
    </para>
    <para>
-The options should be defined as type "list" and consist of the following fields:
+The options should be defined as type "struct" and consist of the following fields:
 <itemizedlist>
 <listitem>MaxIter : A Scalar, specifying the maximum number of iterations that the solver should take.</listitem>
 <listitem>CpuTime : A Scalar, specifying the maximum amount of CPU time in seconds that the solver should take.</listitem>
@@ -127,7 +130,7 @@ The options should be defined as type "list" and consist of the following fields
 The default values for the various items are given as:
    </para>
    <para>
-options = list("MaxIter", [3000], "CpuTime", [600]);
+options = struct("MaxIter", [3000], "CpuTime", [600]);
    </para>
    <para>
 The exitflag allows the user to know the status of the optimization which is returned by Ipopt. The values it can take and what they indicate is described below:
@@ -384,7 +387,7 @@ cg=[2*x(1) , -2*x(2) , 2*x(3) ; 2*x(1) , 2*x(2) , 2*x(3)];
 ceqg=[];
 endfunction
 //Options
-options=list("MaxIter", [1500], "CpuTime", [500], "GradObj", fGrad, "Hessian", lHess,"GradCon", cGrad);
+options=struct("MaxIter", [1500], "CpuTime", [500], "GradObj", fGrad, "Hessian", lHess,"GradCon", cGrad);
 //Calling Ipopt
 [x,fval,exitflag,output] =fmincon(f, x0,A,b,Aeq,beq,lb,ub,nlc,options)
 //Press ENTER to continue

@@ -190,11 +190,11 @@ function [xopt,resnorm,residual,exitflag,output,lambda,gradient] = lsqnonlin (va
 	end
 
 	//Check type of variables
-	Checktype("lsqnonlin", _fun, "fun", 1, "function")
-	Checktype("lsqnonlin", x0, "x0", 2, "constant")
-	Checktype("lsqnonlin", lb, "lb", 3, "constant")
-	Checktype("lsqnonlin", ub, "ub", 4, "constant")
-	Checktype("lsqnonlin", param, "param", 5, "list")
+	fot_Checktype("lsqnonlin", _fun, "fun", 1, "function")
+	fot_Checktype("lsqnonlin", x0, "x0", 2, "constant")
+	fot_Checktype("lsqnonlin", lb, "lb", 3, "constant")
+	fot_Checktype("lsqnonlin", ub, "ub", 4, "constant")
+	fot_Checktype("lsqnonlin", param, "param", 5, "list")
 
 	if (modulo(size(param),2)) then
 		errmsg = msprintf(gettext("%s: Size of parameters should be even"), "lsqnonlin");
@@ -210,10 +210,10 @@ function [xopt,resnorm,residual,exitflag,output,lambda,gradient] = lsqnonlin (va
 		select convstr(param(2*i-1),'l')
 			case "maxiter" then
 				options(2) = param(2*i);
-				Checktype("lsqcurvefit", param(2*i), "maxiter", i, "constant")
+				fot_Checktype("lsqcurvefit", param(2*i), "maxiter", i, "constant")
 			case "cputime" then
 				options(4) = param(2*i);
-				Checktype("lsqcurvefit", param(2*i), "cputime", i, "constant")
+				fot_Checktype("lsqcurvefit", param(2*i), "cputime", i, "constant")
         	case "gradobj" then
         		if (convstr(param(2*i))=="on") then
     				options(6) = "on";

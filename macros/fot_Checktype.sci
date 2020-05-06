@@ -2,7 +2,7 @@
 //
 // This file must be used under the terms of the GNU LGPL license.
 
-function errmsg = Checktype ( funname , var , varname , ivar , expectedtype )
+function errmsg = fot_Checktype ( funname , var , varname , ivar , expectedtype )
   // Generates an error if the given variable is not of expected type.
   //
   // Calling Sequence

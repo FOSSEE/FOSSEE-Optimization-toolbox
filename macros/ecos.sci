@@ -162,7 +162,7 @@ function [x,y,s,z,info,status] = ecos(varargin)
  		param = varargin(7);
  	end
 
- 	Checktype("ecos", c, "c", 1, "constant");
+ 	fot_Checktype("ecos", c, "c", 1, "constant");
 
   // Error check for objective matrix(c)
   if (size(c,1)~=1) then
@@ -176,8 +176,8 @@ function [x,y,s,z,info,status] = ecos(varargin)
  	s=size(c,2);
 
 
- 	Checktype("ecos", G, "G", 2, "constant");
- 	Checktype("ecos", h, "h", 3, "constant");
+ 	fot_Checktype("ecos", G, "G", 2, "constant");
+ 	fot_Checktype("ecos", h, "h", 3, "constant");
 
   [m,n]=size(G);
 
@@ -191,7 +191,7 @@ function [x,y,s,z,info,status] = ecos(varargin)
   [Gjc,Gir,Gpr] = sp2adj(sparse(G));
 
   // Extracting values and Error checks for dims
- 	Checktype("ecos", dims, "dims", 4, "list");
+ 	fot_Checktype("ecos", dims, "dims", 4, "list");
 
  	if (isempty(dims) | modulo(size(dims),2)) then
  		errmsg = msprintf(gettext("%s: dims cannot be empty and should be list of even size"), "ecos");
@@ -201,7 +201,7 @@ function [x,y,s,z,info,status] = ecos(varargin)
 	for i = 1:(size(dims))/2
     select convstr(dims(2*i-1),'l')
       case "l" then
-        Checktype("ecos", dims(2*i), "l", 4, "constant");
+        fot_Checktype("ecos", dims(2*i), "l", 4, "constant");
         if (isempty(dims(2*i))) then
         	l=0;
         elseif (dims(2*i)<0 | modulo(dims(2*i),1)) then
@@ -215,7 +215,7 @@ function [x,y,s,z,info,status] = ecos(varargin)
           // end
         end
       case "q" then
-        Checktype("ecos", dims(2*i), "q", 4, "constant");
+        fot_Checktype("ecos", dims(2*i), "q", 4, "constant");
         if (isempty(dims(2*i))) then
         	q=[];
         elseif (dims(2*i)<0 | modulo(dims(2*i),1)) then
@@ -225,7 +225,7 @@ function [x,y,s,z,info,status] = ecos(varargin)
         	q=dims(2*i);
         end
        case "e" then
-        Checktype("ecos", dims(2*i), "e", 4, "constant");
+        fot_Checktype("ecos", dims(2*i), "e", 4, "constant");
         if (isempty(dims(2*i))) then
         	e=0;
         elseif (dims(2*i)<0 | modulo(dims(2*i),1)) then
@@ -251,8 +251,8 @@ function [x,y,s,z,info,status] = ecos(varargin)
   end
 
 	if (size(A,1)~=0) then
-		Checktype("ecos", A, "A", 5, "constant");
-    Checktype("ecos", b, "b", 6, "constant");
+		fot_Checktype("ecos", A, "A", 5, "constant");
+    fot_Checktype("ecos", b, "b", 6, "constant");
 
     [A,b,s2]=linconcheck(A,b,["A","b"]);
     [Ajc,Air,Apr] = sp2adj(sparse(A));
@@ -277,7 +277,7 @@ function [x,y,s,z,info,status] = ecos(varargin)
   end
 
   //  Extracting values and Error checks for options(param)
- 	Checktype("ecos", param, "param", 1, "list");
+ 	fot_Checktype("ecos", param, "param", 1, "list");
  	if (modulo(size(param),2)) then
     	errmsg = msprintf(gettext("%s: Size of Options (list) should be even"), "ecos");
     	error(errmsg);

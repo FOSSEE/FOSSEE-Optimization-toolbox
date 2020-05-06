@@ -2,7 +2,7 @@
 //
 // This file must be used under the terms of the GNU LGPL license.
 
-function errmsg = Checkrhs ( funname , rhs , rhsset )
+function errmsg = fot_Checkrhs ( funname , rhs , rhsset )
   // Generates an error if the number of RHS is not in given set.
   //
   // Calling Sequence

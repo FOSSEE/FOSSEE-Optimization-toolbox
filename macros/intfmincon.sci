@@ -262,17 +262,17 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfmincon (varargin)
   end
 
   //To check whether the Input arguments
-  Checktype("intfmincon", fun, "fun", 1, "function");
-  Checktype("intfmincon", x0, "x0", 2, "constant");
-  Checktype("intfmincon", intcon, "intcon", 3, "constant");
-  Checktype("intfmincon", A, "A", 4, "constant");
-  Checktype("intfmincon", b, "b", 5, "constant");
-  Checktype("intfmincon", Aeq, "Aeq", 6, "constant");
-  Checktype("intfmincon", beq, "beq", 7, "constant");
-  Checktype("intfmincon", lb, "lb", 8, "constant");
-  Checktype("intfmincon", ub, "ub", 9, "constant");
-  Checktype("intfmincon", nlc, "nlc", 10, ["constant","function"]);
-  Checktype("intfmincon", param, "options", 11, "list");  
+  fot_Checktype("intfmincon", fun, "fun", 1, "function");
+  fot_Checktype("intfmincon", x0, "x0", 2, "constant");
+  fot_Checktype("intfmincon", intcon, "intcon", 3, "constant");
+  fot_Checktype("intfmincon", A, "A", 4, "constant");
+  fot_Checktype("intfmincon", b, "b", 5, "constant");
+  fot_Checktype("intfmincon", Aeq, "Aeq", 6, "constant");
+  fot_Checktype("intfmincon", beq, "beq", 7, "constant");
+  fot_Checktype("intfmincon", lb, "lb", 8, "constant");
+  fot_Checktype("intfmincon", ub, "ub", 9, "constant");
+  fot_Checktype("intfmincon", nlc, "nlc", 10, ["constant","function"]);
+  fot_Checktype("intfmincon", param, "options", 11, "list");  
 
 
   nbVar = size(x0,"*");
@@ -307,24 +307,24 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfmincon (varargin)
 
   ///////////////// To check vectors ///////////////// 
 
-  Checkvector("intfmincon", x0, "x0", 2, nbVar);
+  fot_Checkvector("intfmincon", x0, "x0", 2, nbVar);
   x0 = x0(:);
   if(size(intcon,"*")) then
-    Checkvector("intfmincon", intcon, "intcon", 3, size(intcon,"*"))
+    fot_Checkvector("intfmincon", intcon, "intcon", 3, size(intcon,"*"))
     intcon = intcon(:);
   end
   if(nbConInEq) then
-    Checkvector("intfmincon", b, "b", 5, nbConInEq);
+    fot_Checkvector("intfmincon", b, "b", 5, nbConInEq);
     b = b(:);
   end
   if(nbConEq) then
-    Checkvector("intfmincon", beq, "beq", 7, nbConEq);
+    fot_Checkvector("intfmincon", beq, "beq", 7, nbConEq);
     beq = beq(:);
   end
-  Checkvector("intfmincon", lb, "lb", 8, nbVar);
+  fot_Checkvector("intfmincon", lb, "lb", 8, nbVar);
   lb = lb(:);
   
-  Checkvector("intfmincon", ub, "ub", 9, nbVar);
+  fot_Checkvector("intfmincon", ub, "ub", 9, nbVar);
   ub = ub(:);
 
   /////////////// To check integer //////////////////////
@@ -352,22 +352,22 @@ options = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',10000000
   for i = 1:(size(param))/2
     select convstr(param(2*i-1),'l')
       case 'integertolerance' then
-        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
+        fot_Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(2) = param(2*i);
       case 'maxnodes' then
-        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
+        fot_Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(4) = options(2*i);
       case 'cputime' then 
-        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
+        fot_Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(6) = options(2*i);
       case 'allowablegap' then
-        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
+        fot_Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(8) = options(2*i);
       case 'maxiter' then
-        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
+        fot_Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(10) = options(2*i);
       case 'gradobj' then
-        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "string");
+        fot_Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "string");
         if(convstr(param(2*i),'l') == "on") then
           options(12) = "on"
         elseif(convstr(param(2*i),'l') == "off") then
@@ -376,10 +376,10 @@ options = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',10000000
           error(999, 'Unknown string passed in gradobj.');
         end
       case 'hessian' then
-        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "function");
+        fot_Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "function");
         options(14) = param(2*i);
       case 'gradcon' then
-        Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "string");
+        fot_Checktype("intfmincon_options", param(2*i), param(2*i-1), 2*i, "string");
         if(convstr(param(2*i),'l') == "on") then
           options(16) = "on"
         elseif(convstr(param(2*i),'l') == "off") then
@@ -406,7 +406,7 @@ options = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',10000000
         error(errmsg);
       end
 	if(grad_dy<>[]) then
-      Checkvector("intfmincon_options", grad_dy, "dy", 12, nbVar);
+      fot_Checkvector("intfmincon_options", grad_dy, "dy", 12, nbVar);
 	end
   end
 

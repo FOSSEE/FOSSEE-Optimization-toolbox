@@ -124,8 +124,8 @@ function [xopt,resnorm,residual,exitflag,output,lambda] = lsqnonneg (varargin)
 	end
 
 	//Check type of variables
-	Checktype("lsqnonneg", C, "C", 1, "constant")
-	Checktype("lsqnonneg", d, "d", 2, "constant")
+	fot_Checktype("lsqnonneg", C, "C", 1, "constant")
+	fot_Checktype("lsqnonneg", d, "d", 2, "constant")
 
 	if (modulo(size(param),2)) then
 		errmsg = msprintf(gettext("%s: Size of parameters should be even"), "lsqnonneg");

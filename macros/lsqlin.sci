@@ -207,15 +207,15 @@ function [xopt,resnorm,residual,exitflag,output,lambda] = lsqlin (varargin)
 	end
 
 	//Check type of variables
-	Checktype("lsqlin", C, "C", 1, "constant")
-	Checktype("lsqlin", d, "d", 2, "constant")
-	Checktype("lsqlin", A, "A", 3, "constant")
-	Checktype("lsqlin", b, "b", 4, "constant")
-	Checktype("lsqlin", Aeq, "Aeq", 5, "constant")
-	Checktype("lsqlin", beq, "beq", 6, "constant")
-	Checktype("lsqlin", lb, "lb", 7, "constant")
-	Checktype("lsqlin", ub, "ub", 8, "constant")
-	Checktype("lsqlin", x0, "x0", 9, "constant")
+	fot_Checktype("lsqlin", C, "C", 1, "constant")
+	fot_Checktype("lsqlin", d, "d", 2, "constant")
+	fot_Checktype("lsqlin", A, "A", 3, "constant")
+	fot_Checktype("lsqlin", b, "b", 4, "constant")
+	fot_Checktype("lsqlin", Aeq, "Aeq", 5, "constant")
+	fot_Checktype("lsqlin", beq, "beq", 6, "constant")
+	fot_Checktype("lsqlin", lb, "lb", 7, "constant")
+	fot_Checktype("lsqlin", ub, "ub", 8, "constant")
+	fot_Checktype("lsqlin", x0, "x0", 9, "constant")
 
 	if (modulo(size(param),2)) then
 		errmsg = msprintf(gettext("%s: Size of parameters should be even"), "lsqlin");

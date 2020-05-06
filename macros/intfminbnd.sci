@@ -150,11 +150,11 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfminbnd (varargin)
   end
 
   //To check whether the Input arguments
-  Checktype("intfminbnd", fun, "fun", 1, "function");
-  Checktype("intfminbnd", intcon, "intcon", 2, "constant");
-  Checktype("intfminbnd", x1, "x1", 3, "constant");
-  Checktype("intfminbnd", x2, "x2", 4, "constant");
-  Checktype("intfminbnd", param, "options", 5, "list");  
+  fot_Checktype("intfminbnd", fun, "fun", 1, "function");
+  fot_Checktype("intfminbnd", intcon, "intcon", 2, "constant");
+  fot_Checktype("intfminbnd", x1, "x1", 3, "constant");
+  fot_Checktype("intfminbnd", x2, "x2", 4, "constant");
+  fot_Checktype("intfminbnd", param, "options", 5, "list");  
 
 
   if(nbvar==0) then
@@ -163,11 +163,11 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfminbnd (varargin)
   end
 
   ///////////////// To check vectors ///////////////// 
-  Checkvector("intfminbnd", x1, "x1", 3, nbvar)
+  fot_Checkvector("intfminbnd", x1, "x1", 3, nbvar)
   x1 = x1(:);
-  Checkvector("intfminbnd", x2, "x2", 4, nbvar)
+  fot_Checkvector("intfminbnd", x2, "x2", 4, nbvar)
   x2 = x2(:);
-  Checkvector("intfminbnd", intcon, "intcon", 2, size(intcon,"*"))
+  fot_Checkvector("intfminbnd", intcon, "intcon", 2, size(intcon,"*"))
   intcon = intcon(:);
 
   if(~isequal(size(x1),size(x2))) then
@@ -199,22 +199,22 @@ options = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',1d10,'al
   for i = 1:(size(param))/2
     select convstr(param(2*i-1),'l')
       case 'integertolerance' then
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
+        fot_Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(2) = param(2*i);
       case 'maxnodes' then
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
+        fot_Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(4) = options(2*i);
       case 'cputime' then 
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
+        fot_Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(6) = options(2*i);
       case 'allowablegap' then
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
+        fot_Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(8) = options(2*i);
       case 'maxiter' then
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
+        fot_Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "constant");
         options(10) = options(2*i);
       case 'gradobj' then
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "string");
+        fot_Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "string");
         if(convstr(options(2*i),'l') == "on") then
           options(12) = "on"
         elseif(convstr(options(2*i),'l') == "off") then
@@ -223,7 +223,7 @@ options = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',1d10,'al
           error(999, 'Unknown string passed in gradobj.');
         end
       case 'hessian' then
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "string");
+        fot_Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "string");
         if(convstr(options(2*i),'l') == "on") then
           options(14) = "on";
         elseif(convstr(options(2*i),'l') == "off") then
@@ -249,7 +249,7 @@ options = list('integertolerance',1d-06,'maxnodes',2147483647,'cputime',1d10,'al
         errmsg = msprintf(gettext("%s: Gradient of objective function is not provided"), "intfminbnd");
         error(errmsg);
       end
-      Checkvector("intfminbnd_options", grad_dy, "dy", 12, nbvar);
+      fot_Checkvector("intfminbnd_options", grad_dy, "dy", 12, nbvar);
   end
 
   if(options(14) == "on") then

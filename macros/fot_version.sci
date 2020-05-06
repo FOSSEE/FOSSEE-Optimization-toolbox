@@ -20,5 +20,5 @@ function fot_version()
 	// Prajwal Nayak (Manipal Institute of Technology, Manipal)
 
 
-    fotversion()
+    get_fotversion()
 endfunction

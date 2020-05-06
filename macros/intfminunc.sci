@@ -143,15 +143,15 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfminunc (varargin)
   nbvar = size(x0,"*");
 
   ///////////////// To check whether the Input arguments /////////////////
-  Checktype("intfminunc", fun, "fun", 1, "function");
-  Checktype("intfminunc", x0, "x0", 2, "constant");
-  Checktype("intfminunc", intcon, "intcon", 3, "constant");
-  Checktype("intfminunc", param, "options", 4, "list");  
+  fot_Checktype("intfminunc", fun, "fun", 1, "function");
+  fot_Checktype("intfminunc", x0, "x0", 2, "constant");
+  fot_Checktype("intfminunc", intcon, "intcon", 3, "constant");
+  fot_Checktype("intfminunc", param, "options", 4, "list");  
   
   ///////////////// To check x0 ///////////////// 
-  Checkvector("intfminunc", x0, "x0", 2, nbvar)
+  fot_Checkvector("intfminunc", x0, "x0", 2, nbvar)
   x0 = x0(:);
-  Checkvector("intfminbnd", intcon, "intcon", 3, size(intcon,"*"))
+  fot_Checkvector("intfminbnd", intcon, "intcon", 3, size(intcon,"*"))
   intcon = intcon(:);
 
   //Error Checks for intcon 
@@ -223,7 +223,7 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfminunc (varargin)
 			options(10) = param(2*i);    //Setting the max. no. of iterations as per user entry
 		end
       case 'gradobj' then
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "string");
+        fot_Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "string");
         if(convstr(param(2*i),'l') == "on") then
           options(12) = "on"
         elseif(convstr(param(2*i),'l') == "off") then
@@ -232,7 +232,7 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfminunc (varargin)
           error(999, 'Unknown string passed in gradobj.');
         end
       case 'hessian' then
-        Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "string");
+        fot_Checktype("intfminbnd_options", param(2*i), param(2*i-1), 2*i, "string");
         if(convstr(param(2*i),'l') == "on") then
           options(14) = "on";
         elseif(convstr(param(2*i),'l') == "off") then
@@ -260,7 +260,7 @@ function [xopt,fopt,exitflag,gradient,hessian] = intfminunc (varargin)
         error(errmsg);
       end
 
-      Checkvector("intfminunc_options", grad_dy, "dy", 12, nbvar);
+      fot_Checkvector("intfminunc_options", grad_dy, "dy", 12, nbvar);
   end
 
   if(options(14) == "on") then

@@ -40,7 +40,7 @@ function [xopt,fopt,exitflag,output,lambda] =mps_linprog(varargin)
    end
 
 	//Check type of variables
-	Checktype("linprog", mpsFile, "mpsFile", 1, "string")
+	fot_Checktype("linprog", mpsFile, "mpsFile", 1, "string")
 
    if (modulo(size(param),2)) then
    errmsg = msprintf(gettext("%s: Size of parameters should be even"), "linprog");

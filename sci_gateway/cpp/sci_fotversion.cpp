@@ -19,7 +19,7 @@ extern "C" {
 #include "sciprint.h"
 #include <Scierror.h>
 
-const char fname[] = "fotversion";
+const char fname[] = "get_fotversion";
 /* ==================================================================== */
 int sci_fotversion(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out) 
 {

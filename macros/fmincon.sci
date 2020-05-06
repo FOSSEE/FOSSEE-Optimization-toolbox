@@ -14,8 +14,11 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
   	//
   	//   Calling Sequence
   	//   xopt = fmincon(f,x0,A,b)
+  	//   xopt = fmincon(f,x0,A,b,options)
   	//   xopt = fmincon(f,x0,A,b,Aeq,beq)
+  	//   xopt = fmincon(f,x0,A,b,Aeq,beq,options)
   	//   xopt = fmincon(f,x0,A,b,Aeq,beq,lb,ub)
+  	//   xopt = fmincon(f,x0,A,b,Aeq,beq,lb,ub,options)
   	//   xopt = fmincon(f,x0,A,b,Aeq,beq,lb,ub,nlc)
   	//   xopt = fmincon(f,x0,A,b,Aeq,beq,lb,ub,nlc,options)
   	//   [xopt,fopt] = fmincon(.....)
@@ -35,8 +38,8 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
   	//   lb : a vector of doubles, containing the lower bounds of the variables of size (1 X n) or (n X 1) where 'n' is the number of Variables
   	//   ub : a vector of doubles, containing the upper bounds of the variables of size (1 X n) or (n X 1) where 'n' is the number of Variables
   	//   nlc : a function, representing the Non-linear Constraints functions(both Equality and Inequality) of the problem. It is declared in such a way that non-linear inequality constraints are defined first as a single row vector (c), followed by non-linear equality constraints as another single row vector (ceq). Refer Example for definition of Constraint function.
-  	//   options : a list, containing the option for user to specify. See below for details. 
-  	//   xopt : a vector of doubles, cointating the computed solution of the optimization problem
+  	//   options : a struct, containing the option for user to specify. See below for details. 
+  	//   xopt : a vector of doubles, cointating the computed solution of the optimization problem of size similar to x0.
   	//   fopt : a scalar of double, containing the the function value at x
   	//   exitflag : a scalar of integer, containing the flag which denotes the reason for termination of algorithm. See below for details.
   	//   output : a structure, containing the information about the optimization. See below for details.
@@ -63,9 +66,9 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
   	//   The routine calls Ipopt for solving the Constrained Optimization problem, Ipopt is a library written in C++.
   	//
   	// The options allows the user to set various parameters of the Optimization problem. 
-  	// It should be defined as type "list" and contains the following fields.
+  	// It should be defined as type "struct" and contains the following fields.
 	// <itemizedlist>
-	//   <listitem>Syntax : options= list("MaxIter", [---], "CpuTime", [---], "GradObj", ---, "Hessian", ---, "GradCon", ---);</listitem>
+	//   <listitem>Syntax : options= struct("MaxIter", [---], "CpuTime", [---], "GradObj", ---, "Hessian", ---, "GradCon", ---);</listitem>
 	//   <listitem>MaxIter : a Scalar, containing the Maximum Number of Iteration that the solver should take.</listitem>
 	//   <listitem>CpuTime : a Scalar, containing the Maximum amount of CPU Time that the solver should take.</listitem>
 	//   <listitem>GradObj : a function, representing the gradient function of the Objective in Vector Form.</listitem>
@@ -183,7 +186,7 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
   	//		ceqg=[];
   	//	endfunction
   	//	//Options  
-  	//	options=list("MaxIter", [1500], "CpuTime", [500], "GradObj", fGrad, "Hessian", lHess,"GradCon", cGrad);
+  	//	options=struct("MaxIter", [1500], "CpuTime", [500], "GradObj", fGrad, "Hessian", lHess,"GradCon", cGrad);
   	//    //Calling Ipopt
   	//	[x,fval,exitflag,output] =fmincon(f, x0,A,b,Aeq,beq,lb,ub,nlc,options)
 	// // Press ENTER to continue
@@ -209,7 +212,7 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
   	//	lb=[];
   	//	ub=[0,0,0];
   	//	//Options
-  	//	options=list("MaxIter", [1500], "CpuTime", [500]);
+  	//	options=struct("MaxIter", [1500], "CpuTime", [500]);
   	//    //Calling Ipopt
   	//	[x,fval,exitflag,output,lambda,grad,hessian] =fmincon(f, x0,A,b,Aeq,beq,lb,ub,[],options)
 	// // Press ENTER to continue
@@ -260,7 +263,7 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
   	//		ceqg = [3*x(1)^2,0,0;0,2*x(2),2*x(3)];
   	//	endfunction
    	//	//Options  
-  	//	options=list("MaxIter", [1500], "CpuTime", [500], "GradObj", fGrad, "Hessian", lHess,"GradCon", cGrad);
+  	//	options=struct("MaxIter", [1500], "CpuTime", [500], "GradObj", fGrad, "Hessian", lHess,"GradCon", cGrad);
   	//    //Calling Ipopt
   	//	[x,fval,exitflag,output,lambda,grad,hessian] =fmincon(f, x0,A,b,Aeq,beq,lb,ub,nlc,options)
  	// // Press ENTER to continue
@@ -270,16 +273,19 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
 	
 	//To check the number of input and output arguments
    	[lhs , rhs] = argn();
-	
+
 	//To check the number of arguments given by the user
    	if ( rhs<4 | rhs>10 ) then
-    		errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while it should be 4,6,8,9,10"), "fmincon", rhs);
+    		errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while it should be 4,5,6,7,8,9,10"), "fmincon", rhs);
     		error(errmsg)
    	end
-    	
-	if (rhs==5 | rhs==7) then
-    	errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while it should be 4,6,8,9,10s"), "fmincon", rhs);
-    	error(errmsg)
+	if (rhs==5) then
+        param=varargin(5);
+        Checktype("fmincon", param, "options", 5, "st");
+   	end
+	if (rhs==7) then
+        param=varargin(7);
+        Checktype("fmincon", param, "options", 7, "st");
    	end
  
 	//Storing the Input Parameters  
@@ -293,19 +299,32 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
    	ub       = [];
    	nlc      = [];
    	
-   	if (rhs>4) then
+   	if (rhs>4 & rhs ~= 5) then
    		Aeq  	 = varargin(5);
    		beq  	 = varargin(6);
    	end
 
-   	if (rhs>6) then
+   	if (rhs>6 & rhs ~=7) then
    		lb       = varargin(7);
    		ub       = varargin(8);
-   	end
+	end
 
    	if (rhs>8) then
-   		nlc      = varargin(9);
+       if(type(varargin(9))==17)
+           param    = varargin(9);
+           Checktype("fmincon", param, "options", 9, "st");
+        else
+           nlc      = varargin(9);
+       end
 	end
+
+   	//To check whether options has been entered by the user   
+   	if ( rhs==10 ) then
+      		param = varargin(10);
+       else
+      		param =struct(); 
+    end
+
 	
 	//To check whether the 1st Input argument (fun) is a function or not
     Checktype("fmincon", fun, "f", 1, "function");
@@ -318,8 +337,10 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
    		errmsg = msprintf(gettext("%s: Expected Row Vector or Column Vector for x0 (Starting Point) or Starting Point cannot be Empty"), "fmincon");
    		error(errmsg);
     end
-
+    
+    x_dim=0;
    	if(size(x0,2)==1) then
+        x_dim=1;
    		x0=x0';		//Converting x0 to a row vector, if it is a column vector
    	else 
    	 	x0=x0;		//Retaining the same, if it is already a row vector
@@ -556,24 +577,12 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
     	error(errmsg)
     end
    	
-   	//To check whether options has been entered by the user   
-   	if ( rhs<10 ) then
-      		param = list();
-       else
-      		param =varargin(10); //Storing the 3rd Input Parameter in an intermediate list named 'param'
-    end
-   
-	//If options has been entered, then check its type for 'list'   
-   Checktype("fmincon", param, "options", 10, "list");
-   
-	//If options has been entered, then check whether an even number of entires has been entered   
-   	if (modulo(size(param),2)) then
-		errmsg = msprintf(gettext("%s: Size of Options (list) should be even"), "fmincon");
-		error(errmsg);
-   	end
-   	
+//If options has been entered, then check its type for 'list'   
+   Checktype("fmincon", param, "options", 10, "st");
+
    	//To set default values for options, if user doesn't enter options
-	options = list("MaxIter", [3000], "CpuTime", [600]);
+	options = list("MaxIter", [3000], "CpuTime", [600] );
+
 
 	//Flags to check whether Gradient is "ON"/"OFF" and Hessian is "ON"/"OFF" 
    	flag1=0;
@@ -588,65 +597,66 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
    	cGrad=[];
 	addcGrad=[];
 	addcGrad1=[];
-   	
+
 	//To check the user entry for options and storing it
-   	for i = 1:(size(param))/2
-       	select convstr(param(2*i-1),'l')
+   	for i = 1:(size(fieldnames(param))(1))
+       	select convstr(fieldnames(param)(i),'l')
           	case "maxiter" then
-          			if (type(param(2*i))~=1) then
+          			if (type(param.MaxIter)~=1) then
           				errmsg = msprintf(gettext("%s: Value for Maximum Iteration should be a Constant"), "fmincon");
     	      			error(errmsg);
           			else
-          				options(2) = param(2*i);    //Setting the maximum number of iterations as per user entry
+          				options(2) = param.MaxIter;    //Setting the maximum number of iterations as per user entry
           			end
        		case "cputime" then
-          			if (type(param(2*i))~=1) then
+          			if (type(param.CpuTime)~=1) then
           				errmsg = msprintf(gettext("%s: Value for Maximum Cpu-time should be a Constant"), "fmincon");
     	      			error(errmsg);
           			else
-          				options(4) = param(2*i);    //Setting the maximum CPU time as per user entry
+          				options(4) = param.CpuTime;    //Setting the maximum CPU time as per user entry
           			end
         	case "gradobj" then
-        			if (type(param(2*i))==10) then
-        				if (convstr(param(2*i))=="off") then
+        			if (type(param.GradObj)==10) then
+        				if (convstr(param.GradObj)=="off") then
         					flag1 =0;
         				else
-        					errmsg = msprintf(gettext("%s: Unrecognized String [%s] entered for the option- %s."), "fmincon",param(2*i), param(2*i-1));
+        					errmsg = msprintf(gettext("%s: Unrecognized String [%s] entered for the option- %s."), "fmincon",param.GradObj,fieldnames(param)(i));
     	      				error(errmsg);
         				end
         			else
 						flag1 = 1;
-        				fGrad = param(2*i);        				      
+        				fGrad = param.GradObj;        				      
         			end
         	case "hessian" then
-        			if (type(param(2*i))==10) then
-        				if (convstr(param(2*i))=="off") then
+        			if (type(param.Hessian)==10) then
+        				if (convstr(param.Hessian)=="off") then
         					flag2 =0;
         				else
-        					errmsg = msprintf(gettext("%s: Unrecognized String [%s] entered for the option- %s."), "fmincon",param(2*i), param(2*i-1));
+        					errmsg = msprintf(gettext("%s: Unrecognized String [%s] entered for the option- %s."), "fmincon",param.Hessian, fieldnames(param)(i));
     	      				error(errmsg);
         				end
         			else
 						flag2 = 1;
-        				lHess = param(2*i);        				      
+        				lHess = param.Hessian;        				      
         			end
         	case "gradcon" then
-        			if (type(param(2*i))==10) then
-        				if (convstr(param(2*i))=="off") then
+        			if (type(param.GradCon)==10) then
+        				if (convstr(param.GradCon)=="off") then
         					flag3 =0;
         				else
-        					errmsg = msprintf(gettext("%s: Unrecognized String [%s] entered for the option- %s."), "fmincon",param(2*i), param(2*i-1));
+        					errmsg = msprintf(gettext("%s: Unrecognized String [%s] entered for the option- %s."), "fmincon",param.GradCon, fieldnames(param)(i));
     	      				error(errmsg);
         				end
         			else
 						flag3 = 1;
-        				cGrad = param(2*i);        				      
+        				cGrad = param.GradCon;        				      
         			end
        		else
-    	     	 	errmsg = msprintf(gettext("%s: Unrecognized parameter name %s."), "fmincon", param(2*i-1));
+    	     	 	errmsg = msprintf(gettext("%s: Unrecognized parameter name %s."), "fmincon", fieldnames(param)(i));
     	      		error(errmsg);
         end        					
      end 	       				      
+	
 	
    //To check for correct input of Objective Gradient function from the user	     	
    if (flag1==1) then
@@ -854,7 +864,9 @@ function [xopt,fopt,exitflag,output,lambda,gradient,hessian] = fmincon (varargin
     [xopt,fopt,status,iter,cpu,obj_eval,dual,lambda1,zl,zu,gradient,hessian1] = solveminconp("f",A,b,Aeq,beq,lb,ub,no_nlc,no_nlic,"addnlc1","fGrad1","lHess1","addcGrad1",x0,options,empty)	
    
 	//Calculating the values for the output   	
-   	xopt = xopt';
+if (x_dim == 1) then
+    xopt = xopt';
+end
     exitflag = status;
     output = struct("Iterations", [],"Cpu_Time",[],"Objective_Evaluation",[],"Dual_Infeasibility",[],"Message","");
    	output.Iterations = iter;

@@ -198,18 +198,18 @@ function varargout = intquadprog (varargin)
 	end
 
 	//Check type of variables
-	Checktype("intquadprog", H, "H", 1, "constant")
-	Checktype("intquadprog", f, "f", 2, "constant")
-	Checktype("intquadprog", intcon, "intcon", 3, "constant")
-	Checktype("intquadprog", A, "A", 4, "constant")
-	Checktype("intquadprog", b, "b", 5, "constant")
-	Checktype("intquadprog", Aeq, "Aeq", 6, "constant")
-	Checktype("intquadprog", beq, "beq", 7, "constant")
-	Checktype("intquadprog", lb, "lb", 8, "constant")
-	Checktype("intquadprog", ub, "ub", 9, "constant")
-	Checktype("intquadprog", x0, "x0", 10, "constant")
-	Checktype("intquadprog", options, "options", 11, "list")
-	Checktype("intquadprog", bonmin_options_file, "bonmin_options_file", 12, "string")
+	fot_Checktype("intquadprog", H, "H", 1, "constant")
+	fot_Checktype("intquadprog", f, "f", 2, "constant")
+	fot_Checktype("intquadprog", intcon, "intcon", 3, "constant")
+	fot_Checktype("intquadprog", A, "A", 4, "constant")
+	fot_Checktype("intquadprog", b, "b", 5, "constant")
+	fot_Checktype("intquadprog", Aeq, "Aeq", 6, "constant")
+	fot_Checktype("intquadprog", beq, "beq", 7, "constant")
+	fot_Checktype("intquadprog", lb, "lb", 8, "constant")
+	fot_Checktype("intquadprog", ub, "ub", 9, "constant")
+	fot_Checktype("intquadprog", x0, "x0", 10, "constant")
+	fot_Checktype("intquadprog", options, "options", 11, "list")
+	fot_Checktype("intquadprog", bonmin_options_file, "bonmin_options_file", 12, "string")
 	
 	nbConInEq = size(A,1);
 	nbConEq = size(Aeq,1);

@@ -164,27 +164,27 @@ function [x,fval,attainfactor,exitflag,output,lambda] = fgoalattain(varargin)
 
     // Check number of input and output arguments
     [gattainLhs,gattainRhs] = argn()
-    Checkrhs("fgoalattain", gattainRhs, [4 6 8 10 11 12])
-    Checklhs("fgoalattain", gattainLhs, 1:6)
+    fot_Checkrhs("fgoalattain", gattainRhs, [4 6 8 10 11 12])
+    fot_Checklhs("fgoalattain", gattainLhs, 1:6)
 
     // initialisation of fun
     gattainObjfun = varargin(1)
-    Checktype("fgoalattain", gattainObjfun, "fun", 1, "function")
+    fot_Checktype("fgoalattain", gattainObjfun, "fun", 1, "function")
 
     // initialisation of x0
     gattainStartpoint = varargin(2)
-    Checktype("fgoalattain", gattainStartpoint, "x0", 2, "constant")
+    fot_Checktype("fgoalattain", gattainStartpoint, "x0", 2, "constant")
 
     gattainNumvar = size(gattainStartpoint,"*")
     gattainStartpoint = gattainStartpoint(:)
 
     // initialisation of goal
     goal=varargin(3)
-    Checktype("fgoalattain",goal,"goal",3,"constant")
+    fot_Checktype("fgoalattain",goal,"goal",3,"constant")
 
     // initialisation of weight
     weight=varargin(4)
-    Checktype("fgoalattain",weight,"weight",4,"constant")
+    fot_Checktype("fgoalattain",weight,"weight",4,"constant")
 
     //initialisation of A and b
     if(gattainRhs < 5) then
@@ -195,13 +195,13 @@ function [x,fval,attainfactor,exitflag,output,lambda] = fgoalattain(varargin)
         gattainB = varargin(6)
     end
 
-    Checktype("fgoalattain", gattainA, "A", 5, "constant")
-    Checktype("fgoalattain", gattainB, "b", 6, "constant")
+    fot_Checktype("fgoalattain", gattainA, "A", 5, "constant")
+    fot_Checktype("fgoalattain", gattainB, "b", 6, "constant")
 
     gattainNumrowA = size(gattainA,"r")
     if(gattainA <> []) then
-        Checkdims("fgoalattain", gattainA, "A", 5, [gattainNumrowA gattainNumvar])
-        Checkvector("fgoalattain", gattainB, "b", 6, gattainNumrowA)
+        fot_Checkdims("fgoalattain", gattainA, "A", 5, [gattainNumrowA gattainNumvar])
+        fot_Checkvector("fgoalattain", gattainB, "b", 6, gattainNumrowA)
         gattainB = gattainB(:)
     end
 
@@ -214,13 +214,13 @@ function [x,fval,attainfactor,exitflag,output,lambda] = fgoalattain(varargin)
         gattainBeq = varargin(8)
     end
 
-    Checktype("fgoalattain", gattainAeq, "Aeq", 7, "constant")
-    Checktype("fgoalattain", gattainBeq, "beq", 8, "constant")
+    fot_Checktype("fgoalattain", gattainAeq, "Aeq", 7, "constant")
+    fot_Checktype("fgoalattain", gattainBeq, "beq", 8, "constant")
 
     gattainNumrowAeq = size(gattainAeq,"r")
     if(gattainAeq <> []) then
-        Checkdims("fgoalattain", gattainAeq, "Aeq", 7, [gattainNumrowAeq gattainNumvar])
-        Checkvector("fgoalattain", gattainBeq, "beq", 8, gattainNumrowAeq)
+        fot_Checkdims("fgoalattain", gattainAeq, "Aeq", 7, [gattainNumrowAeq gattainNumvar])
+        fot_Checkvector("fgoalattain", gattainBeq, "beq", 8, gattainNumrowAeq)
         gattainBeq = gattainBeq(:)
     end
 
@@ -233,17 +233,17 @@ function [x,fval,attainfactor,exitflag,output,lambda] = fgoalattain(varargin)
         gattainUb = varargin(10)
     end
 
-    Checktype("fgoalattain", gattainLb, "lb", 9, "constant")
-    Checktype("fgoalattain", gattainUb, "ub", 10, "constant")
+    fot_Checktype("fgoalattain", gattainLb, "lb", 9, "constant")
+    fot_Checktype("fgoalattain", gattainUb, "ub", 10, "constant")
 
     // Check dimensions of lb and ub
     if(gattainLb <> []) then
-        Checkvector("fgoalattain", gattainLb, "lb", 9, gattainNumvar)
+        fot_Checkvector("fgoalattain", gattainLb, "lb", 9, gattainNumvar)
         gattainLb = gattainLb(:)
     end
 
     if(gattainUb <> []) then
-        Checkvector("fgoalattain", gattainUb, "ub", 10, gattainNumvar)
+        fot_Checkvector("fgoalattain", gattainUb, "ub", 10, gattainNumvar)
         gattainUb = gattainUb(:)
     end
 
@@ -259,7 +259,7 @@ function [x,fval,attainfactor,exitflag,output,lambda] = fgoalattain(varargin)
         gattainNonlinfun = varargin(11)
     end
 
-    Checktype("fgoalattain", gattainNonlinfun, "nonlcon", 11, "function")
+    fot_Checktype("fgoalattain", gattainNonlinfun, "nonlcon", 11, "function")
 
     // initialisation of default options
     if(gattainRhs < 12) then

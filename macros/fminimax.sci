@@ -221,19 +221,19 @@ function [x,fval,maxfval,exitflag,output,lambda] = fminimax(varargin)
 
     // Check number of input and output arguments
     [minmaxLhs,minmaxRhs] = argn()
-    Checkrhs("fminimax", minmaxRhs, [2 4 6 8 9 10])
-    Checklhs("fminimax", minmaxLhs, 1:7)
+    fot_Checkrhs("fminimax", minmaxRhs, [2 4 6 8 9 10])
+    fot_Checklhs("fminimax", minmaxLhs, 1:7)
 
     // Proper initialisation of objective function
     minmaxObjfun = varargin(1)
-    Checktype("fminimax", minmaxObjfun, "minmaxObjfun", 1, "function")
+    fot_Checktype("fminimax", minmaxObjfun, "minmaxObjfun", 1, "function")
 
     // Proper initialisation of starting point
     minmaxStartpoint = varargin(2)
-    Checktype("fminimax", minmaxStartpoint, "minmaxStartpoint", 2, "constant")
+    fot_Checktype("fminimax", minmaxStartpoint, "minmaxStartpoint", 2, "constant")
 
     minmaxNumvar = size(minmaxStartpoint,"*")
-    Checkvector("fminimax", minmaxStartpoint, "minmaxStartpoint", 2, minmaxNumvar)
+    fot_Checkvector("fminimax", minmaxStartpoint, "minmaxStartpoint", 2, minmaxNumvar)
     minmaxStartpoint = minmaxStartpoint(:)
 
     // Proper initialisation of A and b
@@ -245,8 +245,8 @@ function [x,fval,maxfval,exitflag,output,lambda] = fminimax(varargin)
         minmaxB = varargin(4)
     end
 
-    Checktype("fminimax", minmaxA, "A", 3, "constant")
-    Checktype("fminimax", minmaxB, "b", 4, "constant")
+    fot_Checktype("fminimax", minmaxA, "A", 3, "constant")
+    fot_Checktype("fminimax", minmaxB, "b", 4, "constant")
 
     // Check if A and b of proper dimensions
     if(minmaxA <> [] & minmaxB == []) then
@@ -261,8 +261,8 @@ function [x,fval,maxfval,exitflag,output,lambda] = fminimax(varargin)
 
     minmaxNumrowA = size(minmaxA,"r")
     if(minmaxA <> []) then
-        Checkdims("fminimax", minmaxA, "A", 3, [minmaxNumrowA minmaxNumvar])
-        Checkvector("fminimax", minmaxB, "b", 4, minmaxNumrowA)
+        fot_Checkdims("fminimax", minmaxA, "A", 3, [minmaxNumrowA minmaxNumvar])
+        fot_Checkvector("fminimax", minmaxB, "b", 4, minmaxNumrowA)
         minmaxB = minmaxB(:)
     end
 
@@ -275,8 +275,8 @@ function [x,fval,maxfval,exitflag,output,lambda] = fminimax(varargin)
         minmaxBeq = varargin(6)
     end
 
-    Checktype("fminimax", minmaxAeq, "Aeq", 5, "constant")
-    Checktype("fminimax", minmaxBeq, "beq", 6, "constant")
+    fot_Checktype("fminimax", minmaxAeq, "Aeq", 5, "constant")
+    fot_Checktype("fminimax", minmaxBeq, "beq", 6, "constant")
 
     // Check if Aeq and beq of proper dimensions
     if(minmaxAeq <> [] & minmaxBeq == []) then
@@ -291,8 +291,8 @@ function [x,fval,maxfval,exitflag,output,lambda] = fminimax(varargin)
 
     minmaxNumrowAeq = size(minmaxAeq,"r")
     if(minmaxAeq <> []) then
-        Checkdims("fminimax", minmaxAeq, "Aeq", 5, [minmaxNumrowAeq minmaxNumvar])
-        Checkvector("fminimax", minmaxBeq, "beq", 6, minmaxNumrowAeq)
+        fot_Checkdims("fminimax", minmaxAeq, "Aeq", 5, [minmaxNumrowAeq minmaxNumvar])
+        fot_Checkvector("fminimax", minmaxBeq, "beq", 6, minmaxNumrowAeq)
         minmaxBeq = minmaxBeq(:)
     end
 
@@ -305,17 +305,17 @@ function [x,fval,maxfval,exitflag,output,lambda] = fminimax(varargin)
         minmaxUb = varargin(8)
     end
 
-    Checktype("fminimax", minmaxLb, "lb", 7, "constant")
-    Checktype("fminimax", minmaxUb, "ub", 8, "constant")
+    fot_Checktype("fminimax", minmaxLb, "lb", 7, "constant")
+    fot_Checktype("fminimax", minmaxUb, "ub", 8, "constant")
 
     // Check dimensions of minmaxLb and minmaxUb
     if(minmaxLb <> []) then
-        Checkvector("fminimax", minmaxLb, "lb", 7, minmaxNumvar)
+        fot_Checkvector("fminimax", minmaxLb, "lb", 7, minmaxNumvar)
         minmaxLb = minmaxLb(:)
     end
 
     if(minmaxUb <> []) then
-        Checkvector("fminimax", minmaxUb, "ub", 8, minmaxNumvar)
+        fot_Checkvector("fminimax", minmaxUb, "ub", 8, minmaxNumvar)
         minmaxUb = minmaxUb(:)
     end
 
@@ -336,7 +336,7 @@ function [x,fval,maxfval,exitflag,output,lambda] = fminimax(varargin)
         minmaxNonlinfun = t
     end
 
-    Checktype("fminimax", minmaxNonlinfun, "nonlinfun", 9, "function")
+    fot_Checktype("fminimax", minmaxNonlinfun, "nonlinfun", 9, "function")
 
     //To check, Whether minimaxOptions is been entered by user
     if ( minmaxRhs<10 ) then

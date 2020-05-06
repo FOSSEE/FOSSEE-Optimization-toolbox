@@ -3,7 +3,7 @@
 //
 // This file must be used under the terms of the GNU LGPL license.
 
-function errmsg = Checkdims ( funname , var , varname , ivar , matdims )
+function errmsg = fot_Checkdims ( funname , var , varname , ivar , matdims )
   // Generates an error if the variable has not the required size.
   //
   // Calling Sequence
@@ -43,8 +43,8 @@ function errmsg = Checkdims ( funname , var , varname , ivar , matdims )
   //
 
   [lhs,rhs]=argn()
-  Checkrhs ( funname , rhs , 5 )
-  Checklhs ( funname , lhs , [0 1] )
+  fot_Checkrhs ( funname , rhs , 5 )
+  fot_Checklhs ( funname , lhs , [0 1] )
 
   errmsg = []
   if ( or ( size(var) <> matdims ) ) then

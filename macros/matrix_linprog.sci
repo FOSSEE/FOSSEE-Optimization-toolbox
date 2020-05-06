@@ -67,13 +67,13 @@ function [xopt,fopt,exitflag,output,lambda] = matrix_linprog (varargin)
    	end
 
 	//Check type of variables
-	Checktype("linprog", c, "c", 1, "constant")
-	Checktype("linprog", A, "A", 2, "constant")
-	Checktype("linprog", b, "b", 3, "constant")
-	Checktype("linprog", Aeq, "Aeq", 4, "constant")
-	Checktype("linprog", beq, "beq", 5, "constant")
-	Checktype("linprog", lb, "lb", 6, "constant")
-	Checktype("linprog", ub, "ub", 7, "constant")
+	fot_Checktype("linprog", c, "c", 1, "constant")
+	fot_Checktype("linprog", A, "A", 2, "constant")
+	fot_Checktype("linprog", b, "b", 3, "constant")
+	fot_Checktype("linprog", Aeq, "Aeq", 4, "constant")
+	fot_Checktype("linprog", beq, "beq", 5, "constant")
+	fot_Checktype("linprog", lb, "lb", 6, "constant")
+	fot_Checktype("linprog", ub, "ub", 7, "constant")
 
    nbConInEq = size(A,1);
    nbConEq = size(Aeq,1);
